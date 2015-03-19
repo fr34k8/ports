@@ -1,0 +1,15 @@
+DEFINED_PHASES=install postinst postrm prepare setup
+DEPEND=>=dev-python/sip-4.12.4[python_abis_2.6?,python_abis_2.7?] >=dev-python/PyQt4-4.6[X,help,sql,svg,webkit,python_abis_2.6?,python_abis_2.7?] >=dev-python/qscintilla-python-2.3[python_abis_2.6?,python_abis_2.7?] kde? ( kde-base/pykde4[python_abis_2.6?,python_abis_2.7?] ) ( python_abis_2.6? ( dev-lang/python:2.6[xml] ) python_abis_2.7? ( dev-lang/python:2.7[xml] ) ) app-arch/tar app-arch/gzip linguas_cs? ( app-arch/tar app-arch/gzip ) linguas_de? ( app-arch/tar app-arch/gzip ) linguas_en? ( app-arch/tar app-arch/gzip ) linguas_es? ( app-arch/tar app-arch/gzip ) linguas_fr? ( app-arch/tar app-arch/gzip ) linguas_it? ( app-arch/tar app-arch/gzip ) linguas_ru? ( app-arch/tar app-arch/gzip ) linguas_tr? ( app-arch/tar app-arch/gzip ) linguas_zh_CN? ( app-arch/tar app-arch/gzip )
+DESCRIPTION=A full featured Python IDE using PyQt4 and QScintilla
+EAPI=5-progress
+HOMEPAGE=http://eric-ide.python-projects.org/
+IUSE=kde spell linguas_cs linguas_de linguas_en linguas_es linguas_fr linguas_it linguas_ru linguas_tr linguas_zh_CN python_abis_2.6 python_abis_2.7
+KEYWORDS=*
+LICENSE=GPL-3
+PDEPEND=spell? ( dev-python/pyenchant[python_abis_2.6?,python_abis_2.7?] )
+RDEPEND=>=dev-python/sip-4.12.4[python_abis_2.6?,python_abis_2.7?] >=dev-python/PyQt4-4.6[X,help,sql,svg,webkit,python_abis_2.6?,python_abis_2.7?] >=dev-python/qscintilla-python-2.3[python_abis_2.6?,python_abis_2.7?] kde? ( kde-base/pykde4[python_abis_2.6?,python_abis_2.7?] ) >=dev-python/chardet-2.0.1[python_abis_2.6?,python_abis_2.7?] dev-python/coverage[python_abis_2.6?,python_abis_2.7?] >=dev-python/pygments-1.1[python_abis_2.6?,python_abis_2.7?] ( python_abis_2.6? ( dev-lang/python:2.6[xml] ) python_abis_2.7? ( dev-lang/python:2.7[xml] ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 )
+SLOT=4
+SRC_URI=mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-4.5.16.tar.gz linguas_cs? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-cs-4.5.16.tar.gz ) linguas_de? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-de-4.5.16.tar.gz ) linguas_en? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-en-4.5.16.tar.gz ) linguas_es? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-es-4.5.16.tar.gz ) linguas_fr? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-fr-4.5.16.tar.gz ) linguas_it? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-it-4.5.16.tar.gz ) linguas_ru? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-ru-4.5.16.tar.gz ) linguas_tr? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-tr-4.5.16.tar.gz ) linguas_zh_CN? ( mirror://sourceforge/eric-ide/eric4/stable/4.5.16/eric4-i18n-zh_CN.GB2312-4.5.16.tar.gz )
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3f6d74b5384dbeef63d932c2b6f9b61a	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=34133c3079b83050ea347f5dc433fc45

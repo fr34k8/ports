@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=numpy? ( dev-python/numpy[python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?,python_abis_3.2-pypy?] ) app-arch/unzip ( python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) python_abis_3.2-pypy? ( dev-lang/pypy:python-3.2 ) )
+DESCRIPTION=Python package to handle polygonal shapes in 2D
+EAPI=4-python
+HOMEPAGE=http://www.j-raedler.de/projects/polygon/ https://github.com/jraedler/Polygon3
+IUSE=numpy python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_3.2-pypy
+KEYWORDS=amd64 x86
+LICENSE=LGPL-2
+RDEPEND=numpy? ( dev-python/numpy[python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?,python_abis_3.2-pypy?] ) ( python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) python_abis_3.2-pypy? ( dev-lang/pypy:python-3.2 ) )
+REQUIRED_USE=|| ( python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_3.2-pypy )
+SLOT=3
+SRC_URI=mirror://github/jraedler/Polygon3/Polygon-3.0.5.zip
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=f5fac98674593a6b4e5b85f3d7de13a3

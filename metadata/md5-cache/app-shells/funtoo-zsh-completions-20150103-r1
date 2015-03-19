@@ -1,0 +1,11 @@
+DEFINED_PHASES=install prepare
+DESCRIPTION=Funtoo specific zsh completion support (includes emerge and ebuild commands)
+EAPI=5
+HOMEPAGE=https://github.com/radhermit/gentoo-zsh-completions
+KEYWORDS=*
+LICENSE=ZSH
+RDEPEND=!app-shells/gentoo-zsh-completions >=app-shells/zsh-4.3.5
+SLOT=0
+SRC_URI=https://github.com/radhermit/gentoo-zsh-completions/archive/20150103.tar.gz -> funtoo-zsh-completions-20150103.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=bfd0c90eb8bb9b4ec3e4ff1dcbf479c2

@@ -1,0 +1,93 @@
+Install libpythonX.Y.a in /usr/lib instead of /usr/lib/pythonX.Y/config.
+https://bugs.gentoo.org/show_bug.cgi?id=252372
+https://bugs.python.org/issue6103
+
+--- Makefile.pre.in
++++ Makefile.pre.in
+@@ -1005,6 +1005,19 @@
+ 		$(RUNSHARED) $(PYTHON_FOR_BUILD) -m ensurepip \
+ 			$$ensurepip --root=$(DESTDIR)/ ; \
+ 	fi
++	@if test -f $(LIBRARY) && test $(LIBRARY) != $(LDLIBRARY); then \
++		if test "$(PYTHONFRAMEWORKDIR)" = no-framework; then \
++			if test "$(SHLIB_SUFFIX)" = .dll; then \
++				$(INSTALL_DATA) $(LDLIBRARY) $(DESTDIR)$(LIBDIR); \
++			else \
++				$(INSTALL_DATA) $(LIBRARY) $(DESTDIR)$(LIBDIR); \
++				$(RANLIB) $(DESTDIR)$(LIBDIR)/$(LIBRARY); \
++			fi; \
++		else \
++			echo "Skipped install of $(LIBRARY) - use make frameworkinstall"; \
++		fi; \
++	else	true; \
++	fi
+ 
+ commoninstall:  @FRAMEWORKALTINSTALLFIRST@ \
+ 		altbininstall libinstall inclinstall libainstall \
+@@ -1325,18 +1338,6 @@
+ 		else	true; \
+ 		fi; \
+ 	done
+-	@if test -d $(LIBRARY); then :; else \
+-		if test "$(PYTHONFRAMEWORKDIR)" = no-framework; then \
+-			if test "$(SHLIB_SUFFIX)" = .dll; then \
+-				$(INSTALL_DATA) $(LDLIBRARY) $(DESTDIR)$(LIBPL) ; \
+-			else \
+-				$(INSTALL_DATA) $(LIBRARY) $(DESTDIR)$(LIBPL)/$(LIBRARY) ; \
+-				$(RANLIB) $(DESTDIR)$(LIBPL)/$(LIBRARY) ; \
+-			fi; \
+-		else \
+-			echo Skip install of $(LIBRARY) - use make frameworkinstall; \
+-		fi; \
+-	fi
+ 	$(INSTALL_DATA) Modules/config.c $(DESTDIR)$(LIBPL)/config.c
+ 	$(INSTALL_DATA) Modules/python.o $(DESTDIR)$(LIBPL)/python.o
+ 	$(INSTALL_DATA) $(srcdir)/Modules/config.c.in $(DESTDIR)$(LIBPL)/config.c.in
+--- Misc/python-config.in
++++ Misc/python-config.in
+@@ -50,11 +50,7 @@
+         libs = ['-lpython' + pyver + sys.abiflags]
+         libs += getvar('LIBS').split()
+         libs += getvar('SYSLIBS').split()
+-        # add the prefix/lib/pythonX.Y/config dir, but only if there is no
+-        # shared library in prefix/lib/.
+         if opt == '--ldflags':
+-            if not getvar('Py_ENABLE_SHARED'):
+-                libs.insert(0, '-L' + getvar('LIBPL'))
+             if not getvar('PYTHONFRAMEWORK'):
+                 libs.extend(getvar('LINKFORSHARED').split())
+         print(' '.join(libs))
+--- Misc/python-config.sh.in
++++ Misc/python-config.sh.in
+@@ -45,7 +45,6 @@
+ LDLIBRARY="@LDLIBRARY@"
+ LINKFORSHARED="@LINKFORSHARED@"
+ OPT="@OPT@"
+-PY_ENABLE_SHARED="@PY_ENABLE_SHARED@"
+ LDVERSION="@LDVERSION@"
+ LIBDEST=${prefix}/lib/python${VERSION}
+ LIBPL=$(echo "@LIBPL@" | sed "s#$prefix_build#$prefix_real#")
+@@ -92,11 +91,7 @@
+             if [ -z "$PYTHONFRAMEWORK" ] ; then
+                 LINKFORSHAREDUSED=$LINKFORSHARED
+             fi
+-            LIBPLUSED=
+-            if [ "$PY_ENABLE_SHARED" = "0" ] ; then
+-                LIBPLUSED="-L$LIBPL"
+-            fi
+-            echo "$LIBPLUSED -L$libdir $LIBS $LINKFORSHAREDUSED"
++            echo "-L$libdir $LIBS $LINKFORSHAREDUSED"
+         ;;
+         --extension-suffix)
+             echo "$SO"
+--- Modules/makesetup
++++ Modules/makesetup
+@@ -89,7 +89,7 @@
+ 	 then
+ 	 	ExtraLibDir=.
+ 	 else
+-	 	ExtraLibDir='$(LIBPL)'
++	 	ExtraLibDir='$(LIBDIR)'
+ 	 fi
+ 	 ExtraLibs="-L$ExtraLibDir -lpython\$(VERSION)";;
+ esac

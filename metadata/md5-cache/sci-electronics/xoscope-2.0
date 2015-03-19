@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile prepare setup
+DEPEND=x11-libs/gtkdatabox virtual/man virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=Soundcard Oscilloscope for X
+EAPI=5
+HOMEPAGE=http://xoscope.sourceforge.net
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=x11-libs/gtkdatabox virtual/man
+SLOT=0
+SRC_URI=mirror://sourceforge/xoscope/xoscope-2.0.tgz
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	eutils	998e5931fb95b10a6a11ec796ada2759	libtool	52d0e17251d04645ffaa61bfdd858944	linux-info	2b8c53f6065bdee2d757472215a3088f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=3d86750f40af758dce7725eb2141b582

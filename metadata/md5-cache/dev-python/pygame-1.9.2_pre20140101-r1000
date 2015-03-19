@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm prepare setup test unpack
+DEPEND=dev-python/numpy[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] media-libs/freetype:2= media-libs/libpng:0= media-libs/sdl-image:0=[png,jpeg] media-libs/sdl-mixer:0= media-libs/sdl-ttf:0= media-libs/smpeg:0= virtual/jpeg X? ( media-libs/libsdl:0=[X,video] ) !X? ( media-libs/libsdl:0= ) doc? ( dev-python/sphinx[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] ) ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) ) test? ( !prefix? ( x11-base/xorg-server[xvfb] ) x11-apps/xhost ) app-arch/tar app-arch/bzip2
+DESCRIPTION=Python bindings for SDL multimedia library
+EAPI=5-progress
+HOMEPAGE=http://www.pygame.org/ https://bitbucket.org/pygame/pygame
+IUSE=doc examples X python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 test
+KEYWORDS=*
+LICENSE=LGPL-2.1
+RDEPEND=dev-python/numpy[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] media-libs/freetype:2= media-libs/libpng:0= media-libs/sdl-image:0=[png,jpeg] media-libs/sdl-mixer:0= media-libs/sdl-ttf:0= media-libs/smpeg:0= virtual/jpeg X? ( media-libs/libsdl:0=[X,video] ) !X? ( media-libs/libsdl:0= ) ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 )
+SLOT=0
+SRC_URI=https://bitbucket.org/pygame/pygame/get/90f8019b31d294fc9264c0f3da66ceeb0e0fd154.tar.bz2 -> pygame-1.9.2_pre20140101.tar.bz2
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef	virtualx	73cfc129b4b9ba23aed1abb10c825d86
+_md5_=f0365e3fa7ebd21a5a9c73d2236f1ff6

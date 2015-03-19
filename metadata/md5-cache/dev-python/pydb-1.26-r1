@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm prepare setup test
+DEPEND=emacs? ( virtual/emacs ) =dev-lang/python-2*
+DESCRIPTION=Extended python debugger
+EAPI=4
+HOMEPAGE=http://bashdb.sourceforge.net/pydb/
+IUSE=emacs
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+RDEPEND=emacs? ( virtual/emacs ) =dev-lang/python-2*
+SLOT=0
+SRC_URI=mirror://sourceforge/bashdb/pydb-1.26.tar.bz2
+_eclasses_=elisp-common	1aa23b3de5dae55456fa2071428eb5bf	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=635bce3e9877cd63d73aaca29f20e1d7

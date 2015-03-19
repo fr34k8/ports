@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm preinst prepare prerm test
+DESCRIPTION=Memory tester based on memtest86
+EAPI=4
+HOMEPAGE=http://www.memtest.org/
+IUSE=floppy serial
+KEYWORDS=-* ~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=floppy? ( >=sys-boot/grub-0.95:0 sys-fs/mtools )
+SLOT=0
+SRC_URI=http://www.memtest.org/download/4.20/memtest86+-4.20.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=10f71a3e6adb1e35d3c81f734d624f0f

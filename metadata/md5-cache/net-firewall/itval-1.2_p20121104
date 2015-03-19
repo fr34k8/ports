@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=sys-devel/flex sys-devel/bison dev-libs/fddl sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Iptables policy testing and validation tool
+EAPI=5
+HOMEPAGE=http://itval.sourceforge.net
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=dev-libs/fddl
+SLOT=0
+SRC_URI=http://dev.gentoo.org/~pinkbyte/distfiles/snapshots/ITVal-20121104.tar.bz2
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=3a98950e4c69c0c93d82175f96a72a92

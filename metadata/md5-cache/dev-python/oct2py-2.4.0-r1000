@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=>=dev-python/numpy-1.7.1[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] >=sci-libs/scipy-0.12[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] sci-mathematics/octave[gnuplot] ipython? ( ( python_abis_2.7? ( dev-python/ipython[python_abis_2.7] ) python_abis_3.3? ( dev-python/ipython[python_abis_3.3] ) python_abis_3.4? ( dev-python/ipython[python_abis_3.4] ) python_abis_3.5? ( dev-python/ipython[python_abis_3.5] ) ) ) dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) ) test? ( dev-python/nose[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] ) app-arch/tar app-arch/gzip
+DESCRIPTION=Python to GNU Octave bridge
+EAPI=5-progress
+HOMEPAGE=https://blink1073.github.io/oct2py/ https://github.com/blink1073/oct2py https://pypi.python.org/pypi/oct2py
+IUSE=examples ipython python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 test
+KEYWORDS=*
+LICENSE=MIT
+RDEPEND=>=dev-python/numpy-1.7.1[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] >=sci-libs/scipy-0.12[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] sci-mathematics/octave[gnuplot] ipython? ( ( python_abis_2.7? ( dev-python/ipython[python_abis_2.7] ) python_abis_3.3? ( dev-python/ipython[python_abis_3.3] ) python_abis_3.4? ( dev-python/ipython[python_abis_3.4] ) python_abis_3.5? ( dev-python/ipython[python_abis_3.5] ) ) ) ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 )
+SLOT=0
+SRC_URI=mirror://pypi/o/oct2py/oct2py-2.4.0.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=e0f4b5bb8563e7c432a0efc8702f6d5a

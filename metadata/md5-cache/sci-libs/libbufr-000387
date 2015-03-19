@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst prepare setup test
+DEPEND=sys-apps/findutils virtual/fortran
+DESCRIPTION=ECMWF BUFR library - includes both C and Fortran example utilities
+EAPI=3
+HOMEPAGE=http://www.ecmwf.int/products/data/software/bufr.html
+IUSE=debug doc examples
+KEYWORDS=~amd64 ~ppc ~ppc64 ~x86
+LICENSE=LGPL-3
+RDEPEND=virtual/fortran
+SLOT=0
+SRC_URI=http://www.ecmwf.int/products/data/software/download/software_files/bufr_000387.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	fortran-2	e18b1135d4c478b5c81b23698c483030	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=b3ed2edee2d2e0a2acce25f4b9361444

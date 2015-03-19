@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install postinst postrm preinst
+DEPEND=!qt5? ( dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qtopengl:4 ) qt5? ( dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtopengl:5 ) virtual/glu virtual/pkgconfig >=sys-apps/sed-4
+DESCRIPTION=an open source, multi-platform generator of the Mandelbrot family fractals
+EAPI=5
+HOMEPAGE=http://fraqtive.mimec.org/
+IUSE=qt5 cpu_flags_x86_sse2
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=!qt5? ( dev-qt/qtcore:4 dev-qt/qtgui:4 dev-qt/qtopengl:4 ) qt5? ( dev-qt/qtcore:5 dev-qt/qtgui:5 dev-qt/qtopengl:5 ) virtual/glu
+SLOT=0
+SRC_URI=mirror://sourceforge/fraqtive/fraqtive-0.4.8.tar.bz2
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	ea709b525d28e3087eddedb2f884dbbe	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=b3400ef091db946d97eec722150cd20e

@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm setup
+DEPEND=!net-zope/namespaces ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7 ) python_abis_3.2-pypy? ( dev-lang/pypy:python-3.2 ) )
+DESCRIPTION=Python namespaces: Products, Shared, Shared.DC, five, zope, zope.app
+EAPI=4-python
+IUSE=python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy python_abis_3.2-pypy +Products +Shared +Shared.DC +five +zope +zope.app
+KEYWORDS=~alpha amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris
+LICENSE=public-domain
+RDEPEND=!net-zope/namespaces ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7 ) python_abis_3.2-pypy? ( dev-lang/pypy:python-3.2 ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-jython python_abis_2.7-pypy python_abis_3.2-pypy ) || ( Products Shared Shared.DC five zope zope.app ) Shared.DC? ( Shared ) zope.app? ( zope )
+SLOT=0
+_eclasses_=python	3f6d74b5384dbeef63d932c2b6f9b61a	python-namespaces	278408ca52a9641ec7924060f1e99d47
+_md5_=cdeea1334b18f0f92d28e360474f85e2

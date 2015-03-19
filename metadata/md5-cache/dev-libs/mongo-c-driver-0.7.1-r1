@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install prepare unpack
+DEPEND=doc? ( dev-python/sphinx )
+DESCRIPTION=C Driver for MongoDB
+EAPI=5
+HOMEPAGE=http://www.mongodb.org/ https://github.com/mongodb/mongo-c-driver
+IUSE=doc static-libs python_targets_python2_7
+KEYWORDS=amd64 ~hppa ppc x86
+LICENSE=Apache-2.0
+RESTRICT=test
+SLOT=0
+SRC_URI=https://github.com/mongodb/mongo-c-driver/tarball/v0.7.1 -> mongo-c-driver-0.7.1.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python-r1	331701099758706863819fe3ff6ddc8a	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=92d3c3bf76825a52efb606539db9bcee

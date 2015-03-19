@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst postrm setup
+DEPEND=X? ( x11-apps/mkfontdir media-fonts/encodings )
+DESCRIPTION=WenQuanYi Hei-Ti Style (sans-serif) Chinese outline font
+EAPI=3
+HOMEPAGE=http://wqy.sourceforge.net/cgi-bin/enindex.cgi?ZenHei(en)
+IUSE=X
+KEYWORDS=~amd64 ~arm ~ppc ~ppc64 ~x86 ~x86-fbsd
+LICENSE=GPL-2
+RESTRICT=strip binchecks
+SLOT=0
+SRC_URI=mirror://sourceforge/wqy/wqy-zenhei-0.9.45.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	font	b3239d2dc442d1717b9725e2be7cb5d6	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=fde36bc5808b546f2af6ba10f3be17e6

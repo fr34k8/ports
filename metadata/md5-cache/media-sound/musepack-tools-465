@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=>=media-libs/libcuefile-465 >=media-libs/libreplaygain-465 !media-libs/libmpcdec !media-libs/libmpcdecsv7 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Musepack SV8 libraries and utilities
+EAPI=3
+HOMEPAGE=http://www.musepack.net
+KEYWORDS=alpha amd64 ~arm hppa ~ia64 ppc ppc64 ~sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris
+LICENSE=BSD LGPL-2.1
+RDEPEND=>=media-libs/libcuefile-465 >=media-libs/libreplaygain-465 !media-libs/libmpcdec !media-libs/libmpcdecsv7
+SLOT=0
+SRC_URI=mirror://gentoo/musepack-tools-465.tar.bz2
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=1afa8f78563e5ea35f2ea79e524f820a

@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
+DEPEND=app-crypt/libsecret[vala] >=dev-libs/glib-2.34:2 >=dev-libs/libpeas-1.0 >=x11-libs/gtk+-3.6:3 >=x11-libs/libnotify-0.7 >=app-backup/duplicity-0.6.23 dev-libs/dbus-glib nautilus? ( gnome-base/nautilus ) app-text/yelp-tools || ( dev-lang/vala:0.24 dev-lang/vala:0.22 dev-lang/vala:0.20 ) dev-perl/Locale-gettext virtual/pkgconfig dev-util/intltool sys-devel/gettext sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=Simple backup tool using duplicity back-end
+EAPI=5
+HOMEPAGE=https://launchpad.net/deja-dup/
+IUSE=nautilus test debug
+KEYWORDS=amd64 x86
+LICENSE=GPL-3
+RDEPEND=app-crypt/libsecret[vala] >=dev-libs/glib-2.34:2 >=dev-libs/libpeas-1.0 >=x11-libs/gtk+-3.6:3 >=x11-libs/libnotify-0.7 >=app-backup/duplicity-0.6.23 dev-libs/dbus-glib nautilus? ( gnome-base/nautilus ) gnome-base/dconf gnome-base/gvfs[fuse]
+RESTRICT=test
+SLOT=0
+SRC_URI=http://launchpad.net/deja-dup/32/32.0/+download/deja-dup-32.0.tar.xz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	c263990f1b677b0f0be0a3299f179762	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	c29c0c7e1682c3605a65cd5ef429e88b	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	vala	a41415fe361172827ed11b6a32ee38fb	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=dabec979ffaf71b6b6f8e63e28ae512f

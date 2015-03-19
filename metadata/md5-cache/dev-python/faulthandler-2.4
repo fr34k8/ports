@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?] ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) ) app-arch/tar app-arch/gzip
+DESCRIPTION=Display the Python traceback on a crash
+EAPI=5-progress
+HOMEPAGE=https://faulthandler.readthedocs.org/ https://github.com/haypo/faulthandler https://pypi.python.org/pypi/faulthandler
+IUSE=python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2
+KEYWORDS=*
+LICENSE=BSD-2
+RDEPEND=( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 )
+SLOT=0
+SRC_URI=mirror://pypi/f/faulthandler/faulthandler-2.4.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=e19a863792bf988ef4131b62c27e33c4

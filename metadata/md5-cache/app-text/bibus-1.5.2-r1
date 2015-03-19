@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup
+DEPEND=python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7[sqlite] ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] app-office/libreoffice dev-python/wxpython:2.8[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-db/sqliteodbc dev-db/unixODBC mysql? ( dev-python/mysql-python[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-db/myodbc )
+DESCRIPTION=Bibliographic and reference management software, integrates with L/OO.o and MS Word
+EAPI=5
+HOMEPAGE=http://bibus-biblio.sourceforge.net/
+IUSE=mysql python_targets_python2_7
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7[sqlite] ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] app-office/libreoffice dev-python/wxpython:2.8[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-db/sqliteodbc dev-db/unixODBC mysql? ( dev-python/mysql-python[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-db/myodbc )
+REQUIRED_USE=|| ( python_targets_python2_7 )
+SLOT=0
+SRC_URI=mirror://sourceforge/bibus-biblio/bibus_1.5.2.orig.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python-r1	331701099758706863819fe3ff6ddc8a	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=f53377b8134c1dd1ed8197db0580e319

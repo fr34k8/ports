@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=>=net-libs/ccrtp-2 >=dev-cpp/commoncpp2-1.5.1 || ( >=dev-libs/openssl-0.9.8[-bindist] dev-libs/libgcrypt:0= ) virtual/pkgconfig sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=GNU RTP stack for the zrtp protocol developed by Phil Zimmermann
+EAPI=5
+HOMEPAGE=http://www.gnutelephony.org/index.php/GNU_ZRTP
+KEYWORDS=amd64 ppc ~ppc64 x86
+LICENSE=GPL-3
+RDEPEND=>=net-libs/ccrtp-2 >=dev-cpp/commoncpp2-1.5.1 || ( >=dev-libs/openssl-0.9.8[-bindist] dev-libs/libgcrypt:0= )
+SLOT=0
+SRC_URI=mirror://gnu/ccrtp/libzrtpcpp-2.3.4.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=500c39a66312d9072d299327ef520eda

@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm prepare setup
+DEPEND=virtual/latex-base =dev-lang/python-2*
+DESCRIPTION=A LaTeX wrapper for automatically building documents
+EAPI=3
+HOMEPAGE=http://iml.univ-mrs.fr/~beffara/soft/rubber/
+KEYWORDS=amd64 ppc x86
+LICENSE=GPL-2
+RDEPEND=virtual/latex-base =dev-lang/python-2*
+SLOT=0
+SRC_URI=http://iml.univ-mrs.fr/~beffara/soft/rubber/rubber-20090819.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=e5eccb0d52022587944ed6452bb91c69

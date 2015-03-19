@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=dev-libs/libev net-dns/c-ares dev-python/greenlet[python_abis_2.6?,python_abis_2.7?] dev-python/setuptools[python_abis_2.6?,python_abis_2.7?] doc? ( dev-python/sphinx[python_abis_2.6?,python_abis_2.7?] ) ( python_abis_2.6? ( dev-lang/python:2.6[ssl] ) python_abis_2.7? ( dev-lang/python:2.7[ssl] ) ) app-arch/tar app-arch/gzip
+DESCRIPTION=Coroutine-based network library
+EAPI=5-progress
+HOMEPAGE=http://gevent.org/ https://github.com/surfly/gevent https://pypi.python.org/pypi/gevent
+IUSE=doc examples python_abis_2.6 python_abis_2.7
+KEYWORDS=*
+LICENSE=BSD MIT
+RDEPEND=dev-libs/libev net-dns/c-ares dev-python/greenlet[python_abis_2.6?,python_abis_2.7?] ( python_abis_2.6? ( dev-lang/python:2.6[ssl] ) python_abis_2.7? ( dev-lang/python:2.7[ssl] ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 )
+SLOT=0
+SRC_URI=mirror://pypi/g/gevent/gevent-1.0.1.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=9ed4ebaf92357e35554598616416884b

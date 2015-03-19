@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup
+DEPEND=( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) ) app-arch/tar app-arch/gzip
+DESCRIPTION=Jon's Python modules
+EAPI=5-progress
+HOMEPAGE=http://jonpy.sourceforge.net/ https://pypi.python.org/pypi/jonpy
+IUSE=doc examples python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy
+KEYWORDS=*
+LICENSE=MIT
+RDEPEND=( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy )
+SLOT=0
+SRC_URI=mirror://pypi/j/jonpy/jonpy-0.11.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=dc7fd2962799ee30a5a7e350800f34a2

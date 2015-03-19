@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile install postinst preinst test unpack
+DEPEND=app-arch/xz-utils >=app-misc/pax-utils-0.1.19
+DESCRIPTION=sandbox'd LD_PRELOAD hack
+HOMEPAGE=http://www.gentoo.org/
+IUSE=multilib
+KEYWORDS=*
+LICENSE=GPL-2
+SLOT=0
+SRC_URI=mirror://gentoo/sandbox-2.6.tar.xz http://dev.gentoo.org/~vapier/dist/sandbox-2.6.tar.xz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	unpacker	f300a7ca9131b1024a79762e8edd3c52
+_md5_=a64edd68adbfff61393e29a5a71b2f1c

@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare setup unpack
+DEPEND=>=sys-libs/talloc-2.0.8[python] >=dev-lang/python-2.7.5-r2:2.7[threads(+)] >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),python_single_target_python2_7(+)] virtual/pkgconfig dev-lang/python !dev-lang/python[-threads]
+DESCRIPTION=Samba tevent library
+EAPI=5
+HOMEPAGE=http://tevent.samba.org/
+IUSE=python_targets_python2_7
+KEYWORDS=alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~amd64-fbsd ~x86-fbsd ~arm-linux ~x86-linux
+LICENSE=GPL-3
+RDEPEND=>=sys-libs/talloc-2.0.8[python] >=dev-lang/python-2.7.5-r2:2.7[threads(+)] >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),python_single_target_python2_7(+)]
+REQUIRED_USE=python_targets_python2_7
+SLOT=0
+SRC_URI=http://samba.org/ftp/tevent/tevent-0.9.19.tar.gz
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-single-r1	f782db6207752efeca1d59c016d8c813	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	waf-utils	c83d65d895bcdfc6152948bbafd25453
+_md5_=9841bd82e030b38d39c302ece85fbaab

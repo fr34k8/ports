@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install postinst postrm preinst prepare setup
+DEPEND=app-text/txt2tags =dev-lang/python-2* =dev-lang/python-2*[tk] >=sys-apps/sed-4
+DESCRIPTION=A collection of DVD authoring tools
+EAPI=3
+HOMEPAGE=http://tovid.wikia.com/wiki/Tovid_Wiki
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=app-cdr/cdrdao app-cdr/dvd+rw-tools dev-python/pycairo dev-tcltk/tix || ( media-gfx/imagemagick[png] media-gfx/graphicsmagick[imagemagick,png] ) media-sound/normalize >=media-sound/sox-14.3.2 media-video/dvdauthor >=media-video/mjpegtools-2.0.0 >=media-video/mplayer-1.0_rc4_p20110101 >=media-video/transcode-1.1.5 media-video/vcdimager sys-devel/bc virtual/ffmpeg =dev-lang/python-2* =dev-lang/python-2*[tk]
+SLOT=0
+SRC_URI=http://tovid.googlecode.com/files/tovid-0.34.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3f6d74b5384dbeef63d932c2b6f9b61a	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=ee7c185539a24fa25c75a2b1c1538baa

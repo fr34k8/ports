@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=doc? ( >=app-doc/doxygen-1.4.2 ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=High-performance, full-featured text search engine based off of lucene in C++
+EAPI=5
+HOMEPAGE=http://clucene.sourceforge.net/
+IUSE=debug doc static-libs
+KEYWORDS=alpha amd64 arm hppa ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos
+LICENSE=|| ( Apache-2.0 LGPL-2.1 )
+RDEPEND=!<app-misc/strigi-0.7.5-r3
+RESTRICT=test
+SLOT=1
+SRC_URI=mirror://sourceforge/clucene/clucene-core-2.3.3.4.tar.gz
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=03bc175008b801f702d8735d76b44235

@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=media-libs/alsa-lib ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) python_abis_3.2-pypy? ( dev-lang/pypy:python-3.2= ) ) app-arch/tar app-arch/gzip app-arch/tar app-arch/gzip
+DESCRIPTION=ALSA bindings
+EAPI=5-progress
+HOMEPAGE=http://sourceforge.net/projects/pyalsaaudio/ https://pypi.python.org/pypi/pyalsaaudio
+IUSE=doc python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-pypy python_abis_3.2-pypy
+KEYWORDS=*
+LICENSE=PSF-2
+RDEPEND=media-libs/alsa-lib ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) python_abis_3.2-pypy? ( dev-lang/pypy:python-3.2= ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 python_abis_2.7-pypy python_abis_3.2-pypy )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://sourceforge/pyalsaaudio/pyalsaaudio-0.7.tar.gz mirror://pypi/p/pyalsaaudio/pyalsaaudio-0.7.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=c3582fe1700ef41955d296a92625c3ca

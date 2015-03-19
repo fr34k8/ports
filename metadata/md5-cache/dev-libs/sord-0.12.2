@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare setup test unpack
+DEPEND=>=dev-libs/serd-0.14.0 || ( >=dev-lang/python-2.7.5-r2:2.7[threads(+)] dev-lang/python:3.4[threads(+)] >=dev-lang/python-3.3.2-r2:3.3[threads(+)] ) doc? ( app-doc/doxygen ) virtual/pkgconfig dev-lang/python !dev-lang/python[-threads]
+DESCRIPTION=Library for storing RDF data in memory
+EAPI=4
+HOMEPAGE=http://drobilla.net/software/sord/
+IUSE=doc static-libs test
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=ISC
+RDEPEND=>=dev-libs/serd-0.14.0
+SLOT=0
+SRC_URI=http://download.drobilla.net/sord-0.12.2.tar.bz2
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-any-r1	da352ea9da8eb9bf158d56cca65d6c82	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	waf-utils	c83d65d895bcdfc6152948bbafd25453
+_md5_=2969532073bd5d02934178c29ae533bb

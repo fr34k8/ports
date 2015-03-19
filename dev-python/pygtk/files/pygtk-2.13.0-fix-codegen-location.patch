@@ -1,0 +1,11 @@
+--- pygtk-2.0.pc.in
++++ pygtk-2.0.pc.in
+@@ -12,7 +12,7 @@ pygtkincludedir=${includedir}/pygtk-2.0
+ # This is strictly speaking not necessarily so (we refer to another
+ # package), but we want to preserve compatibility with times codegen
+ # was in PyGTK, not PyGObject.
+-codegendir=${datadir}/pygobject/2.0/codegen
++codegendir=${pyexecdir}/gtk-2.0/codegen
+ 
+ Name: PyGTK
+ Description: Python bindings for GTK+ and related libraries

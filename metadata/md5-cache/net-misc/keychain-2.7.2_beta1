@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install postinst
+DESCRIPTION=manage ssh and GPG keys in a convenient and secure manner. Frontend for ssh-agent/ssh-add
+EAPI=5
+HOMEPAGE=http://www.funtoo.org/Keychain
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=app-shells/bash || ( net-misc/openssh net-misc/ssh )
+SLOT=0
+SRC_URI=http://build.funtoo.org/distfiles/keychain/keychain-2.7.2_beta1.tar.bz2
+_md5_=ee3f941770b9a1b1ee557d79e06ddf0f

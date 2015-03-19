@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare setup test unpack
+DEPEND=dev-util/desktop-file-utils >=dev-util/intltool-0.21 sys-devel/gettext virtual/pkgconfig app-arch/xz-utils >=sys-apps/sed-4 sys-devel/make >=dev-util/cmake-2.8.5 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Gtk+ GUI for controlling cdemu-daemon
+EAPI=5
+HOMEPAGE=http://cdemu.org/
+IUSE=debug linguas_de linguas_fr linguas_no linguas_pl linguas_sl linguas_zh_CN python_targets_python2_7
+KEYWORDS=amd64 x86
+LICENSE=GPL-2+
+RDEPEND=>=dev-lang/python-2.7.5-r2:2.7 >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),python_single_target_python2_7(+)] app-cdr/cdemu-daemon:0/6 >=dev-libs/glib-2.28:2 dev-libs/gobject-introspection dev-python/pygobject:3[python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),-python_single_target_python3_3(-),-python_single_target_python3_4(-),python_single_target_python2_7(+)] gnome-base/librsvg:2 sys-apps/dbus x11-libs/gdk-pixbuf[introspection] x11-libs/gtk+:3[introspection] x11-libs/libnotify[introspection]
+REQUIRED_USE=python_targets_python2_7
+SLOT=0
+SRC_URI=mirror://sourceforge/cdemu/gcdemu-2.1.1.tar.bz2
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	flag-o-matic	c263990f1b677b0f0be0a3299f179762	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	c29c0c7e1682c3605a65cd5ef429e88b	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	l10n	33bde4fb0cfd3a21a277b66bfd837e19	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python-single-r1	f782db6207752efeca1d59c016d8c813	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=f1e996ef9fa219891dfc6edeca5aa342

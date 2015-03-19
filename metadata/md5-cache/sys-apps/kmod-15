@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure install prepare setup
+DEPEND=!sys-apps/module-init-tools !sys-apps/modutils lzma? ( >=app-arch/xz-utils-5.0.4-r1 ) zlib? ( >=sys-libs/zlib-1.2.6 ) dev-libs/libxslt doc? ( dev-util/gtk-doc ) lzma? ( virtual/pkgconfig ) zlib? ( virtual/pkgconfig ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=library and tools for managing linux kernel modules
+EAPI=5
+HOMEPAGE=http://git.kernel.org/?p=utils/kernel/kmod/kmod.git
+IUSE=debug doc lzma static-libs +tools zlib
+KEYWORDS=*
+LICENSE=LGPL-2
+RDEPEND=!sys-apps/module-init-tools !sys-apps/modutils lzma? ( >=app-arch/xz-utils-5.0.4-r1 ) zlib? ( >=sys-libs/zlib-1.2.6 )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://kernel/linux/utils/kernel/kmod/kmod-15.tar.xz
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	eutils	998e5931fb95b10a6a11ec796ada2759	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=a00444bf22e9e5ba90e689dc68081c48

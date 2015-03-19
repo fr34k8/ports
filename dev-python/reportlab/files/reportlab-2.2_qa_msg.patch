@@ -1,0 +1,15 @@
+#Patch submitted by Jesus Rivero <neurogeek@gentoo.org>
+#Submitted on 10/04/2008 to upstream
+--- src/rl_addons/renderPM/gt1/gt1-namecontext.c
++++ src/rl_addons/renderPM/gt1/gt1-namecontext.c
+@@ -3,9 +3,7 @@
+ #include "gt1-misc.h"
+ 
+ #include "gt1-namecontext.h"
+-#if defined(_WIN32) || defined(macintosh)
+-#	include <string.h>
+-#endif
++#include <string.h>
+ 
+ /* btw, I do not know who wrote the following comment. I modified this
+    file somewhat from gimp's app/procedural_db.c hash function. */

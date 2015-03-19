@@ -1,0 +1,20 @@
+--- setup.py
++++ setup.py
+@@ -354,7 +354,7 @@
+         for file in _LIB_IMAGING:
+             files.append(os.path.join("libImaging", file + ".c"))
+ 
+-        libs = []
++        libs = ["m"]
+         defs = []
+         if feature.jpeg:
+             libs.append(feature.jpeg)
+@@ -420,7 +420,7 @@
+                 libraries=[feature.tcl, feature.tk]))
+ 
+         if os.path.isfile("_imagingmath.c"):
+-            exts.append(Extension("PIL._imagingmath", ["_imagingmath.c"]))
++            exts.append(Extension("PIL._imagingmath", ["_imagingmath.c"], libraries=["m"]))
+ 
+         if os.path.isfile("_imagingmorph.c"):
+             exts.append(Extension("PIL._imagingmorph", ["_imagingmorph.c"]))

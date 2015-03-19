@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare pretend test
+DEPEND=!static? ( dev-libs/boost virtual/libiconv lzma? ( app-arch/xz-utils ) ) doc? ( >=app-doc/doxygen-1.8.3.1 ) static? ( app-arch/bzip2[static-libs] dev-libs/boost[static-libs] sys-libs/zlib[static-libs] virtual/libiconv lzma? ( app-arch/xz-utils[static-libs] ) ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=A tool to unpack installers created by Inno Setup
+EAPI=5
+HOMEPAGE=http://innoextract.constexpr.org/
+IUSE=c++0x debug doc +lzma static
+KEYWORDS=amd64 x86
+LICENSE=ZLIB
+RDEPEND=!static? ( dev-libs/boost virtual/libiconv lzma? ( app-arch/xz-utils ) )
+SLOT=0
+SRC_URI=mirror://github/dscharrer/InnoExtract/innoextract-1.4.tar.gz mirror://sourceforge/innoextract/innoextract-1.4.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=29b2e2a6a543cc8babcfd05ebe06abb8

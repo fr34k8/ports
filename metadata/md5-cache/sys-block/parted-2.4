@@ -1,0 +1,14 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=>=sys-fs/e2fsprogs-1.27 >=sys-libs/ncurses-5.2 device-mapper? ( >=sys-fs/lvm2-2.02.45 ) readline? ( >=sys-libs/readline-5.2 ) selinux? ( sys-libs/libselinux ) nls? ( >=sys-devel/gettext-0.12.1-r2 ) virtual/pkgconfig
+DESCRIPTION=Create, destroy, resize, check, copy partitions and file systems
+EAPI=5
+HOMEPAGE=http://www.gnu.org/software/parted
+IUSE=+debug device-mapper nls readline selinux static-libs
+KEYWORDS=alpha amd64 arm hppa ia64 ~mips ppc ppc64 s390 ~sh sparc x86
+LICENSE=GPL-3
+RDEPEND=>=sys-fs/e2fsprogs-1.27 >=sys-libs/ncurses-5.2 device-mapper? ( >=sys-fs/lvm2-2.02.45 ) readline? ( >=sys-libs/readline-5.2 ) selinux? ( sys-libs/libselinux )
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://gnu/parted/parted-2.4.tar.xz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=06ec296c5e95b8a5c119042fddf0ea81

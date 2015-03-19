@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare setup test
+DEPEND=sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) virtual/fortran
+DESCRIPTION=A package for unstructured serial graph partitioning
+EAPI=5
+HOMEPAGE=http://www-users.cs.umn.edu/~karypis/metis/metis/
+IUSE=doc openmp static-libs
+KEYWORDS=~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux
+LICENSE=free-noncomm
+RDEPEND=!sci-libs/parmetis virtual/fortran
+SLOT=0
+SRC_URI=http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	fortran-2	e18b1135d4c478b5c81b23698c483030	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=1e30df0a5613beb3ada3ba9b2337aae6

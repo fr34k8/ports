@@ -1,0 +1,16 @@
+--- tests/client_0_8/run_all.py
++++ tests/client_0_8/run_all.py
+@@ -28,13 +28,8 @@
+         'test_exceptions',
+         'test_serialization',
+         'test_basic_message',
+-        'test_connection',
+-        'test_channel',
+         ]
+ 
+-if sys.version_info >= (2, 5):
+-    TEST_NAMES.append('test_with')
+-
+ def main():
+     suite = unittest.TestLoader().loadTestsFromNames(TEST_NAMES)
+     unittest.TextTestRunner(**settings.test_args).run(suite)

@@ -1,0 +1,154 @@
+--- libs/locale/build/Jamfile.v2
++++ libs/locale/build/Jamfile.v2
+@@ -58,54 +58,47 @@
+ 
+ if $(ICU_LINK)
+ {
+-    ICU_OPTS = <include>$(ICU_PATH)/include <linkflags>$(ICU_LINK) <dll-path>$(ICU_PATH)/bin <runtime-link>shared ;
+-    ICU64_OPTS = <include>$(ICU_PATH)/include <linkflags>$(ICU_LINK) <dll-path>$(ICU_PATH)/bin64 <runtime-link>shared ;
++    ICU_OPTS = <include>$(ICU_PATH)/include <linkflags>$(ICU_LINK) <runtime-link>shared ;
++    ICU64_OPTS = <include>$(ICU_PATH)/include <linkflags>$(ICU_LINK) <runtime-link>shared ;
+ }
+ else
+ {
+     searched-lib icuuc : :  <name>icuuc
+-                            <search>$(ICU_PATH)/lib 
+                             <link>shared 
+                             <runtime-link>shared ;
+ 
+     searched-lib icuuc : :  <toolset>msvc
+                             <variant>debug
+                             <name>icuucd
+-                            <search>$(ICU_PATH)/lib
+                             <link>shared
+                             <runtime-link>shared ;
+ 
+     searched-lib icuuc : :  <name>this_is_an_invalid_library_name ;
+ 
+-    searched-lib icudt : :  <search>$(ICU_PATH)/lib
+-                            <name>icudata
++    searched-lib icudt : :  <name>icudata
+                             <link>shared
+                             <runtime-link>shared ;
+ 
+-    searched-lib icudt : :  <search>$(ICU_PATH)/lib
+-                            <name>icudt
++    searched-lib icudt : :  <name>icudt
+                             <toolset>msvc
+                             <link>shared
+                             <runtime-link>shared ;
+ 
+     searched-lib icudt : :  <name>this_is_an_invalid_library_name ;
+ 
+-    searched-lib icuin : :  <search>$(ICU_PATH)/lib
+-                            <name>icui18n
++    searched-lib icuin : :  <name>icui18n
+                             <link>shared
+                             <runtime-link>shared ;
+ 
+     searched-lib icuin : :  <toolset>msvc
+                             <variant>debug
+                             <name>icuind
+-                            <search>$(ICU_PATH)/lib
+                             <link>shared
+                             <runtime-link>shared ;
+ 
+     searched-lib icuin : :  <toolset>msvc
+                             <variant>release
+                             <name>icuin
+-                            <search>$(ICU_PATH)/lib
+                             <link>shared
+                             <runtime-link>shared ;
+ 
+@@ -117,54 +110,46 @@
+       <library>icuuc/<link>shared/<runtime-link>shared 
+       <library>icudt/<link>shared/<runtime-link>shared 
+       <library>icuin/<link>shared/<runtime-link>shared
+-      <dll-path>$(ICU_PATH)/bin
+         <runtime-link>shared ;
+ 
+ 
+ 
+     searched-lib icuuc_64 : :   <name>icuuc
+-                                <search>$(ICU_PATH)/lib64 
+                                 <link>shared 
+                                 <runtime-link>shared ;
+ 
+     searched-lib icuuc_64 : :   <toolset>msvc
+                                 <variant>debug
+                                 <name>icuucd
+-                                <search>$(ICU_PATH)/lib64
+                                 <link>shared
+                                 <runtime-link>shared ;
+ 
+     searched-lib icuuc_64 : :   <name>this_is_an_invalid_library_name ;
+ 
+-    searched-lib icudt_64 : :   <search>$(ICU_PATH)/lib64
+-                                <name>icudata
++    searched-lib icudt_64 : :   <name>icudata
+                                 <link>shared
+                                 <runtime-link>shared ;
+ 
+-    searched-lib icudt_64 : :   <search>$(ICU_PATH)/lib64
+-                                <name>icudt
++    searched-lib icudt_64 : :   <name>icudt
+                                 <toolset>msvc
+                                 <link>shared
+                                 <runtime-link>shared ;
+ 
+     searched-lib icudt_64 : :   <name>this_is_an_invalid_library_name ;
+ 
+-    searched-lib icuin_64 : :   <search>$(ICU_PATH)/lib64
+-                                <name>icui18n
++    searched-lib icuin_64 : :   <name>icui18n
+                                 <link>shared
+                                 <runtime-link>shared ;
+ 
+     searched-lib icuin_64 : :   <toolset>msvc
+                                 <variant>debug
+                                 <name>icuind
+-                                <search>$(ICU_PATH)/lib64
+                                 <link>shared
+                                 <runtime-link>shared ;
+ 
+     searched-lib icuin_64 : :   <toolset>msvc
+                                 <variant>release
+                                 <name>icuin
+-                                <search>$(ICU_PATH)/lib64
+                                 <link>shared
+                                 <runtime-link>shared ;
+ 
+@@ -176,7 +161,6 @@
+       <library>icuuc_64/<link>shared/<runtime-link>shared 
+       <library>icudt_64/<link>shared/<runtime-link>shared 
+       <library>icuin_64/<link>shared/<runtime-link>shared
+-      <dll-path>$(ICU_PATH)/bin64
+         <runtime-link>shared ;
+  
+     
+--- libs/regex/build/Jamfile.v2
++++ libs/regex/build/Jamfile.v2
+@@ -15,14 +15,6 @@
+ rule path_options ( properties * )
+ {
+     local result ;
+-    if <address-model>64 in $(properties) && <toolset>msvc in $(properties) 
+-    {
+-    	result = <search>$(ICU_PATH)/bin64 <search>$(ICU_PATH)/lib64 ;
+-    }
+-    else
+-    {
+-    	result = <search>$(ICU_PATH)/bin <search>$(ICU_PATH)/lib ;
+-    }
+     return $(result) ;
+ }
+ 
+@@ -44,7 +36,7 @@
+ 
+    if $(ICU_LINK)
+    {
+-      ICU_OPTS = <include>$(ICU_PATH)/include <linkflags>$(ICU_LINK) <dll-path>$(ICU_PATH)/bin <define>BOOST_HAS_ICU=1 <runtime-link>shared ;
++      ICU_OPTS = <include>$(ICU_PATH)/include <linkflags>$(ICU_LINK) <define>BOOST_HAS_ICU=1 <runtime-link>shared ;
+    }
+    else
+    {

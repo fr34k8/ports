@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=test? ( dev-python/mock[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] ) dev-python/setuptools[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)]
+DESCRIPTION=Stem is a Python controller library for Tor
+EAPI=5
+HOMEPAGE=https://stem.torproject.org
+IUSE=test python_targets_python2_7
+KEYWORDS=~amd64 ~arm ~mips ~ppc ~ppc64 ~x86 ~x86-fbsd
+LICENSE=LGPL-3
+RDEPEND=net-misc/tor python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)]
+REQUIRED_USE=|| ( python_targets_python2_7 )
+SLOT=0
+SRC_URI=https://gitweb.torproject.org/stem.git/snapshot/14861679a24e0cfb5949da8fd90f3a3c45016dfb.tar.gz -> stem-1.2.2_p20140718.tar.gz
+_eclasses_=distutils-r1	c01d5c4af34f4a37a51fc9638299c222	eutils	998e5931fb95b10a6a11ec796ada2759	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-r1	331701099758706863819fe3ff6ddc8a	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_md5_=6e49e42b92846eca6f4d524a150fe717

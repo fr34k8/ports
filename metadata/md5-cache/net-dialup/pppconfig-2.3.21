@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install prepare
+DEPEND=nls? ( sys-devel/gettext )
+DESCRIPTION=A text menu based utility for configuring ppp
+EAPI=5
+HOMEPAGE=http://packages.qa.debian.org/p/pppconfig.html
+IUSE=nls
+KEYWORDS=~amd64 ~ppc ~x86
+LICENSE=GPL-2
+RDEPEND=net-dialup/ppp dev-util/dialog dev-lang/perl
+SLOT=0
+SRC_URI=mirror://debian/pool/main/p/pppconfig/pppconfig_2.3.21.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=964fa1f8a6a9943bb7d40ba57cac7b95

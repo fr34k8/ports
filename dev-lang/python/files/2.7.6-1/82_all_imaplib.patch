@@ -1,0 +1,63 @@
+http://bugs.python.org/issue16039
+http://hg.python.org/cpython/rev/dd906f4ab923
+http://hg.python.org/cpython/rev/d7ae948d9eee
+
+--- Lib/imaplib.py
++++ Lib/imaplib.py
+@@ -35,6 +35,15 @@
+ IMAP4_SSL_PORT = 993
+ AllowedVersions = ('IMAP4REV1', 'IMAP4')        # Most recent first
+ 
++# Maximal line length when calling readline(). This is to prevent
++# reading arbitrary length lines. RFC 3501 and 2060 (IMAP 4rev1)
++# don't specify a line length. RFC 2683 however suggests limiting client
++# command lines to 1000 octets and server command lines to 8000 octets.
++# We have selected 10000 for some extra margin and since that is supposedly
++# also what UW and Panda IMAP does.
++_MAXLINE = 10000
++
++
+ #       Commands
+ 
+ Commands = {
+@@ -237,7 +246,10 @@
+ 
+     def readline(self):
+         """Read line from remote."""
+-        return self.file.readline()
++        line = self.file.readline(_MAXLINE + 1)
++        if len(line) > _MAXLINE:
++            raise self.error("got more than %d bytes" % _MAXLINE)
++        return line
+ 
+ 
+     def send(self, data):
+--- Lib/test/test_imaplib.py
++++ Lib/test/test_imaplib.py
+@@ -165,6 +165,16 @@
+                               self.imap_class, *server.server_address)
+ 
+ 
++    def test_linetoolong(self):
++        class TooLongHandler(SimpleIMAPHandler):
++            def handle(self):
++                # Send a very long response line
++                self.wfile.write('* OK ' + imaplib._MAXLINE*'x' + '\r\n')
++
++        with self.reaped_server(TooLongHandler) as server:
++            self.assertRaises(imaplib.IMAP4.error,
++                              self.imap_class, *server.server_address)
++
+ class ThreadedNetworkedTests(BaseThreadedNetworkedTests):
+ 
+     server_class = SocketServer.TCPServer
+@@ -177,6 +187,9 @@
+     server_class = SecureTCPServer
+     imap_class = IMAP4_SSL
+ 
++    def test_linetoolong(self):
++        raise unittest.SkipTest("test is not reliable on 2.7; see issue 20118")
++
+ 
+ class RemoteIMAPTest(unittest.TestCase):
+     host = 'cyrus.andrew.cmu.edu'

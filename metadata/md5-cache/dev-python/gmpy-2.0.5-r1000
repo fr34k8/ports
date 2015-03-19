@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=>=dev-libs/mpc-1.0:0= >=dev-libs/mpfr-3.1:0= !mpir? ( dev-libs/gmp:0= ) mpir? ( sci-libs/mpir:0= ) doc? ( dev-python/sphinx[python_abis_2.6?,python_abis_2.7?,python_abis_3.1?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] ) ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) ) app-arch/unzip
+DESCRIPTION=Python bindings for GMP, MPC, MPFR and MPIR libraries
+EAPI=5-progress
+HOMEPAGE=http://code.google.com/p/gmpy/ https://pypi.python.org/pypi/gmpy2
+IUSE=doc mpir python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5
+KEYWORDS=*
+LICENSE=LGPL-2.1
+RDEPEND=>=dev-libs/mpc-1.0:0= >=dev-libs/mpfr-3.1:0= !mpir? ( dev-libs/gmp:0= ) mpir? ( sci-libs/mpir:0= ) ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.1? ( dev-lang/python:3.1 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.1 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 )
+SLOT=2
+SRC_URI=mirror://pypi/g/gmpy2/gmpy2-2.0.5.zip
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=bdf5c55d75e0fbd2feb2d147665b7683

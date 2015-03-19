@@ -1,0 +1,11 @@
+DEFINED_PHASES=install postinst setup
+DESCRIPTION=Fast, unlimited and secure file-syncing. Free from the cloud.
+EAPI=5
+HOMEPAGE=http://labs.bittorrent.com/experiments/sync.html
+KEYWORDS=~amd64 ~x86
+LICENSE=BitTorrent
+RESTRICT=mirror strip
+SLOT=0
+SRC_URI=amd64? ( http://syncapp.bittorrent.com/1.4.111/btsync_x64-1.4.111.tar.gz ) x86? ( http://syncapp.bittorrent.com/1.4.111/btsync_i386-1.4.111.tar.gz )
+_eclasses_=user	f54e098dd38ba1c0847a13e685b87747
+_md5_=074d2003390c682a89ed41ee7250ea5c

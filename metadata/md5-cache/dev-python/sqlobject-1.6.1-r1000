@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup
+DEPEND=dev-python/formencode[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-pypy?] mysql? ( dev-python/mysql-python[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-pypy?] ) postgres? ( ( python_abis_2.6? ( dev-python/psycopg:2[python_abis_2.6] ) python_abis_2.7? ( dev-python/psycopg:2[python_abis_2.7] ) ) ) dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-pypy?] ( python_abis_2.6? ( dev-lang/python:2.6[sqlite?] ) python_abis_2.7? ( dev-lang/python:2.7[sqlite?] ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7=[sqlite?] ) ) app-arch/tar app-arch/gzip
+DESCRIPTION=Object-Relational Manager, aka database wrapper
+EAPI=5-progress
+HOMEPAGE=http://sqlobject.org/ https://pypi.python.org/pypi/SQLObject
+IUSE=mysql postgres sqlite python_abis_2.6 python_abis_2.7 python_abis_2.7-pypy
+KEYWORDS=*
+LICENSE=LGPL-2.1
+RDEPEND=dev-python/formencode[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-pypy?] mysql? ( dev-python/mysql-python[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-pypy?] ) postgres? ( ( python_abis_2.6? ( dev-python/psycopg:2[python_abis_2.6] ) python_abis_2.7? ( dev-python/psycopg:2[python_abis_2.7] ) ) ) ( python_abis_2.6? ( dev-lang/python:2.6[sqlite?] ) python_abis_2.7? ( dev-lang/python:2.7[sqlite?] ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7=[sqlite?] ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-pypy )
+SLOT=0
+SRC_URI=mirror://pypi/S/SQLObject/SQLObject-1.6.1.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=6c6b79fa9786c6069875994990ec9f5c

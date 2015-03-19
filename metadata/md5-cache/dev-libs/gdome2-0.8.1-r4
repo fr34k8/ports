@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare setup unpack
+DEPEND=>=dev-libs/glib-2.2.0 >=dev-libs/libxml2-2.4.26 virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 app-arch/xz-utils >=sys-apps/sed-4
+DESCRIPTION=The DOM C library for the GNOME project
+EAPI=4
+HOMEPAGE=http://gdome2.cs.unibo.it/
+KEYWORDS=alpha amd64 hppa ia64 ppc ppc64 sparc x86
+LICENSE=LGPL-2.1
+RDEPEND=>=dev-libs/glib-2.2.0 >=dev-libs/libxml2-2.4.26
+RESTRICT=test
+SLOT=0
+SRC_URI=http://gdome2.cs.unibo.it/tarball/gdome2-0.8.1.tar.gz
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	eutils	998e5931fb95b10a6a11ec796ada2759	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	gnome.org	8fef8f967214f56e08fa92d61163d891	gnome2	c29c0c7e1682c3605a65cd5ef429e88b	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=165c85d61671c0130037005827365b9d

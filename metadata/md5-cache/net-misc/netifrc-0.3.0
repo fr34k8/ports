@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install postinst prepare
+DEPEND=kernel_linux? ( virtual/pkgconfig ) !<sys-fs/udev-172 virtual/pkgconfig
+DESCRIPTION=Gentoo Network Interface Management Scripts
+EAPI=5
+HOMEPAGE=http://www.gentoo.org/proj/en/base/openrc/
+KEYWORDS=~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~sparc-fbsd ~x86-fbsd
+LICENSE=BSD-2
+RDEPEND=sys-apps/gentoo-functions
+SLOT=0
+SRC_URI=http://dev.gentoo.org/~robbat2/distfiles/netifrc-0.3.0.tar.bz2
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	systemd	b0daeef4b75b0130d34c62aa1930d21e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=cfaa2faab5cdf2fc8db54cc0af172811

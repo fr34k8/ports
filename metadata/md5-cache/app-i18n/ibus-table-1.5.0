@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install postinst postrm prepare setup
+DEPEND=>=app-i18n/ibus-1.4.99 nls? ( virtual/libintl ) nls? ( >=sys-devel/gettext-0.16.1 ) virtual/pkgconfig =dev-lang/python-2* =dev-lang/python-2*[sqlite]
+DESCRIPTION=The Table Engine for IBus Framework
+EAPI=3
+HOMEPAGE=http://code.google.com/p/ibus/
+IUSE=nls
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2 LGPL-2.1
+RDEPEND=>=app-i18n/ibus-1.4.99 nls? ( virtual/libintl ) =dev-lang/python-2* =dev-lang/python-2*[sqlite]
+SLOT=0
+SRC_URI=http://ibus.googlecode.com/files/ibus-table-1.5.0.tar.gz
+_eclasses_=python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=0bba086c994c9fffa1108fac9efa3750

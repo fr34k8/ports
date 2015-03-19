@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst postrm preinst prepare prerm setup
+DEPEND=binary? ( >=sys-kernel/genkernel-3.4.40.7 )
+DESCRIPTION=Debian Sources (and optional binary kernel)
+EAPI=3
+HOMEPAGE=http://www.debian.org
+IUSE=binary rt
+LICENSE=GPL-2
+RDEPEND=binary? ( >=sys-kernel/genkernel-3.4.40.7 )
+RESTRICT=binchecks strip mirror
+SLOT=3.2.57
+SRC_URI=http://build.funtoo.org/distfiles/linux_3.2.57.orig.tar.xz http://build.funtoo.org/distfiles/linux_3.2.57-3.debian.tar.xz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=b28bc3832fa14f2b79df628dc99b2179

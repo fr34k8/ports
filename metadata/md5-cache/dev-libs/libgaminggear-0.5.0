@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test
+DEPEND=x11-libs/gtk+:2 x11-libs/libnotify media-libs/libcanberra virtual/libusb:1 dev-libs/dbus-glib app-doc/doxygen sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=sys-apps/sed-4
+DESCRIPTION=Provides functionality for gaming input devices
+EAPI=5
+HOMEPAGE=http://sourceforge.net/projects/libgaminggear/
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=x11-libs/gtk+:2 x11-libs/libnotify media-libs/libcanberra virtual/libusb:1 dev-libs/dbus-glib
+SLOT=0
+SRC_URI=mirror://sourceforge/libgaminggear/libgaminggear-0.5.0.tar.bz2
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=988a2c965eab2c56b569e3383bd9228e

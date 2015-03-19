@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare setup test
+DEPEND=jpeg2k? ( jasper? ( media-libs/jasper ) !jasper? ( media-libs/openjpeg:0 ) ) netcdf? ( sci-libs/netcdf ) png? ( media-libs/libpng ) python? ( dev-python/numpy[python_targets_python3_3(-)?,python_targets_python3_4(-)?,python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),python_single_target_python3_3(+)?,python_single_target_python3_4(+)?,python_single_target_python2_7(+)?] ) python? ( dev-lang/swig ) fortran? ( virtual/fortran )
+DESCRIPTION=Library for decoding WMO FM-92 GRIB messages
+EAPI=5
+HOMEPAGE=https://software.ecmwf.int/wiki/display/GRIB/Home
+IUSE=doc examples fortran jasper jpeg2k netcdf openmp png python static-libs threads perl python_targets_python3_3 python_targets_python3_4 python_targets_python2_7 python_single_target_python3_3 python_single_target_python3_4 python_single_target_python2_7
+KEYWORDS=~amd64 ~x86 ~amd64-linux ~x86-linux
+LICENSE=Apache-2.0
+RDEPEND=jpeg2k? ( jasper? ( media-libs/jasper ) !jasper? ( media-libs/openjpeg:0 ) ) netcdf? ( sci-libs/netcdf ) png? ( media-libs/libpng ) python? ( dev-python/numpy[python_targets_python3_3(-)?,python_targets_python3_4(-)?,python_targets_python2_7(-)?,-python_single_target_jython2_5(-),-python_single_target_jython2_7(-),-python_single_target_pypy(-),-python_single_target_pypy3(-),python_single_target_python3_3(+)?,python_single_target_python3_4(+)?,python_single_target_python2_7(+)?] ) fortran? ( virtual/fortran )
+REQUIRED_USE=python? ( ^^ ( python_single_target_python3_3 python_single_target_python3_4 python_single_target_python2_7 ) python_single_target_python3_3? ( python_targets_python3_3 ) python_single_target_python3_4? ( python_targets_python3_4 ) python_single_target_python2_7? ( python_targets_python2_7 ) )
+SLOT=0
+SRC_URI=https://software.ecmwf.int/wiki/download/attachments/3473437/grib_api-1.11.0.tar.gz
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	autotools-utils	6f381431305797b69527d7fba3b6495f	eutils	998e5931fb95b10a6a11ec796ada2759	fortran-2	e18b1135d4c478b5c81b23698c483030	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python-single-r1	f782db6207752efeca1d59c016d8c813	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=565c675c8702ff478092ccd85b244b24

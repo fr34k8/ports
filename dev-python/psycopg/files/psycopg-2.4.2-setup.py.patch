@@ -1,0 +1,11 @@
+--- setup.py
++++ setup.py
+@@ -461,7 +461,7 @@
+     mxincludedir = parser.get('build_ext', 'mx_include_dir')
+ else:
+     mxincludedir = os.path.join(get_python_inc(plat_specific=1), "mx")
+-if os.path.exists(mxincludedir):
++if not use_pydatetime and os.path.exists(mxincludedir):
+     # Build the support for mx: we will check at runtime if it can be imported
+     include_dirs.append(mxincludedir)
+     define_macros.append(('HAVE_MXDATETIME', '1'))

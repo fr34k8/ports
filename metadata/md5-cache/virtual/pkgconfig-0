@@ -1,0 +1,8 @@
+DEFINED_PHASES=-
+DEPEND=dev-util/pkgconf[pkg-config]
+DESCRIPTION=Virtual for the pkg-config implementation
+EAPI=2
+KEYWORDS=*
+RDEPEND=dev-util/pkgconf[pkg-config]
+SLOT=0
+_md5_=18a7befec57c504c6c5a89e6953b4d08

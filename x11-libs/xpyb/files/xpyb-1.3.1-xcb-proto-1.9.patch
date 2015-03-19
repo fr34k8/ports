@@ -1,0 +1,10 @@
+--- src/py_client.py
++++ src/py_client.py
+@@ -19,6 +19,7 @@
+                    'INT8':   'b', 'int8_t':  'b',
+                    'INT16':  'h', 'int16_t': 'h',
+                    'INT32':  'i', 'int32_t': 'i',
++                   'INT64':  'i', 'int64_t': 'i',
+                    'BYTE': 'B',
+                    'BOOL': 'B',
+                    'char': 'b',

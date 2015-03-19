@@ -1,0 +1,13 @@
+DEFINED_PHASES=postinst prepare
+DEPEND=virtual/pkgconfig
+DESCRIPTION=udev startup scripts for openrc
+EAPI=5
+HOMEPAGE=http://www.gentoo.org
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=>=virtual/udev-180 !<sys-fs/udev-186
+RESTRICT=test
+SLOT=0
+SRC_URI=http://build.funtoo.org/distfiles/udev-init-scripts-27.tar.xz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=ab48e92ef2958639bc22ff5df8c7e6d8

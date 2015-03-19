@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=sys-devel/libtool virtual/pkgconfig !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=Cross-platform asychronous I/O
+EAPI=5
+HOMEPAGE=https://github.com/libuv/libuv
+IUSE=static-libs abi_x86_32 abi_x86_64 abi_x86_x32 abi_mips_n32 abi_mips_n64 abi_mips_o32 abi_ppc_32 abi_ppc_64 abi_s390_32 abi_s390_64
+KEYWORDS=~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux
+LICENSE=BSD BSD-2 ISC MIT
+SLOT=0/1
+SRC_URI=https://github.com/libuv/libuv/archive/v1.4.2.tar.gz -> libuv-1.4.2.tar.gz
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	eutils	998e5931fb95b10a6a11ec796ada2759	libtool	52d0e17251d04645ffaa61bfdd858944	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multilib-build	7342c532e8e2ced20e60fdb60ce8ff0d	multilib-minimal	25cb388b79cf32cf140e5791dcfc3173	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=9b7eec52e6cba10903b5bf18b401c619

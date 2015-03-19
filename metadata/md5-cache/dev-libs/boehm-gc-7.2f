@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install
+DEPEND=>=dev-libs/libatomic_ops-7.2 virtual/pkgconfig
+DESCRIPTION=The Boehm-Demers-Weiser conservative garbage collector
+EAPI=5
+HOMEPAGE=http://www.hboehm.info/gc/
+IUSE=cxx static-libs +threads
+KEYWORDS=*
+LICENSE=boehm-gc
+SLOT=0
+SRC_URI=http://www.hboehm.info/gc/gc_source/gc-7.2f.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=41237c6be902247c673aa0a726d25c5c

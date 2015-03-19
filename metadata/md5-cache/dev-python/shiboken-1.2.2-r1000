@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare setup test
+DEPEND=>=dev-libs/libxml2-2.6.32 >=dev-libs/libxslt-1.1.19 >=dev-qt/qtcore-4.7.0:4 >=dev-qt/qtxmlpatterns-4.7.0:4 !dev-python/apiextractor !dev-python/generatorrunner test? ( dev-python/numpy[python_abis_2.6?,python_abis_2.7?,python_abis_3.2?,python_abis_3.3?,python_abis_3.4?,python_abis_3.5?] >=dev-qt/qtgui-4.7.0:4 >=dev-qt/qttest-4.7.0:4 ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) ) app-arch/tar app-arch/bzip2
+DESCRIPTION=A tool for creating Python bindings for C++ libraries
+EAPI=5-progress
+HOMEPAGE=https://qt-project.org/wiki/PySide
+IUSE=test python_abis_2.6 python_abis_2.7 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5
+KEYWORDS=*
+LICENSE=LGPL-2.1
+RDEPEND=>=dev-libs/libxml2-2.6.32 >=dev-libs/libxslt-1.1.19 >=dev-qt/qtcore-4.7.0:4 >=dev-qt/qtxmlpatterns-4.7.0:4 !dev-python/apiextractor !dev-python/generatorrunner ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_3.2? ( dev-lang/python:3.2 ) python_abis_3.3? ( dev-lang/python:3.3 ) python_abis_3.4? ( dev-lang/python:3.4 ) python_abis_3.5? ( dev-lang/python:3.5 ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_3.2 python_abis_3.3 python_abis_3.4 python_abis_3.5 )
+SLOT=0
+SRC_URI=http://download.qt-project.org/official_releases/pyside/shiboken-1.2.2.tar.bz2
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3f6d74b5384dbeef63d932c2b6f9b61a	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=c23cbf90f5a9f659059fdcbbbf219a26

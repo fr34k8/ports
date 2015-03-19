@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=doc? ( app-doc/doxygen ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=template based math library, written in C++, for symbolic and numeric calculus applications
+EAPI=5
+HOMEPAGE=http://rm-rf.in/libmath%2B%2B/
+IUSE=doc static-libs
+KEYWORDS=amd64 ppc ~s390 x86
+LICENSE=GPL-2
+SLOT=1
+SRC_URI=http://upstream.rm-rf.in/libmath%2B%2B/libmath++-0.0.4.tar.gz
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	autotools-utils	6f381431305797b69527d7fba3b6495f	eutils	998e5931fb95b10a6a11ec796ada2759	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=19ea6d855b2748cbf6072466040e5cbf

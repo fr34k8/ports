@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install preinst prepare test
+DEPEND=virtual/pkgconfig virtual/pkgconfig
+DESCRIPTION=A useful tool for running RAID systems - it can be used as a replacement for the raidtools
+EAPI=4
+HOMEPAGE=http://neil.brown.name/blog/mdadm
+IUSE=static
+KEYWORDS=alpha amd64 hppa ia64 ~mips ppc ppc64 sparc x86
+LICENSE=GPL-2
+RDEPEND=!<sys-apps/baselayout-2.1-r1 !<sys-apps/openrc-0.10 >=sys-apps/util-linux-2.16
+RESTRICT=test
+SLOT=0
+SRC_URI=mirror://kernel/linux/utils/raid/mdadm/mdadm-3.2.6.tar.bz2
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	systemd	b0daeef4b75b0130d34c62aa1930d21e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=762e12ef24e6bf0a7f4237a37c3a5c00

@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=x86? ( dev-lang/yasm ) amd64? ( dev-lang/yasm )
+DESCRIPTION=Library for arbitrary precision integer arithmetic (fork of gmp)
+EAPI=5
+HOMEPAGE=http://www.mpir.org/
+IUSE=+cxx cpudetection static-libs
+KEYWORDS=amd64 ia64 ppc ppc64 x86 ~amd64-linux ~x86-linux
+LICENSE=LGPL-3
+SLOT=0
+SRC_URI=http://www.mpir.org/mpir-2.6.0.tar.lzma
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	autotools-utils	6f381431305797b69527d7fba3b6495f	eutils	998e5931fb95b10a6a11ec796ada2759	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=8d4bae4366d2eeb50fa087bbe5060557

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=>=media-libs/phonon-4.5 >=dev-util/automoc-0.9.87 media-libs/opengl-apple sys-devel/gcc-apple[objc] virtual/pkgconfig sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Phonon QuickTime7 backend
+EAPI=4
+HOMEPAGE=https://projects.kde.org/projects/kdesupport/phonon/phonon-quicktime
+IUSE=debug
+KEYWORDS=~ppc-macos ~x64-macos
+LICENSE=LGPL-2.1
+RDEPEND=>=media-libs/phonon-4.5
+SLOT=0
+SRC_URI=http://dev.gentoo.org/~dilfridge/distfiles/phonon-qt7-0_pre20110424.tar.bz2
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=0a4045c35103f3abd463bd7f6709dc3a

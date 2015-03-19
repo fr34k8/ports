@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare setup test
+DEPEND=tbb? ( dev-cpp/tbb ) >=dev-libs/boost-1.51 dev-libs/libxml2 papi? ( dev-libs/papi ) sci-libs/hdf5 >=sys-apps/hwloc-1.8 >=sys-libs/libunwind-1 sys-libs/zlib perftools? ( >=dev-util/google-perftools-1.7.1 ) app-arch/p7zip virtual/pkgconfig test? ( dev-lang/python ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) virtual/fortran
+DESCRIPTION=C++ runtime system for parallel and distributed applications
+EAPI=5
+HOMEPAGE=http://stellar.cct.lsu.edu/tag/hpx/
+IUSE=doc examples jemalloc papi +perftools tbb test python_targets_python2_7
+KEYWORDS=~amd64 ~x86
+LICENSE=Boost-1.0
+RDEPEND=tbb? ( dev-cpp/tbb ) >=dev-libs/boost-1.51 dev-libs/libxml2 papi? ( dev-libs/papi ) sci-libs/hdf5 >=sys-apps/hwloc-1.8 >=sys-libs/libunwind-1 sys-libs/zlib perftools? ( >=dev-util/google-perftools-1.7.1 ) virtual/fortran
+REQUIRED_USE=test? ( python_targets_python2_7 )
+SLOT=0
+SRC_URI=http://stellar.cct.lsu.edu/files/hpx_0.9.8.7z
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	fortran-2	e18b1135d4c478b5c81b23698c483030	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python-single-r1	f782db6207752efeca1d59c016d8c813	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=8466b483ce996403ecf5d9fa3ed9d33a

@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DESCRIPTION=Ancient Domains Of Mystery rogue-like game
+EAPI=5
+HOMEPAGE=http://www.adom.de/
+KEYWORDS=amd64 x86
+LICENSE=adom
+RDEPEND=|| ( ( >=sys-libs/ncurses-5.9-r3[abi_x86_32(-)] ) amd64? ( app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)] ) ) games-misc/games-envd
+RESTRICT=strip
+SLOT=0
+SRC_URI=http://www.adom.de/adom/download/linux/adom-111-elf.tar.gz
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	998e5931fb95b10a6a11ec796ada2759	games	1ad3205dbf62a2c98249f2f59b0a2d39	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	user	f54e098dd38ba1c0847a13e685b87747
+_md5_=f4773b8a93a07de01f758e3dfead0b00

@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install postinst postrm setup
+DEPEND=~sys-cluster/libccs-3.1.5 || ( >=dev-lang/python-2.7.5-r2:2.7 ) dev-libs/libxslt || ( ( >=dev-lang/python-2.7.5-r2:2.7 dev-python/pexpect[python_targets_python2_7(-),python_single_target_python2_7(+)] dev-python/pycurl[python_targets_python2_7(-),python_single_target_python2_7(+)] dev-python/suds[python_targets_python2_7(-),python_single_target_python2_7(+)] ) )
+DESCRIPTION=Cluster Fencing Agents
+EAPI=5
+HOMEPAGE=https://fedorahosted.org/cluster/wiki/HomePage
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=~sys-cluster/libccs-3.1.5
+SLOT=0
+SRC_URI=https://fedorahosted.org/releases/f/e/fence-agents/fence-agents-3.1.5.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python-any-r1	da352ea9da8eb9bf158d56cca65d6c82	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=99a41106987abfe70005275f1b528aec

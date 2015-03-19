@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=>=dev-libs/jsoncpp-0.5.0-r1 sys-libs/zlib sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=A programmer's API and an end-user's toolkit for handling BAM files
+EAPI=5
+HOMEPAGE=https://github.com/pezmaster31/bamtools
+IUSE=static-libs
+KEYWORDS=~amd64 ~x86
+LICENSE=MIT
+RDEPEND=>=dev-libs/jsoncpp-0.5.0-r1 sys-libs/zlib
+SLOT=0
+SRC_URI=https://github.com/pezmaster31/bamtools/archive/v2.3.0.tar.gz -> bamtools-2.3.0.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=e2a51f5bf7f093b2ef1dcd08df8f18e0

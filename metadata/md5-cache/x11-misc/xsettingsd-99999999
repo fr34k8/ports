@@ -1,0 +1,10 @@
+DEFINED_PHASES=compile install unpack
+DEPEND=x11-libs/libX11 virtual/pkgconfig dev-vcs/git dev-util/scons
+DESCRIPTION=A daemon that implements the XSETTINGS specification
+EAPI=5
+HOMEPAGE=https://code.google.com/p/xsettingsd
+LICENSE=BSD-2
+RDEPEND=x11-libs/libX11
+SLOT=0
+_eclasses_=git-2	e28f0d8a9b321431b1e699782851b827	scons-utils	988e24b9e2e4642189b4e97c03e5ae71
+_md5_=e33b0f78677792e862de21f03c572d70

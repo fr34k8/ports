@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test unpack
+DEPEND=virtual/perl-Carp virtual/perl-Exporter virtual/perl-XSLoader >=virtual/perl-ExtUtils-MakeMaker-6.590.0 test? ( >=virtual/perl-Encode-1.980.100 >=dev-perl/Test-Fatal-0.6.0 >=virtual/perl-Test-Simple-0.470.0 dev-perl/Test-Pod dev-perl/Taint-Runtime dev-perl/Variable-Magic dev-perl/Test-LeakTrace ) dev-lang/perl:=[-build(-)]
+DESCRIPTION=Encoding and decoding of UTF-8 encoding form
+EAPI=5
+HOMEPAGE=http://search.cpan.org/dist/Unicode-UTF8/
+IUSE=test
+KEYWORDS=~amd64 ~arm ~ppc ~x86
+LICENSE=|| ( Artistic GPL-1+ )
+RDEPEND=virtual/perl-Carp virtual/perl-Exporter virtual/perl-XSLoader dev-lang/perl:=[-build(-)]
+SLOT=0
+SRC_URI=mirror://cpan/authors/id/C/CH/CHANSEN/Unicode-UTF8-0.60.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	perl-module	84facbe8709eb9211eb49df229eb5219	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	unpacker	f300a7ca9131b1024a79762e8edd3c52
+_md5_=70b5dcc45982387b3759015ad6d890da

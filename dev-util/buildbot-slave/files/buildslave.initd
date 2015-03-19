@@ -1,0 +1,48 @@
+#!/sbin/runscript
+
+depend() {
+	need net
+}
+
+checkconfig() {
+	if [ -z "${BASEDIR}" ]; then
+		eerror "BASEDIR not set"
+		return 1
+	fi
+	if [ -z "${USERNAME}" ]; then
+		eerror "USERNAME not set"
+		return 1
+	fi
+	if [ ! -d "${BASEDIR}" ]; then
+		eerror "${BASEDIR} is not a directory"
+		return 1
+	fi
+	if [ ! -e "${BASEDIR}/buildbot.tac" ]; then
+		eerror "${BASEDIR} does not contain buildbot.tac"
+		return 1
+	fi
+}
+
+start() {
+	checkconfig || return 1
+	ebegin "Starting buildslave in ${BASEDIR}"
+	# HOME is being set here to make something valid show up in environment of child
+	# processes spawned by the buildslave.
+	start-stop-daemon --start \
+		-u "${USERNAME}" \
+		--env HOME="${BASEDIR}" \
+		--pidfile="${BASEDIR}/buildslave.pid" \
+		--exec /usr/bin/twistd -- \
+		--logfile="${BASEDIR}/twistd.log" \
+		--no_save \
+		--pidfile="${BASEDIR}/buildslave.pid" \
+		--python="${BASEDIR}/buildbot.tac"
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping buildslave in ${BASEDIR}"
+	start-stop-daemon --stop \
+		--pidfile="${BASEDIR}/buildslave.pid"
+	eend $?
+}

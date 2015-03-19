@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup
+DEPEND=dev-python/decorator[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] dev-python/six[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] >=dev-python/sqlalchemy-0.7.8[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] dev-python/tempita[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] dev-python/pbr[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] doc? ( dev-python/sphinx[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] ) ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) ) app-arch/tar app-arch/gzip
+DESCRIPTION=Database schema migration for SQLAlchemy
+EAPI=5-progress
+HOMEPAGE=https://github.com/stackforge/sqlalchemy-migrate https://pypi.python.org/pypi/sqlalchemy-migrate
+IUSE=doc python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy
+KEYWORDS=*
+LICENSE=MIT
+RDEPEND=dev-python/decorator[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] dev-python/setuptools[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] dev-python/six[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] >=dev-python/sqlalchemy-0.7.8[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] dev-python/tempita[python_abis_2.6?,python_abis_2.7?,python_abis_2.7-jython?,python_abis_2.7-pypy?] ( python_abis_2.6? ( dev-lang/python:2.6 ) python_abis_2.7? ( dev-lang/python:2.7 ) python_abis_2.7-jython? ( dev-lang/jython:2.7 ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 python_abis_2.7-jython python_abis_2.7-pypy )
+SLOT=0
+SRC_URI=mirror://pypi/s/sqlalchemy-migrate/sqlalchemy-migrate-0.9.1.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=87e76e0c3c174d0535aab010512dda04

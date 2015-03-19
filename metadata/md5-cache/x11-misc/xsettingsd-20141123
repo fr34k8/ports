@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install
+DEPEND=x11-libs/libX11 virtual/pkgconfig dev-util/scons
+DESCRIPTION=A daemon that implements the XSETTINGS specification
+EAPI=5
+HOMEPAGE=https://code.google.com/p/xsettingsd
+KEYWORDS=~*
+LICENSE=BSD-2
+RDEPEND=x11-libs/libX11
+SLOT=0
+SRC_URI=https://github.com/derat/xsettingsd/archive/2a516a91d8352b3b93a7a1ef5606dbd21fa06b7c.tar.gz -> xsettingsd-20141123.tar.gz
+_eclasses_=scons-utils	988e24b9e2e4642189b4e97c03e5ae71
+_md5_=77889371de778bca42e9573861056e5a

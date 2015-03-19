@@ -1,0 +1,33 @@
+https://bugs.launchpad.net/pyflakes/+bug/1358899
+
+--- pyflakes/api.py
++++ pyflakes/api.py
+@@ -78,6 +78,8 @@
+             codestr = f.read()
+         if sys.version_info < (2, 7):
+             codestr += '\n'     # Work around for Python <= 2.6
++        if sys.version_info >= (3, 0) and sys.version_info < (3, 2):
++            codestr += b'\n'    # Work around for Python 3.0, 3.1
+     except UnicodeError:
+         reporter.unexpectedError(filename, 'problem decoding source')
+         return 1
+--- pyflakes/test/test_api.py
++++ pyflakes/test/test_api.py
+@@ -402,14 +402,15 @@
+         if ver < (3,):
+             decoding_error = "%s: problem decoding source\n" % (sourcePath,)
+         else:
++            position = ':7' if ver >= (3, 2) else ''
+             last_line = '      ^\n' if ver >= (3, 2) else ''
+             # Column has been "fixed" since 3.2.4 and 3.3.1
+             col = 1 if ver >= (3, 3, 1) or ((3, 2, 4) <= ver < (3, 3)) else 2
+             decoding_error = """\
+-%s:1:7: (unicode error) 'unicodeescape' codec can't decode bytes \
++%s:1%s: (unicode error) 'unicodeescape' codec can't decode bytes \
+ in position 0-%d: truncated \\xXX escape
+ foo = '\\xyz'
+-%s""" % (sourcePath, col, last_line)
++%s""" % (sourcePath, position, col, last_line)
+         self.assertHasErrors(
+             sourcePath, [decoding_error])
+ 

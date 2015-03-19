@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare unpack
+DEPEND=media-libs/alsa-lib >=media-libs/liblscp-0.5.5 x11-libs/libX11 dev-qt/qtcore:4 dev-qt/qtgui:4 libgig? ( >=media-libs/libgig-3.2.1 )
+DESCRIPTION=A graphical frontend to the LinuxSampler engine
+EAPI=4
+HOMEPAGE=http://qsampler.sourceforge.net
+IUSE=debug +libgig
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=media-libs/alsa-lib >=media-libs/liblscp-0.5.5 x11-libs/libX11 dev-qt/qtcore:4 dev-qt/qtgui:4 libgig? ( >=media-libs/libgig-3.2.1 ) >=media-sound/linuxsampler-0.5
+SLOT=0
+SRC_URI=mirror://gentoo/qsampler-0.2.2.2345.tar.xz
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	ea709b525d28e3087eddedb2f884dbbe	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=0e901d7975e2da0c1c7599e4984b9d14

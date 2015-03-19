@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install postinst preinst unpack
+DESCRIPTION=Filesystem baselayout, initscripts and /sbin/realdev command
+EAPI=4
+HOMEPAGE=http://www.funtoo.org/Package:Baselayout
+IUSE=build
+KEYWORDS=*
+LICENSE=GPL-2 BSD-2
+PDEPEND=sys-apps/openrc
+SLOT=0
+SRC_URI=https://www.github.com/funtoo/baselayout/tarball/baselayout-2.2.0-r4 -> baselayout-2.2.0-r4.tar.gz http://build.funtoo.org/distfiles/realdev/realdev-1.0.tar.bz2
+_eclasses_=multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=f9e47a9e806a9973e6f5d11e90e3dc98

@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm prepare test
+DEPEND=>=dev-python/pycrypto-2.0[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] gtk? ( >=x11-libs/gtk+-2.6:2 >=dev-python/pygtk-2.6:2[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] ) python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7[threads] ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)]
+DESCRIPTION=Tool for distributing files via a distributed network of nodes
+EAPI=5
+HOMEPAGE=http://www.bittorrent.com/
+IUSE=aqua gtk python_targets_python2_7
+KEYWORDS=~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris
+LICENSE=BitTorrent
+RDEPEND=>=dev-python/pycrypto-2.0[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] gtk? ( >=x11-libs/gtk+-2.6:2 >=dev-python/pygtk-2.6:2[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] ) python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7[threads] ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)]
+REQUIRED_USE=|| ( python_targets_python2_7 )
+SLOT=0
+SRC_URI=http://www.bittorrent.com/dl/BitTorrent-4.4.0.tar.gz
+_eclasses_=distutils-r1	c01d5c4af34f4a37a51fc9638299c222	eutils	998e5931fb95b10a6a11ec796ada2759	fdo-mime	0acfe1a88fd8751a1d5dc671168219fa	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-r1	331701099758706863819fe3ff6ddc8a	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=60a1583cea0cc5e2727f7ff8fbb180f0

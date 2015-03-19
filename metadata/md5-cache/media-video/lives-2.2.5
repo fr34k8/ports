@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure install prepare
+DEPEND=virtual/pkgconfig nls? ( sys-devel/gettext ) !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.13:1.13 >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4
+DESCRIPTION=LiVES is a Video Editing System
+EAPI=5
+HOMEPAGE=http://lives.sf.net
+IUSE=libvisual matroska nls ogg theora
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=|| ( media-video/mplayer[jpeg] media-video/mplayer2[jpeg] ) || ( media-gfx/imagemagick media-gfx/graphicsmagick[imagemagick] ) dev-lang/perl >=dev-libs/glib-2.14 >=x11-libs/gtk+-2.16:2 media-libs/libsdl media-libs/libv4l virtual/ffmpeg virtual/jpeg media-sound/sox virtual/cdrtools || ( dev-lang/python:2.7 dev-lang/python:2.6 ) media-plugins/frei0r-plugins media-sound/jack-audio-connection-kit >=media-video/mjpegtools-1.6.2 sys-libs/libavc1394 libvisual? ( media-libs/libvisual ) matroska? ( media-video/mkvtoolnix ) ogg? ( media-sound/ogmtools ) theora? ( media-libs/libtheora )
+SLOT=0
+SRC_URI=http://www.xs4all.nl/~salsaman/lives/current/LiVES-2.2.5.tar.bz2
+_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	eutils	998e5931fb95b10a6a11ec796ada2759	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=75126492d5da9ef0d88cdad3dfa9b3d3

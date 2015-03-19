@@ -1,0 +1,12 @@
+DEFINED_PHASES=configure install
+DEPEND=virtual/pam dev-libs/libp11 dev-libs/openssl virtual/pkgconfig
+DESCRIPTION=PAM module for authenticating against PKCS#11 tokens
+EAPI=2
+HOMEPAGE=https://github.com/opensc/pam_p11/wiki
+KEYWORDS=alpha amd64 hppa ia64 ppc ppc64 sparc x86
+LICENSE=LGPL-2.1
+RDEPEND=virtual/pam dev-libs/libp11 dev-libs/openssl
+SLOT=0
+SRC_URI=sourceforge://opensc/pam_p11/pam_p11-0.1.5.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	pam	aa1ebb3ab720ea04dbbdd6eaaf9554ed	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=a360d246d080db5565d0517879d97a21

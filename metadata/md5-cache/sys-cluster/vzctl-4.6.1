@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst prepare unpack
+DEPEND=net-firewall/iptables sys-apps/ed >=sys-apps/iproute2-3.3.0 >=sys-fs/vzquota-3.1 ploop? ( >=sys-cluster/ploop-1.9 sys-block/parted sys-fs/quota ) >=dev-libs/libcgroup-0.38 net-misc/openssh net-misc/rsync[xattr] virtual/pkgconfig virtual/pkgconfig
+DESCRIPTION=OpenVZ Containers control utility
+EAPI=5
+HOMEPAGE=http://openvz.org/
+IUSE=+ploop
+KEYWORDS=amd64 x86
+LICENSE=GPL-2
+RDEPEND=net-firewall/iptables sys-apps/ed >=sys-apps/iproute2-3.3.0 >=sys-fs/vzquota-3.1 ploop? ( >=sys-cluster/ploop-1.9 sys-block/parted sys-fs/quota ) >=dev-libs/libcgroup-0.38 net-misc/openssh net-misc/rsync[xattr]
+SLOT=0
+SRC_URI=http://download.openvz.org/utils/vzctl/4.6.1/src/vzctl-4.6.1.tar.bz2
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	udev	da001465a2e939c93f7ae16947ce3438
+_md5_=e159faa2fb8f5e08409545f83860f77d

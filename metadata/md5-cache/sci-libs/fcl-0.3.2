@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=sci-libs/octomap sci-libs/flann dev-libs/boost:=[threads] sci-libs/libccd virtual/pkgconfig sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=The Flexible Collision Library
+EAPI=5
+HOMEPAGE=http://gamma.cs.unc.edu/FCL/
+IUSE=cpu_flags_x86_sse
+KEYWORDS=~amd64 ~arm
+LICENSE=BSD
+RDEPEND=sci-libs/octomap sci-libs/flann dev-libs/boost:=[threads] sci-libs/libccd
+SLOT=0
+SRC_URI=http://github.com/flexible-collision-library/fcl/archive/0.3.2.tar.gz -> fcl-0.3.2.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=69be96ab2221ff32ba99e2f68d64f4e6

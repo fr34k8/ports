@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
+DEPEND=python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] >=sys-apps/sed-4
+DESCRIPTION=twitter client designed for multiple columns of multiple accounts
+EAPI=5
+HOMEPAGE=https://launchpad.net/polly
+IUSE=python_targets_python2_7
+KEYWORDS=~amd64
+LICENSE=CC-BY-NC-SA-3.0 GPL-2 GPL-3+ MIT
+RDEPEND=python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/dbus-python[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/gconf-python dev-python/gtkspell-python dev-python/httplib2[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/keyring[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/notify-python[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/numpy[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/oauth2[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/pycurl[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/pyxdg[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] dev-python/socksipy[python_targets_python2_7(-)?,-python_single_target_python2_7(-)] python_targets_python2_7? ( >=dev-lang/python-2.7.5-r2:2.7 ) >=dev-lang/python-exec-2:=[python_targets_python2_7(-)?,-python_single_target_python2_7(-)]
+REQUIRED_USE=|| ( python_targets_python2_7 ) || ( python_targets_python2_7 )
+SLOT=0
+SRC_URI=https://launchpad.net/polly/1.0/pre-alpha-2/+download/Polly-0.93.11%20%28pre-alpha%203.11%29.tar.gz -> polly-0.93.11.tar.gz
+_eclasses_=distutils-r1	c01d5c4af34f4a37a51fc9638299c222	eutils	998e5931fb95b10a6a11ec796ada2759	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	python-r1	331701099758706863819fe3ff6ddc8a	python-utils-r1	e3288bc2e6e487674ce218b632701c9e	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	vcs-snapshot	44b6b8243ccf493ad3259e80815454ef
+_md5_=2dc58d75cf2fe3010a5a240c0aca1da0

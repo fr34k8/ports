@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup test
+DEPEND=emacs? ( virtual/emacs ) test? ( app-arch/unzip dev-python/pygments[python_abis_2.6?,python_abis_2.7?] ) ( python_abis_2.6? ( dev-lang/python:2.6[threads] ) python_abis_2.7? ( dev-lang/python:2.7[threads] ) ) app-arch/tar app-arch/gzip
+DESCRIPTION=Scalable distributed SCM
+EAPI=5-progress
+HOMEPAGE=http://mercurial.selenic.com/ https://pypi.python.org/pypi/Mercurial
+IUSE=bugzilla emacs gpg test tk python_abis_2.6 python_abis_2.7
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=app-misc/ca-certificates bugzilla? ( dev-python/mysql-python[python_abis_2.6?,python_abis_2.7?] ) gpg? ( app-crypt/gnupg ) tk? ( dev-lang/tk ) ( python_abis_2.6? ( dev-lang/python:2.6[threads] ) python_abis_2.7? ( dev-lang/python:2.7[threads] ) )
+REQUIRED_USE=|| ( python_abis_2.6 python_abis_2.7 )
+SLOT=0
+SRC_URI=http://mercurial.selenic.com/release/mercurial-3.3.2.tar.gz
+_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	distutils	2d484830b6e5aa7a840ba17d755dd55b	elisp-common	1aa23b3de5dae55456fa2071428eb5bf	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3f6d74b5384dbeef63d932c2b6f9b61a	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=8f3fce43ca78704ddcd1204a25d106de

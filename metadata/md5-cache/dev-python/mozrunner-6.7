@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup
+DEPEND=>=dev-python/mozcrash-0.14[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozdevice-0.37[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozfile-1.0[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozinfo-0.7[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozlog-1.5[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozprocess-0.17[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozprofile-0.18[python_abis_2.7?,python_abis_2.7-pypy?] dev-python/setuptools[python_abis_2.7?,python_abis_2.7-pypy?] ( python_abis_2.7? ( dev-lang/python:2.7[threads] ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) ) app-arch/tar app-arch/gzip
+DESCRIPTION=Reliable start/stop/configuration of Mozilla Applications (Firefox, Thunderbird, etc.)
+EAPI=5-progress
+HOMEPAGE=https://pypi.python.org/pypi/mozrunner
+IUSE=python_abis_2.7 python_abis_2.7-pypy
+KEYWORDS=*
+LICENSE=MPL-2.0
+RDEPEND=>=dev-python/mozcrash-0.14[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozdevice-0.37[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozfile-1.0[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozinfo-0.7[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozlog-1.5[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozprocess-0.17[python_abis_2.7?,python_abis_2.7-pypy?] >=dev-python/mozprofile-0.18[python_abis_2.7?,python_abis_2.7-pypy?] dev-python/setuptools[python_abis_2.7?,python_abis_2.7-pypy?] ( python_abis_2.7? ( dev-lang/python:2.7[threads] ) python_abis_2.7-pypy? ( dev-lang/pypy:python-2.7= ) )
+REQUIRED_USE=|| ( python_abis_2.7 python_abis_2.7-pypy )
+SLOT=0
+SRC_URI=mirror://pypi/m/mozrunner/mozrunner-6.7.tar.gz
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=1b4de6c5f74df44a71c83dec53882085

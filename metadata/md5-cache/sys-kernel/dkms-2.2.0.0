@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst
+DESCRIPTION=Dynamic Kernel Module Support
+EAPI=4
+HOMEPAGE=http://linux.dell.com/dkms
+IUSE=bash-completion
+KEYWORDS=*
+LICENSE=GPL-2
+PDEPEND=bash-completion? ( app-shells/bash-completion )
+RDEPEND=app-arch/rpm bash-completion? ( app-admin/eselect )
+SLOT=0
+SRC_URI=http://linux.dell.com/dkms/permalink/dkms-2.2.0.0.tar.gz
+_eclasses_=bash-completion	f913ed18b57a2d3372c4291680454db4	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=f1bb802317f0864f0545f9f83ce82009

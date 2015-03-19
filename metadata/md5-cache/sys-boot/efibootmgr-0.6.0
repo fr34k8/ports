@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install prepare
+DEPEND=sys-apps/pciutils virtual/pkgconfig
+DESCRIPTION=Interact with the EFI Boot Manager
+EAPI=5
+HOMEPAGE=http://developer.intel.com/technology/efi
+KEYWORDS=*
+LICENSE=GPL-2
+RDEPEND=sys-apps/pciutils
+SLOT=0
+SRC_URI=http://linux.dell.com/efibootmgr/efibootmgr-0.6.0/efibootmgr-0.6.0.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=5657b7012a0419795c603fba4ac3713c

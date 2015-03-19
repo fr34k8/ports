@@ -1,0 +1,11 @@
+DEFINED_PHASES=install
+DESCRIPTION=Firmware for Atheros ar9170-based WiFi USB adapters (ar9170usb module)
+EAPI=2
+HOMEPAGE=http://wireless.kernel.org/en/users/Drivers/ar9170#open_firmware
+KEYWORDS=*
+LICENSE=atheros-firmware
+RDEPEND=|| ( virtual/udev sys-apps/hotplug )
+SLOT=0
+SRC_URI=https://api.opensuse.org/public/source/driver:wireless/ar9170-firmware/ar9170.fw
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	versionator	cd0bcdb170807e4a1984115e9d53a26f
+_md5_=57d7a423d3f37e55f9feca7deff20c41

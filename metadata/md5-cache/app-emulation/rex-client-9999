@@ -1,0 +1,9 @@
+DEFINED_PHASES=install prepare unpack
+DEPEND=dev-vcs/git
+DESCRIPTION=REX - Remote EXexcution agent
+EAPI=4
+HOMEPAGE=http://mduft.github.io/rex/
+LICENSE=MIT
+SLOT=0
+_eclasses_=git-2	e28f0d8a9b321431b1e699782851b827
+_md5_=babba83c8dc2bb5e81dbafd9e177e512

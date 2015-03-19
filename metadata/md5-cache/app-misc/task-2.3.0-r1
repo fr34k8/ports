@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=gnutls? ( net-libs/gnutls ) sys-libs/readline elibc_glibc? ( sys-apps/util-linux ) sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Taskwarrior is a command-line todo list manager
+EAPI=5
+HOMEPAGE=http://taskwarrior.org/
+IUSE=gnutls vim-syntax zsh-completion
+KEYWORDS=~amd64 ~arm ~x86 ~x64-macos
+LICENSE=MIT
+RDEPEND=gnutls? ( net-libs/gnutls ) sys-libs/readline elibc_glibc? ( sys-apps/util-linux )
+SLOT=0
+SRC_URI=http://taskwarrior.org/download/task-2.3.0.tar.gz
+_eclasses_=bash-completion-r1	f0ded7847ea95e22359c0dcd9af91853	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=5d43d3396afa06b6041320620336fbce

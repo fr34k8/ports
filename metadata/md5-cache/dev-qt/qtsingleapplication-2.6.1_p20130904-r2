@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install prepare setup
+DEPEND=qt4? ( dev-qt/qtcore:4 X? ( dev-qt/qtgui:4 ) ) qt5? ( dev-qt/qtcore:5 dev-qt/qtnetwork:5 X? ( dev-qt/qtgui:5 dev-qt/qtwidgets:5 ) ) dev-qt/qtlockedfile[qt4?,qt5?]
+DESCRIPTION=Qt library to start applications only once per user
+EAPI=5
+HOMEPAGE=http://doc.qt.digia.com/solutions/4/qtsingleapplication/index.html
+IUSE=doc +qt4 qt5 X
+KEYWORDS=~amd64 ~arm ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux
+LICENSE=|| ( LGPL-2.1 GPL-3 )
+RDEPEND=qt4? ( dev-qt/qtcore:4 X? ( dev-qt/qtgui:4 ) ) qt5? ( dev-qt/qtcore:5 dev-qt/qtnetwork:5 X? ( dev-qt/qtgui:5 dev-qt/qtwidgets:5 ) ) dev-qt/qtlockedfile[qt4?,qt5?]
+REQUIRED_USE=|| ( qt4 qt5 )
+SLOT=0
+SRC_URI=http://dev.gentoo.org/~pesa/distfiles/qt-solutions-20130904.tar.xz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multibuild	188cedebf7a8e614147e30ad01e9ce8f	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	ea709b525d28e3087eddedb2f884dbbe	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=61b44d916dd48a20fdb786490602b8b0

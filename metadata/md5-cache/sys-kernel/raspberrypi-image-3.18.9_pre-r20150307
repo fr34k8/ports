@@ -1,0 +1,12 @@
+DEFINED_PHASES=install postinst postrm preinst prerm
+DESCRIPTION=Raspberry PI binary kernel, modules, dtb and firmware
+EAPI=5
+HOMEPAGE=https://github.com/raspberrypi/firmware
+IUSE=+rpi2 +firmware dtb doc rpi1 rpi1b rpi1bplus
+KEYWORDS=~arm -*
+LICENSE=GPL-2
+RESTRICT=binchecks mirror strip
+SLOT=3.18.9_pre-r20150307
+SRC_URI=https://github.com/raspberrypi/firmware/archive/2aad6d8f703f9d899b023d31d6714eea004fc61b.tar.gz -> raspberrypi-image-3.18.9_pre.tar.gz
+_eclasses_=mount-boot	ea24b511b0ad59831d0151aa634dfad2
+_md5_=bd24f1d5e4e919097c804014d60d50d1

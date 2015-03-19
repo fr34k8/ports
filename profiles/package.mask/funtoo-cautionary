@@ -1,0 +1,109 @@
+# FL-1703: these versions of crossdev is a forkbomb(s)
+=sys-devel/crossdev-20140917
+=sys-devel/crossdev-20141030
+
+# Mask the very latest layman, which using a a portage repository configs. Not yet in Funtoo.
+>app-portage/layman-2.2.0-r7
+
+# FL-2020, FL-2015, mask very latest libevent, breaks packages.
+>dev-libs/libevent-2.0.22
+
+# FL-1937
+# Cautionary mask dev-lang/swig-3.0.3, failures reported.
+>dev-lang/swig-3.0.2
+
+# Protect newest automake and autoconf
+>sys-devel/automake-1.14.1
+>sys-devel/autoconf-2.69
+
+
+# Protect against beta OpenRC
+>=sys-apps/openrc-0.12.4
+
+# mask latest nfs-utils, there is major change in netmount/nfsmount in latest openrc. nfs-utils using new scripts and has higher openrc dependency. This can be removed with openrc update
+
+>net-fs/nfs-utils-1.3.0-r1
+
+# FL-1884: mask oracle java-1.8, brings incompatibility:
+>dev-java/oracle-jdk-bin-1.7.0.76
+>dev-java/oracle-jre-bin-1.7.0.76
+>virtual/jdk-1.7.0-r1
+>virtual/jre-1.7.0-r1
+
+# FL-1880: mask handbrake, higher than 0.9.9
+>media-video/handbrake-0.9.9-r1
+
+# FL-1855, mask usbutils-008, until we sort udev failure.
+
+>sys-apps/usbutils-007
+
+# Do not let live ebuild of gentoo-syntax installs:
+=app-vim/gentoo-syntax-9999*
+
+# Dantrell B. (10 Aug 2014)
+# Depends on sys-devel/gcc[gcj] which newer versions of gcc in Funtoo do not have
+#  Build against a version of gcc that does or use app-text/mcpdf instead
+# Ref FL-970, FL-1351 and FL-1424
+app-text/pdftk
+
+# Dantrell B. (2 Aug 2014)
+# Selectively mask versions of net-irc/hexchat
+# Ref FL-584 and FL-1435
+=net-irc/hexchat-2.10.0*
+=net-irc/hexchat-2.9.6*
+
+# Daniel Robbins (28 Jun 2014)
+# FL-738: can break building of multiple packages (erlang, nginx, glibc, possibly guile (FL-919)
+app-admin/eselect-sh
+
+# Oleg Vinichenko (10 June 2014)
+# mask back python-3.4, this one not really fine to have installed. Also it become a default python version in stages.
+# Next time, allow to unmask only stable version of python with a consequent change of default PYTHON_ABIS. THis is 
+# FL-1274, FL-1265
+>=dev-lang/python-3.4
+
+# Ryan Harris (23 Jul 2013)
+# Mask phoronix-test-suite due to security concerns
+# Packages should not try to run emerge on their own
+# Users who understand the risks can unmask locally
+# Ref FL-454 and b.g.o # 477798
+app-benchmarks/phoronix-test-suite
+
+# Not currently maintained, last commit near 1 yr ago
+# ZFSOnLinux is a muche more viable and mature replacement 
+sys-fs/zfs-fuse
+
+# Oleg Vinichenko (4 Nov 2012)
+# mask dangerous baselayout-2.2.0-r2
+=sys-apps/baselayout-2.2.0-r2
+
+# Adrien Dessemond (09 May 2012)
+# Python 2.7.4-pre and 3.2.4-pre versions are problematic to fetch from upstrea$
+# and per their nature should not be in Funtoo stable anyway
+=dev-lang/python-3.4_pre*
+=dev-lang/python-2.7.6_pre*
+=dev-lang/python-3.3.3_pre*
+
+# DO NOT USE this one the ebuild does not include kernel revision dependencies (>= 2.6.38 REQUIRED) and it can affect many of our users 
+# See bug #359445
+=net-wireless/iwl5000-ucode-8.83.5.1
+
+#Daniel Robbins (13 Jul 2011)
+#pyxml is BAD - avoid if possible - see http://permalink.gmane.org/gmane.linux.gentoo.devel/71149
+dev-python/pyxml
+
+# Daniel Robbins <drobbins@funtoo.org> (02 Mar 2011)
+# mask sys-apps/man as part of a workaround to get
+# man-db to merge smoothly:
+sys-apps/man
+
+# Daniel Robbins <drobbins@funtoo.org> (28 Dec 2009)
+# Requested by slashbeast (Piotr Karbowski) in #funtoo due to /etc/cron.hourly
+# running up to 4 times per hour:
+=sys-process/cronbase-0.3.3*
+
+# Ryan Harris
+# Mask paludis and pkgcore. Not supported on funtoo at this time
+sys-apps/paludis
+sys-apps/pkgcore
+

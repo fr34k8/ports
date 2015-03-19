@@ -1,0 +1,54 @@
+http://bugs.python.org/issue12226
+http://hg.python.org/cpython/rev/32a39ec6bd75
+
+--- Lib/distutils/config.py
++++ Lib/distutils/config.py
+@@ -21,7 +21,7 @@
+ class PyPIRCCommand(Command):
+     """Base command that knows how to handle the .pypirc file
+     """
+-    DEFAULT_REPOSITORY = 'http://pypi.python.org/pypi'
++    DEFAULT_REPOSITORY = 'https://pypi.python.org/pypi'
+     DEFAULT_REALM = 'pypi'
+     repository = None
+     realm = None
+--- Lib/distutils/tests/test_config.py
++++ Lib/distutils/tests/test_config.py
+@@ -89,7 +89,7 @@
+         config = config.items()
+         config.sort()
+         waited = [('password', 'secret'), ('realm', 'pypi'),
+-                  ('repository', 'http://pypi.python.org/pypi'),
++                  ('repository', 'https://pypi.python.org/pypi'),
+                   ('server', 'server1'), ('username', 'me')]
+         self.assertEqual(config, waited)
+ 
+@@ -99,7 +99,7 @@
+         config = config.items()
+         config.sort()
+         waited = [('password', 'secret'), ('realm', 'pypi'),
+-                  ('repository', 'http://pypi.python.org/pypi'),
++                  ('repository', 'https://pypi.python.org/pypi'),
+                   ('server', 'server-login'), ('username', 'tarek')]
+         self.assertEqual(config, waited)
+ 
+--- Lib/distutils/tests/test_upload.py
++++ Lib/distutils/tests/test_upload.py
+@@ -78,7 +78,7 @@
+         cmd.finalize_options()
+         for attr, waited in (('username', 'me'), ('password', 'secret'),
+                              ('realm', 'pypi'),
+-                             ('repository', 'http://pypi.python.org/pypi')):
++                             ('repository', 'https://pypi.python.org/pypi')):
+             self.assertEqual(getattr(cmd, attr), waited)
+ 
+     def test_saved_password(self):
+@@ -119,7 +119,7 @@
+         self.assertTrue(headers['Content-type'].startswith('multipart/form-data'))
+         self.assertEqual(self.last_open.req.get_method(), 'POST')
+         self.assertEqual(self.last_open.req.get_full_url(),
+-                         'http://pypi.python.org/pypi')
++                         'https://pypi.python.org/pypi')
+         self.assertTrue('xxx' in self.last_open.req.data)
+         auth = self.last_open.req.headers['Authorization']
+         self.assertFalse('\n' in auth)

@@ -1,0 +1,53 @@
+# FL-2135: masked for testing
+=sys-kernel/genkernel-3.4.40.7-r6
+
+# libtool and libltdl bump, masked for testing
+=sys-devel/libtool-2.4.6
+=dev-libs/libltdl-2.4.6
+
+# FL-971: dhcpcd-6.7.1, masked for testing
+=net-misc/dhcpcd-6.7.1
+
+# FL-2136, FL-1943, eselect bump masked for testing
+=app-admin/eselect-1.4.4
+
+# Fl-2033, nginx-1.7.8, masked for testing
+=www-servers/nginx-1.7.8-r1
+
+# FL-1956: debian kernel 3.16.7, masked for testing
+=sys-kernel/debian-sources-3.18.3
+=sys-kernel/debian-sources-3.16.7
+
+#FL-1767: add bluez-5.27, masked for testing
+=net-wireless/bluez-5.27
+
+# FL-1761: new rebased Portage, needs a lot of testing
+>=sys-apps/portage-2.3.7
+
+# FL-696: FL-1314: FL-1310: FL-1920. Adding latest llvm-3.6.0 to mesa friends list. It compiles fine with latest mesa, but this require an opengl-redesigned ebuilds. It much easier to not yet allow llvm update.
+# masked xorg for new-design opengl. FL-2177 (duplicate report FL-2178).
+>sys-devel/llvm-3.5.1
+>app-admin/eselect-opengl-1.2.7
+>app-emulation/emul-linux-x86-opengl-20140508
+>media-libs/mesa-10.3.5
+>x11-base/xorg-server-1.16.1-r4
+>x11-proto/glproto-1.4.17
+
+
+# FL-1729: eudev update, this ebuild masked, kernel older 2.6.39 version unsupported
+# openvz require older version of eudev and kmod
+=sys-fs/eudev-2.1.1
+
+# grass-6.4.4 with wxpython GUI, masked for testing:
+=sci-geosciences/grass-6.4.4
+
+# Keep the most recent masks in a reverse chrono order
+# newest on top
+
+# FL-1716 kmod update
+=sys-apps/kmod-19
+
+# Dantrell B. (22 Aug 2014)
+# Masked for testing
+# Ref FL-1483
+>=net-libs/rb_libtorrent-1.0.1

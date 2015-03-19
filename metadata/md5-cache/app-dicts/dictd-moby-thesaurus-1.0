@@ -1,0 +1,10 @@
+DEFINED_PHASES=install unpack
+DESCRIPTION=Grady Ward's Moby Thesaurus; 35000 root words and 2.5 million synonyms
+EAPI=3
+HOMEPAGE=http://www.dcs.shef.ac.uk/research/ilash/Moby/ http://packages.debian.org/unstable/text/dict-moby-thesaurus
+KEYWORDS=*
+LICENSE=Public Domain
+RDEPEND=app-text/dictd
+SLOT=0
+SRC_URI=http://ftp.debian.org/debian/pool/main/d/dict-moby-thesaurus/dict-moby-thesaurus_1.0-6.2_all.deb
+_md5_=1e289767a1139d8f557c20469dae4e8e

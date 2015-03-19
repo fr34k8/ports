@@ -1,0 +1,22 @@
+--- IPython/lib/irunner.py
++++ IPython/lib/irunner.py
+@@ -287,7 +287,7 @@
+ 
+         self.run_file(args[0],opts.interact)
+ 
+-_ipython_cmd = "ipython3" if py3compat.PY3 else "ipython"
++_ipython_cmd = "ipython"
+ 
+ # Specific runners for particular programs
+ class IPythonRunner(InteractiveRunner):
+--- setup.py
++++ setup.py
+@@ -333,7 +333,7 @@
+                 ]
+         from setuptools.command.build_py import build_py
+         setup_args['cmdclass'] = {'build_py': git_prebuild('IPython', build_cmd=build_py)}
+-        setuptools_extra_args['entry_points'] = find_scripts(True, suffix='3')
++        setuptools_extra_args['entry_points'] = find_scripts(True)
+         setuptools._dont_write_bytecode = True
+ else:
+     # If we are running without setuptools, call this function which will

@@ -1,0 +1,8 @@
+--- setup.py
++++ setup.py
+@@ -15,4 +15,3 @@
+                 'mpmath/functions',
+-                'mpmath/matrices',
+-                'mpmath/tests'],
++                'mpmath/matrices'],
+       classifiers=['Topic :: Scientific/Engineering :: Mathematics']

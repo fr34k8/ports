@@ -1,0 +1,14 @@
+DEFINED_PHASES=compile configure install postinst prepare prerm setup test unpack
+DEPEND=sys-libs/ncurses app-arch/sharutils dev-perl/Astro-FITS-Header dev-perl/File-Map dev-perl/Inline dev-perl/OpenGL dev-perl/TermReadKey || ( dev-perl/Term-ReadLine-Perl dev-perl/Term-ReadLine-Gnu ) virtual/perl-Data-Dumper virtual/perl-Pod-Parser virtual/perl-File-Spec virtual/perl-File-Temp dev-perl/Filter virtual/perl-Storable virtual/perl-Text-Balanced fftw? ( sci-libs/fftw:2.1 ) gd? ( media-libs/gd ) gsl? ( sci-libs/gsl ) hdf? ( sci-libs/hdf ) netpbm? ( media-libs/netpbm virtual/ffmpeg ) pdl2? ( dev-perl/Devel-REPL ) pgplot? ( dev-perl/PGPLOT ) plplot? ( sci-libs/plplot ) fortran? ( >=dev-perl/ExtUtils-F77-1.13 ) dev-lang/perl:=[-build(-)] fortran? ( virtual/fortran )
+DESCRIPTION=Perl Data Language for scientific computing
+EAPI=5
+HOMEPAGE=http://pdl.perl.org/
+IUSE=+badval doc fftw fortran gd gsl hdf netpbm pdl2 pgplot plplot threads
+KEYWORDS=amd64 arm ppc x86 ~amd64-linux ~x86-linux
+LICENSE=|| ( Artistic GPL-1+ ) public-domain PerlDL
+RDEPEND=sys-libs/ncurses app-arch/sharutils dev-perl/Astro-FITS-Header dev-perl/File-Map dev-perl/Inline dev-perl/OpenGL dev-perl/TermReadKey || ( dev-perl/Term-ReadLine-Perl dev-perl/Term-ReadLine-Gnu ) virtual/perl-Data-Dumper virtual/perl-Pod-Parser virtual/perl-File-Spec virtual/perl-File-Temp dev-perl/Filter virtual/perl-Storable virtual/perl-Text-Balanced fftw? ( sci-libs/fftw:2.1 ) gd? ( media-libs/gd ) gsl? ( sci-libs/gsl ) hdf? ( sci-libs/hdf ) netpbm? ( media-libs/netpbm virtual/ffmpeg ) pdl2? ( dev-perl/Devel-REPL ) pgplot? ( dev-perl/PGPLOT ) plplot? ( sci-libs/plplot ) dev-lang/perl:=[-build(-)] fortran? ( virtual/fortran )
+REQUIRED_USE=plplot? ( badval )
+SLOT=0
+SRC_URI=mirror://cpan/authors/id/C/CH/CHM/PDL-2.4.11.tar.gz
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	fortran-2	e18b1135d4c478b5c81b23698c483030	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	multiprocessing	d7f2985a2c76c365ee20269db5261414	perl-module	84facbe8709eb9211eb49df229eb5219	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece	unpacker	f300a7ca9131b1024a79762e8edd3c52
+_md5_=dfa0b7e9bf3674c287fb46369bf00ae1

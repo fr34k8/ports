@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst postrm prepare setup
+DEPEND=app-text/iso-codes dev-python/lxml dev-python/python-levenshtein sys-devel/gettext html? ( dev-python/utidylib ) ical? ( dev-python/vobject ) ini? ( dev-python/iniparse ) dev-python/sphinx =dev-lang/python-2* =dev-lang/python-2*[sqlite] =dev-lang/python-2* =dev-lang/python-2*[sqlite]
+DESCRIPTION=Toolkit to convert between many translation formats
+EAPI=3
+HOMEPAGE=http://translate.sourceforge.net
+IUSE=doc +html +ical +ini +subtitles
+KEYWORDS=amd64 x86 ~amd64-linux ~x86-linux
+LICENSE=GPL-2
+RDEPEND=app-text/iso-codes dev-python/lxml dev-python/python-levenshtein sys-devel/gettext html? ( dev-python/utidylib ) ical? ( dev-python/vobject ) ini? ( dev-python/iniparse ) dev-python/sphinx =dev-lang/python-2* =dev-lang/python-2*[sqlite] =dev-lang/python-2* =dev-lang/python-2*[sqlite]
+SLOT=0
+SRC_URI=mirror://sourceforge/translate/translate-toolkit-1.10.0.tar.bz2
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_md5_=c874c9eee582335d6737c1091cdecb4d

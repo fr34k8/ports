@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile install postinst postrm preinst prepare prerm pretend setup
+DEPEND=binary? ( >=sys-kernel/genkernel-3.4.40.7 )
+DESCRIPTION=Debian Sources (and optional binary kernel)
+EAPI=5
+HOMEPAGE=http://www.debian.org
+IUSE=binary rt
+KEYWORDS=*
+LICENSE=GPL-2
+RESTRICT=binchecks strip mirror
+SLOT=3.16.7
+SRC_URI=http://build.funtoo.org/distfiles/linux_3.16.7-ckt4.orig.tar.xz http://build.funtoo.org/distfiles/linux_3.16.7-ckt4-1.debian.tar.xz
+_eclasses_=check-reqs	dae17c899997c54a71304df80f276c1b	eutils	998e5931fb95b10a6a11ec796ada2759	mount-boot	ea24b511b0ad59831d0151aa634dfad2	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=06eb0c0481059541fa13e78788489104

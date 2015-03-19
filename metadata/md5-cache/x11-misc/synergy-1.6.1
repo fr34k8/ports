@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst postrm preinst prepare test unpack
+DEPEND=>=dev-libs/crypto++-5.6.2 x11-libs/libICE x11-libs/libSM x11-libs/libX11 x11-libs/libXext x11-libs/libXi x11-libs/libXinerama x11-libs/libXrandr x11-libs/libXtst qt4? ( dev-qt/qtcore:4 dev-qt/qtgui:4 net-dns/avahi[mdnsresponder-compat] ) test? ( >=dev-cpp/gmock-1.6.0 ) x11-proto/kbproto x11-proto/randrproto x11-proto/xextproto x11-proto/xineramaproto x11-proto/xproto >=sys-apps/sed-4 sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Lets you easily share a single mouse and keyboard between multiple computers
+EAPI=5
+HOMEPAGE=http://synergy-project.org/ https://github.com/synergy/synergy
+IUSE=qt4 test
+KEYWORDS=~alpha ~amd64 ~arm ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris
+LICENSE=GPL-2
+RDEPEND=>=dev-libs/crypto++-5.6.2 x11-libs/libICE x11-libs/libSM x11-libs/libX11 x11-libs/libXext x11-libs/libXi x11-libs/libXinerama x11-libs/libXrandr x11-libs/libXtst qt4? ( dev-qt/qtcore:4 dev-qt/qtgui:4 net-dns/avahi[mdnsresponder-compat] ) qt4? ( !x11-misc/qsynergy )
+SLOT=0
+SRC_URI=https://github.com/synergy/synergy/archive/1.6.1.tar.gz -> synergy-1.6.1.tar.gz http://dev.gentoo.org/~hasufell/distfiles/synergy.png
+_eclasses_=base	b04101a46711cfa66c7484a27d64d5ef	cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	qmake-utils	ea709b525d28e3087eddedb2f884dbbe	qt4-r2	bf2c644de4b91ad965c46735fbbd4a39	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=17cd979017dcdffdbcd8dd55bd28b327

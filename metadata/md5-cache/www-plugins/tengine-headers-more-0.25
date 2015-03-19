@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile install
+DEPEND=www-servers/tengine[dso]
+DESCRIPTION=headers-more module allows you to add, set, or clear any output or input header that you specify
+EAPI=5
+HOMEPAGE=https://github.com/openresty/headers-more-nginx-module
+KEYWORDS=*
+LICENSE=BSD-2
+RDEPEND=www-servers/tengine[dso]
+RESTRICT=mirror
+SLOT=0
+SRC_URI=https://github.com/openresty/headers-more-nginx-module/archive/v0.25.tar.gz -> tengine-headers-more-0.25.tar.gz
+_md5_=99f13654207cf4a4dc3cee9ba17046f5

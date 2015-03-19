@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=dev-libs/openssl:0= sqlite? ( dev-db/sqlite:3= ) virtual/pkgconfig sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=GNU RTP stack for the zrtp protocol developed by Phil Zimmermann
+EAPI=5
+HOMEPAGE=http://www.gnutelephony.org/index.php/GNU_ZRTP
+IUSE=sqlite
+KEYWORDS=~amd64 ~ppc ~ppc64 ~x86
+LICENSE=GPL-3
+RDEPEND=dev-libs/openssl:0= sqlite? ( dev-db/sqlite:3= )
+SLOT=0/4
+SRC_URI=http://dev.gentoo.org/~mgorny/dist/ZRTPCPP-4.2.4.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=27c941c334a7775c903fd566245cf1dc

@@ -1,0 +1,174 @@
+--- wxPython/distrib/PyAlaMode.desktop
++++ wxPython/distrib/PyAlaMode.desktop
+@@ -1,8 +1,8 @@
+ [Desktop Entry]
+-Name=PyAlaMode
++Name=PyAlaMode (2.8)
+ Comment=GUI Python Shell with Filling and editor windows
+-Exec=pyalamode
+-Icon=PyCrust.png
++Exec=pyalamode-2.8
++Icon=/usr/share/pixmaps/PyCrust.png
+ Terminal=false
+ Type=Application
+ Categories=Application;Development;
+--- wxPython/distrib/PyCrust.desktop
++++ wxPython/distrib/PyCrust.desktop
+@@ -1,8 +1,8 @@
+ [Desktop Entry]
+-Name=PyCrust
++Name=PyCrust (2.8)
+ Comment=GUI Python Shell with Filling
+-Exec=pycrust
+-Icon=PyCrust.png
++Exec=pycrust-2.8
++Icon=/usr/share/pixmaps/PyCrust.png
+ Terminal=false
+ Type=Application
+ Categories=Application;Development;
+--- wxPython/distrib/PyShell.desktop
++++ wxPython/distrib/PyShell.desktop
+@@ -1,8 +1,8 @@
+ [Desktop Entry]
+-Name=PyShell
++Name=PyShell (2.8)
+ Comment=GUI Python Shell
+-Exec=pyshell
+-Icon=PyCrust.png
++Exec=pyshell-2.8
++Icon=/usr/share/pixmaps/PyCrust.png
+ Terminal=false
+ Type=Application
+ Categories=Application;Development;
+--- wxPython/distrib/XRCed.desktop
++++ wxPython/distrib/XRCed.desktop
+@@ -1,8 +1,8 @@
+ [Desktop Entry]
+-Name=XRCed
++Name=XRCed (2.8)
+ Comment=wxPython XRC resource editor
+-Exec=xrced
+-Icon=XRCed.png
++Exec=xrced-2.8
++Icon=/usr/share/pixmaps/XRCed.png
+ Terminal=false
+ Type=Application
+ Categories=Application;Development;
+--- wxPython/scripts/editra
++++ wxPython/scripts/editra
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.tools.Editra.launcher import main
+ main()
+--- wxPython/scripts/genaxmodule
++++ wxPython/scripts/genaxmodule
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.tools.genaxmodule import main
+ main()
+--- wxPython/scripts/helpviewer
++++ wxPython/scripts/helpviewer
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.tools.helpviewer import main
+ main()
+--- wxPython/scripts/img2png
++++ wxPython/scripts/img2png
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.tools.img2png import main
+ main()
+--- wxPython/scripts/img2py
++++ wxPython/scripts/img2py
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.tools.img2py import main
+ main()
+--- wxPython/scripts/img2xpm
++++ wxPython/scripts/img2xpm
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.tools.img2xpm import main
+ main()
+--- wxPython/scripts/pyalacarte
++++ wxPython/scripts/pyalacarte
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.py.PyAlaCarte import main
+ main()
+--- wxPython/scripts/pyalamode
++++ wxPython/scripts/pyalamode
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.py.PyAlaMode import main
+ main()
+--- wxPython/scripts/pycrust
++++ wxPython/scripts/pycrust
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.py.PyCrust import main
+ main()
+--- wxPython/scripts/pyshell
++++ wxPython/scripts/pyshell
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.py.PyShell import main
+ main()
+--- wxPython/scripts/pywrap
++++ wxPython/scripts/pywrap
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.py.PyWrap import main
+ main()
+--- wxPython/scripts/pywxrc
++++ wxPython/scripts/pywxrc
+@@ -1,5 +1,7 @@
+ #!/usr/bin/env python
+ 
++import wxversion
++wxversion.select("2.8")
+ from wx.tools.pywxrc import main
+ main()
+ 
+--- wxPython/scripts/xrced
++++ wxPython/scripts/xrced
+@@ -1,4 +1,6 @@
+ #!/usr/bin/env python
++import wxversion
++wxversion.select("2.8")
+ 
+ from wx.tools.XRCed.xrced import main
+ main()

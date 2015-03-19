@@ -1,0 +1,8 @@
+# Copyright owners: Gentoo Foundation
+# Distributed under the Boost Software License Version 1.0 
+# (See accompanying file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt) 
+
+# Define variants to be used when building Boost in Gentoo.
+# These variants use Gentoo-specific optimization and debug-symbols values "none".
+variant gentoorelease : release : <optimization>none <debug-symbols>none <runtime-link>shared ;
+variant gentoodebug   : debug   : <optimization>none <debug-symbols>on   <runtime-link>shared ;

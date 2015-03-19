@@ -1,0 +1,6 @@
+DEFINED_PHASES=-
+DESCRIPTION=Virtual for the package manager
+KEYWORDS=*
+RDEPEND=|| ( sys-apps/portage )
+SLOT=0
+_md5_=fc3618aafbed4f5854c51b036b58624d

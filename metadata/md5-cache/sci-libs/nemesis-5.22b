@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install prepare test
+DEPEND=sci-libs/exodusii sci-libs/netcdf sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=Enhancement to the EXODUSII finite element database model
+EAPI=4
+HOMEPAGE=http://sourceforge.net/projects/exodusii/
+IUSE=static-libs test
+KEYWORDS=~amd64 ~x86 ~amd64-linux ~x86-linux
+LICENSE=BSD
+RDEPEND=sci-libs/exodusii sci-libs/netcdf
+SLOT=0
+SRC_URI=mirror://sourceforge/nemesis/exodus-5.22b.tar.gz
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_md5_=7b0ff62b6ac914dc42445115a1904e5b

@@ -1,0 +1,19 @@
+Use /tmp for cache files since the user won't have
+write permissions on ${DOCDIR}.
+
+--- docs/viewdocs.py
++++ docs/viewdocs.py
+@@ -16,11 +16,11 @@ if not basePath:
+ 
+ 
+ # test for write access
+-if os.access(basePath, os.W_OK):
++if os.access('/tmp', os.W_OK):
+ 
+     # setup the args
+     args = ['',
+-        '--cache='+basePath,
++        '--cache=/tmp',
+         os.path.join(basePath, 'wx.zip'),
+         ]
+ 
