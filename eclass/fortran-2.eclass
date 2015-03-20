@@ -1,6 +1,5 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright owners: Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/fortran-2.eclass,v 1.20 2013/07/29 20:13:57 jlec Exp $
 
 # @ECLASS: fortran-2.eclass
 # @MAINTAINER:
@@ -237,11 +236,11 @@ fortran-2_pkg_setup() {
 	case ${EAPI:-0} in
 		0|1|2|3)
 			eqawarn "Support for EAPI < 4 will be removed from the"
-			eqawarn "fortran-2.eclass in until 2013-09-30."
+			eqawarn "fortran-2.eclass on 2013-09-30."
 			eqawarn "Please migrate your package to a higher EAPI"
 			eqawarn "or file a bug at https://bugs.gentoo.org"
 			_fortran-2_pkg_setup ;;
-		4|5)
+		4|4-python|5|5-progress)
 			if [[ ${MERGE_TYPE} != binary ]]; then
 				_fortran-2_pkg_setup
 			fi
@@ -250,7 +249,7 @@ fortran-2_pkg_setup() {
 }
 
 case ${EAPI:-0} in
-	0|1|2|3|4|5) EXPORT_FUNCTIONS pkg_setup ;;
+	0|1|2|3|4|4-python|5|5-progress) EXPORT_FUNCTIONS pkg_setup ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 

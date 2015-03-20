@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare setup test
-DEPEND=gnome? ( >=dev-libs/glib-2.26:2 ) kde? ( >=kde-base/kdelibs-4.4.5 ) mono? ( dev-lang/mono ) networkmanager? ( sys-apps/dbus ) perl? ( dev-lang/perl ) spidermonkey? ( >=dev-lang/spidermonkey-1.8.5:0 ) webkit? ( >=net-libs/webkit-gtk-1.6:3 ) kde? ( dev-util/automoc ) virtual/pkgconfig sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) )
+DEPEND=gnome? ( >=dev-libs/glib-2.26:2 ) kde? ( >=kde-base/kdelibs-4.4.5 ) mono? ( dev-lang/mono ) networkmanager? ( sys-apps/dbus ) perl? ( dev-lang/perl ) spidermonkey? ( >=dev-lang/spidermonkey-1.8.5:0 ) webkit? ( >=net-libs/webkit-gtk-1.6:3 ) kde? ( dev-util/automoc ) virtual/pkgconfig sys-devel/make >=dev-util/cmake-2.8.12 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) python? ( =dev-lang/python-2* )
 DESCRIPTION=Library for automatic proxy configuration management
 EAPI=4
 HOMEPAGE=http://code.google.com/p/libproxy/
@@ -7,8 +7,8 @@ IUSE=gnome kde mono networkmanager perl python spidermonkey test webkit
 KEYWORDS=~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris
 LICENSE=LGPL-2.1+
 PDEPEND=networkmanager? ( net-misc/networkmanager )
-RDEPEND=gnome? ( >=dev-libs/glib-2.26:2 ) kde? ( >=kde-base/kdelibs-4.4.5 ) mono? ( dev-lang/mono ) networkmanager? ( sys-apps/dbus ) perl? ( dev-lang/perl ) spidermonkey? ( >=dev-lang/spidermonkey-1.8.5:0 ) webkit? ( >=net-libs/webkit-gtk-1.6:3 ) python? ( || ( =dev-lang/python-2.7* =dev-lang/python-2.6* ) )
+RDEPEND=gnome? ( >=dev-libs/glib-2.26:2 ) kde? ( >=kde-base/kdelibs-4.4.5 ) mono? ( dev-lang/mono ) networkmanager? ( sys-apps/dbus ) perl? ( dev-lang/perl ) spidermonkey? ( >=dev-lang/spidermonkey-1.8.5:0 ) webkit? ( >=net-libs/webkit-gtk-1.6:3 ) python? ( =dev-lang/python-2* )
 SLOT=0
 SRC_URI=http://libproxy.googlecode.com/files/libproxy-0.4.11.tar.gz
-_eclasses_=cmake-utils	0430c386d85cec959d72640afd63ea91	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	mono	203a4295c06155d318bdff9c6b2d5e1c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	cd022f89fef846d083fc994b9e3d8c04	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_eclasses_=cmake-utils	01f9e06341e2a4616ea41cfc9d65536a	eutils	998e5931fb95b10a6a11ec796ada2759	flag-o-matic	c263990f1b677b0f0be0a3299f179762	mono	203a4295c06155d318bdff9c6b2d5e1c	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3ee5574a6b0dc8388fa703b53642a22b	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=5d4671f27dbd87ce49a734508f7287be

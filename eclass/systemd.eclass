@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright owners: Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/systemd.eclass,v 1.32 2014/05/31 10:23:36 mgorny Exp $
 
 # @ECLASS: systemd.eclass
 # @MAINTAINER:
@@ -28,7 +27,7 @@
 inherit eutils toolchain-funcs
 
 case ${EAPI:-0} in
-	0|1|2|3|4|5) ;;
+	0|1|2|3|4|4-python|5|5-progress) ;;
 	*) die "${ECLASS}.eclass API in EAPI ${EAPI} not yet established."
 esac
 

@@ -1,12 +1,12 @@
 DEFINED_PHASES=compile install postinst postrm preinst prepare setup
-DEPEND=>=dev-python/pygtk-2.6 || ( x11-libs/gdk-pixbuf:2[jpeg] x11-libs/gtk+:2[jpeg] ) x11-themes/gnome-icon-theme virtual/pkgconfig >=sys-apps/sed-4 || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
+DEPEND=>=dev-python/pygtk-2.6 || ( x11-libs/gdk-pixbuf:2[jpeg] x11-libs/gtk+:2[jpeg] ) x11-themes/gnome-icon-theme virtual/pkgconfig >=sys-apps/sed-4 =dev-lang/python-2*
 DESCRIPTION=a Rhythmbox-like PyGTK+ client for Music Player Daemon
 EAPI=3
 HOMEPAGE=http://sourceforge.net/projects/pympd
 KEYWORDS=amd64 ~ppc ~sparc x86
 LICENSE=GPL-2
-RDEPEND=>=dev-python/pygtk-2.6 || ( x11-libs/gdk-pixbuf:2[jpeg] x11-libs/gtk+:2[jpeg] ) x11-themes/gnome-icon-theme || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
+RDEPEND=>=dev-python/pygtk-2.6 || ( x11-libs/gdk-pixbuf:2[jpeg] x11-libs/gtk+:2[jpeg] ) x11-themes/gnome-icon-theme =dev-lang/python-2*
 SLOT=0
 SRC_URI=mirror://sourceforge/pympd/pympd-0.08.1.tar.gz
-_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	gnome2-utils	5cdfd22a2163c9d3a891648bd19453a7	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	cd022f89fef846d083fc994b9e3d8c04	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3ee5574a6b0dc8388fa703b53642a22b	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=6d3816d35421d6aa6af2506610c4ab67

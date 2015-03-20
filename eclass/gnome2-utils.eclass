@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright owners: Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2-utils.eclass,v 1.38 2014/11/23 21:46:29 mgorny Exp $
 
 # @ECLASS: gnome2-utils.eclass
 # @MAINTAINER:
@@ -18,7 +17,7 @@
 inherit multilib
 
 case "${EAPI:-0}" in
-	0|1|2|3|4|5) ;;
+	0|1|2|3|4|4-python|5|5-progress) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 

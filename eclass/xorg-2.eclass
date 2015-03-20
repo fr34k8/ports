@@ -1,6 +1,5 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright owners: Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xorg-2.eclass,v 1.65 2015/03/06 01:32:36 chithanh Exp $
 
 # @ECLASS: xorg-2.eclass
 # @MAINTAINER:
@@ -53,7 +52,7 @@ fi
 
 EXPORTED_FUNCTIONS="src_unpack src_compile src_install pkg_postinst pkg_postrm"
 case "${EAPI:-0}" in
-	3|4|5) EXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS} src_prepare src_configure" ;;
+	3|4|4-python|5|5-progress) EXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS} src_prepare src_configure" ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 
@@ -294,7 +293,7 @@ fi
 
 if [[ ${XORG_MODULE_REBUILD} == yes ]]; then
 	case ${EAPI} in
-		3|4)
+		3|4|4-python)
 			;;
 		*)
 			RDEPEND+=" x11-base/xorg-server:="
@@ -528,7 +527,9 @@ xorg-2_src_install() {
 	# Don't install libtool archives (even for modules)
 	prune_libtool_files --all
 
-	[[ -n ${FONT} ]] && remove_font_metadata
+	if [[ -n ${FONT} ]]; then
+		remove_font_metadata
+	fi
 }
 
 # @FUNCTION: xorg-2_pkg_postinst

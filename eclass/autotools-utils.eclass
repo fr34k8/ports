@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright owners: Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools-utils.eclass,v 1.74 2014/07/31 23:24:56 reavertm Exp $
 
 # @ECLASS: autotools-utils.eclass
 # @MAINTAINER:
@@ -89,7 +88,7 @@
 # Keep variable names synced with cmake-utils and the other way around!
 
 case ${EAPI:-0} in
-	2|3|4|5) ;;
+	2|3|4|4-python|5|5-progress) ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 

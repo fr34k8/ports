@@ -1,6 +1,5 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright owners: Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-source-r2.eclass,v 1.33 2013/06/01 18:51:57 robbat2 Exp $
 
 # @ECLASS: php-ext-source-r2.eclass
 # @MAINTAINER:
@@ -26,7 +25,7 @@ RDEPEND=""
 
 # Because of USE deps, we require at least EAPI 2
 case ${EAPI} in
-	4|5) ;;
+	4|4-python|5|5-progress) ;;
 	*)
 		die "php-ext-source-r2 is not compatible with EAPI=${EAPI}"
 esac
