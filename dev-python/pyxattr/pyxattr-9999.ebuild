@@ -1,57 +1,47 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxattr/pyxattr-9999.ebuild,v 1.5 2014/11/25 11:01:23 pacho Exp $
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
-PYTHON_RESTRICTED_ABIS="*-jython"
-DISTUTILS_SRC_TEST="nosetests"
+EAPI=5
+PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3,3_4} pypy pypy2_0 )
 
-inherit distutils git-r3
+#if LIVE
+EGIT_REPO_URI="https://github.com/iustin/${PN}.git
+	git://github.com/iustin/${PN}.git"
+inherit git-2
+#endif
 
-DESCRIPTION="Filesystem extended attributes for python"
-HOMEPAGE="http://pyxattr.k1024.org/ https://github.com/iustin/pyxattr https://pypi.python.org/pypi/pyxattr"
-SRC_URI=""
-EGIT_REPO_URI="https://github.com/iustin/pyxattr"
+inherit distutils-r1 eutils
+
+DESCRIPTION="Python interface to xattr"
+HOMEPAGE="http://pyxattr.k1024.org/"
+SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS=""
-IUSE="doc"
+KEYWORDS="~alpha ~amd64 ~arm ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-linux ~arm-linux ~x86-linux"
+IUSE="test"
 
 RDEPEND="sys-apps/attr"
-DEPEND="${DEPEND}
-	$(python_abi_depend dev-python/setuptools)
-	doc? ( $(python_abi_depend dev-python/sphinx) )"
+DEPEND="${RDEPEND}
+	dev-python/setuptools[${PYTHON_USEDEP}]
+	test? ( dev-python/nose[${PYTHON_USEDEP}] )"
 
-src_prepare() {
-	distutils_src_prepare
-	sed -e "/extra_compile_args=/d" -i setup.py
-}
-
-src_compile() {
-	distutils_src_compile
-
-	if use doc; then
-		einfo "Generation of documentation"
-		PYTHONPATH="$(ls -d build-$(PYTHON -f --ABI)/lib*)" "$(PYTHON -f)" setup.py build_sphinx || die "Generation of documentation failed"
-	fi
-}
+#if LIVE
+SRC_URI=
+KEYWORDS=
+#endif
 
 src_test() {
-	touch "${T}/test_file"
-	if ! setfattr -n user.attr -v value "${T}/test_file" &> /dev/null; then
-		ewarn "Skipping tests due to missing support for extended attributes in filesystem used by build directory"
-		return
-	fi
+	# Perform the tests in /var/tmp; that location is more likely
+	# to have xattr support than /tmp which is often tmpfs.
+	export TESTDIR=/var/tmp
 
-	distutils_src_test
+	einfo 'Please note that the tests fail if xattrs are not supported'
+	einfo 'by the filesystem used for /var/tmp.'
+	distutils-r1_src_test
 }
 
-src_install() {
-	distutils_src_install
-
-	if use doc; then
-		dohtml -r build/sphinx/html/
-	fi
+python_test() {
+	nosetests || die "Tests fail with ${EPYTHON}"
 }

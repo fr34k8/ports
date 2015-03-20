@@ -59,7 +59,3 @@ move media-sound/leechcraft-lemon net-misc/leechcraft-lemon
 move dev-haskell/hsql-sqlite dev-haskell/hsql-sqlite3
 slotmove dev-ruby/builder 3.1.4 3.1
 move x11-terms/terminal x11-terms/xfce4-terminal
-slotmove dev-libs/boost 1.48 0
-slotmove dev-libs/boost 1.49 0
-slotmove dev-libs/boost 1.50 0
-slotmove dev-libs/boost 1.51 0

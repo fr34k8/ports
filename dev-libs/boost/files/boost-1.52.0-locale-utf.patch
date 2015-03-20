@@ -1,8 +1,7 @@
-https://svn.boost.org/trac/boost/ticket/7743
-https://svn.boost.org/trac/boost/changeset/81590
-
---- boost/locale/utf.hpp
-+++ boost/locale/utf.hpp
+Index: boost/locale/utf.hpp
+===================================================================
+--- boost/locale/utf.hpp	(revision 81589)
++++ boost/locale/utf.hpp	(revision 81590)
 @@ -219,16 +219,22 @@
                  if(BOOST_LOCALE_UNLIKELY(p==e))
                      return incomplete;
@@ -26,8 +25,10 @@ https://svn.boost.org/trac/boost/changeset/81590
                  c = (c << 6) | ( tmp & 0x3F);
              }
  
---- libs/locale/test/test_codepage_converter.cpp
-+++ libs/locale/test/test_codepage_converter.cpp
+Index: libs/locale/test/test_codepage_converter.cpp
+===================================================================
+--- libs/locale/test/test_codepage_converter.cpp	(revision 81589)
++++ libs/locale/test/test_codepage_converter.cpp	(revision 81590)
 @@ -140,6 +140,20 @@
          TEST_TO("\xf8\x90\x80\x80\x80",illegal);  // 400 0000
          TEST_TO("\xfd\xbf\xbf\xbf\xbf\xbf",illegal);  // 7fff ffff

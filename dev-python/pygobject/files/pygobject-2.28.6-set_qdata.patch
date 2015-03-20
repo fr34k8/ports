@@ -23,3 +23,6 @@ index 6c2f06c..70dc89a 100644
      return pygobject_new_full(obj, TRUE, NULL);
  }
  
+-- 
+1.7.8.5
+

@@ -1,36 +1,28 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/autopep8/autopep8-9999.ebuild,v 1.11 2015/03/12 00:47:14 idella4 Exp $
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
-# http://bugs.jython.org/issue2286
-# http://bugs.jython.org/issue2287
-PYTHON_TESTS_FAILURES_TOLERANT_ABIS="*-jython"
+EAPI=5
+PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy pypy3 )
 
-inherit distutils git-2
+inherit distutils-r1 git-2
 
-DESCRIPTION="A tool that automatically formats Python code to conform to the PEP 8 style guide"
-HOMEPAGE="https://github.com/hhatto/autopep8 https://pypi.python.org/pypi/autopep8"
+DESCRIPTION="Automatically formats Python code to conform to the PEP 8 style guide"
+HOMEPAGE="https://github.com/hhatto/autopep8 http://pypi.python.org/pypi/autopep8"
 SRC_URI=""
-EGIT_REPO_URI="https://github.com/hhatto/autopep8"
+EGIT_REPO_URI="git://github.com/hhatto/${PN}.git"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="test"
 
-DEPEND="$(python_abi_depend ">=dev-python/pep8-1.5.7")
-	$(python_abi_depend dev-python/setuptools)
-	$(python_abi_depend virtual/python-argparse)"
-RDEPEND="${DEPEND}"
+RDEPEND="
+	>=dev-python/pep8-1.5.7[${PYTHON_USEDEP}]
+	dev-python/setuptools[${PYTHON_USEDEP}]"
+DEPEND="${DEPEND}
+	test? ( >=dev-python/pydiff-0.1.2[${PYTHON_USEDEP}] )"
 
-DOCS="AUTHORS.rst README.rst"
-PYTHON_MODULES="${PN}.py"
-
-src_test() {
-	testing() {
-		python_execute PYTHONPATH="build-${PYTHON_ABI}/lib" "$(PYTHON)" test/test_autopep8.py
-	}
-	python_execute_function testing
+python_test() {
+	"${PYTHON}" setup.py test || die
 }

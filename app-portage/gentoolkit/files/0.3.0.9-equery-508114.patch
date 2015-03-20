@@ -32,3 +32,6 @@ index e2d2124..d3342cd 100644
  
  	if QUERY_OPTS["stablereq"]:
  		# Get {<Package 'dev-libs/glib-2.20.5'>: [u'ia64', u'm68k', ...], ...}
+-- 
+2.1.3
+

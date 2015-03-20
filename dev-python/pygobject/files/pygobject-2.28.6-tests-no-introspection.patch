@@ -28,3 +28,6 @@ index e60bad5..3a0d1b7 100644
  if BUILD_GIO
  	TEST_FILES="$(TEST_FILES_GIO)" $(RUN_TESTS_LAUNCH)
  endif 
+-- 
+1.8.0.2
+

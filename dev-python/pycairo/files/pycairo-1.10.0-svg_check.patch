@@ -97,12 +97,12 @@
  
  top = '.'
  out = 'build_directory'
-@@ -12,6 +13,17 @@
- xpyb_version_required  = '1.3'    # optional
+@@ -11,6 +12,17 @@
+ cairo_version_required = '1.10.0'
  
  
 +def check_svg():
-+  if os.environ.get('PYCAIRO_DISABLE_SVG') is None:
++  if os.environ.get('PYCAIRO_DISABLE_SVG', None) is None:
 +    return_code = subprocess.call(['pkg-config', '--exists', 'cairo-svg'])
 +    if return_code == 0:
 +      return True
@@ -115,7 +115,7 @@
  def options(ctx):
    print('  %s/options()' %d)
    ctx.tool_options('gnu_dirs')
-@@ -49,6 +61,8 @@
+@@ -39,6 +51,8 @@
    ctx.define('PYCAIRO_VERSION_MAJOR', version[0])
    ctx.define('PYCAIRO_VERSION_MINOR', version[1])
    ctx.define('PYCAIRO_VERSION_MICRO', version[2])

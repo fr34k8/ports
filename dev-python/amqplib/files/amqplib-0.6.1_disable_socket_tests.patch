@@ -1,5 +1,6 @@
---- tests/client_0_8/run_all.py
-+++ tests/client_0_8/run_all.py
+diff -uNr amqplib-0.6.1.org/tests/client_0_8/run_all.py amqplib-0.6.1/tests/client_0_8/run_all.py
+--- amqplib-0.6.1.org/tests/client_0_8/run_all.py	2011-07-06 16:21:22.000000000 -0400
++++ amqplib-0.6.1/tests/client_0_8/run_all.py	2011-07-06 16:21:38.000000000 -0400
 @@ -28,13 +28,8 @@
          'test_exceptions',
          'test_serialization',

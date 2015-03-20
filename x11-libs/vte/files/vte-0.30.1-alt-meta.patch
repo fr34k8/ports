@@ -69,3 +69,6 @@ index 243e22e..21d9b8e 100644
  #define VTE_NUMLOCK_MASK	GDK_MOD2_MASK
  
  /* Map the specified keyval/modifier setup, dependent on the mode, to either
+-- 
+1.7.8.rc3
+

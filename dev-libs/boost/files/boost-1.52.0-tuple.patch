@@ -1,8 +1,5 @@
-https://svn.boost.org/trac/boost/ticket/7712
-https://svn.boost.org/trac/boost/changeset/81432
-
---- boost/signals2/detail/variadic_slot_invoker.hpp
-+++ boost/signals2/detail/variadic_slot_invoker.hpp
+--- boost/signals2/detail/variadic_slot_invoker.hpp.org	2012-11-20 09:15:55.000000000 +0400
++++ boost/signals2/detail/variadic_slot_invoker.hpp	2012-11-20 09:19:56.000000000 +0400
 @@ -20,7 +20,7 @@
  // if compiler has std::tuple use it instead of boost::tuple
  // because boost::tuple does not have variadic template support at present.

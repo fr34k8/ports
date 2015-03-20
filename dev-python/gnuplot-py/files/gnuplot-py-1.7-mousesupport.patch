@@ -1,5 +1,5 @@
---- _Gnuplot.py
-+++ _Gnuplot.py
+--- _Gnuplot.py.orig	2003-10-17 16:28:10.000000000 +0200
++++ _Gnuplot.py	2004-10-28 14:39:20.000000000 +0200
 @@ -18,6 +18,27 @@
  
  import gp, PlotItems, termdefs

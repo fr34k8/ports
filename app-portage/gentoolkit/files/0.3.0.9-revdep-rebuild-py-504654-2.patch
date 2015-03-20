@@ -25,3 +25,6 @@ index d7b210b..bd1b6b7 100644
  			self.logger.debug(self.smsg % bits)
  			self.setlibs(sorted(scanned), bits)
  			for soname, filepaths in scanned.items():
+-- 
+1.9.1
+

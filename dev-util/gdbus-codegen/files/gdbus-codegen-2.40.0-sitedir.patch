@@ -26,3 +26,6 @@ index 253d151..2295481 100644
 +    from gdbus_codegen import codegen_main
  
  sys.exit(codegen_main.codegen_main())
+-- 
+1.8.1
+

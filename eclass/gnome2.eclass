@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnome2.eclass,v 1.130 2015/02/23 10:59:44 pacho Exp $
 
 # @ECLASS: gnome2.eclass
 # @MAINTAINER:
@@ -22,7 +23,7 @@ case "${EAPI:-0}" in
 		eqawarn
 		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install pkg_preinst pkg_postinst pkg_postrm
 		;;
-	4|4-python|5|5-progress)
+	4|5)
 		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install pkg_preinst pkg_postinst pkg_postrm
 		;;
 	*) die "EAPI=${EAPI} is not supported" ;;
@@ -38,7 +39,7 @@ G2CONF=${G2CONF:-""}
 # @DESCRIPTION:
 # Should we delete ALL the .la files?
 # NOT to be used without due consideration.
-if has ${EAPI:-0} 2 3 4 4-python; then
+if has ${EAPI:-0} 2 3 4; then
 	GNOME2_LA_PUNT=${GNOME2_LA_PUNT:-"no"}
 else
 	GNOME2_LA_PUNT=${GNOME2_LA_PUNT:-""}
@@ -121,7 +122,7 @@ gnome2_src_configure() {
 	# rebuild docs.
 	# Preserve old behavior for older EAPI.
 	if grep -q "enable-gtk-doc" "${ECONF_SOURCE:-.}"/configure ; then
-		if has ${EAPI:-0} 2 3 4 4-python && in_iuse doc ; then
+		if has ${EAPI:-0} 2 3 4 && in_iuse doc ; then
 			G2CONF="$(use_enable doc gtk-doc) ${G2CONF}"
 		else
 			G2CONF="--disable-gtk-doc ${G2CONF}"
@@ -140,7 +141,7 @@ gnome2_src_configure() {
 	fi
 
 	# Pass --disable-silent-rules when possible (not needed for eapi5), bug #429308
-	if has ${EAPI:-0} 2 3 4 4-python; then
+	if has ${EAPI:-0} 2 3 4; then
 		if grep -q "disable-silent-rules" "${ECONF_SOURCE:-.}"/configure; then
 			G2CONF="--disable-silent-rules ${G2CONF}"
 		fi
@@ -185,14 +186,6 @@ gnome2_src_compile() {
 # in packages and removal of .la files if requested
 gnome2_src_install() {
 	has ${EAPI:-0} 2 && ! use prefix && ED="${D}"
-
-	local installation_prefix
-	if [[ -n "${GNOME2_DESTDIR}" ]]; then
-		installation_prefix="${GNOME2_DESTDIR%/}${EPREFIX}/"
-	else
-		installation_prefix="${ED}"
-	fi
-
 	# if this is not present, scrollkeeper-update may segfault and
 	# create bogus directories in /var/lib/
 	local sk_tmp_dir="/var/lib/scrollkeeper"
@@ -202,12 +195,12 @@ gnome2_src_install() {
 	export GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL="1"
 
 	debug-print "Installing with 'make install'"
-	emake DESTDIR="${GNOME2_DESTDIR:-${D}}" "scrollkeeper_localstate_dir=${installation_prefix}${sk_tmp_dir} " "$@" install || die "install failed"
+	emake DESTDIR="${D}" "scrollkeeper_localstate_dir=${ED}${sk_tmp_dir} " "$@" install || die "install failed"
 
 	unset GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL
 
 	# Handle documentation as 'default' for eapi5 and newer, bug #373131
-	if has ${EAPI:-0} 2 3 4 4-python; then
+	if has ${EAPI:-0} 2 3 4; then
 		# Manual document installation
 		if [[ -n "${DOCS}" ]]; then
 			dodoc ${DOCS} || die "dodoc failed"
@@ -218,21 +211,21 @@ gnome2_src_install() {
 
 	# Do not keep /var/lib/scrollkeeper because:
 	# 1. The scrollkeeper database is regenerated at pkg_postinst()
-	# 2. ${installation_prefix}var/lib/scrollkeeper contains only indexes for the current pkg
+	# 2. ${ED}/var/lib/scrollkeeper contains only indexes for the current pkg
 	#    thus it makes no sense if pkg_postinst ISN'T run for some reason.
-	rm -rf "${installation_prefix}${sk_tmp_dir}"
-	rmdir "${installation_prefix}var/lib" 2>/dev/null
-	rmdir "${installation_prefix}var" 2>/dev/null
+	rm -rf "${ED}${sk_tmp_dir}"
+	rmdir "${ED}/var/lib" 2>/dev/null
+	rmdir "${ED}/var" 2>/dev/null
 
 	# Make sure this one doesn't get in the portage db
-	rm -fr "${installation_prefix}usr/share/applications/mimeinfo.cache"
+	rm -fr "${ED}/usr/share/applications/mimeinfo.cache"
 
 	# Delete all .la files
-	if has ${EAPI:-0} 2 3 4 4-python; then
+	if has ${EAPI:-0} 2 3 4; then
 		if [[ "${GNOME2_LA_PUNT}" != "no" ]]; then
 			ebegin "Removing .la files"
 			if ! use_if_iuse static-libs ; then
-				find "${GNOME2_DESTDIR:-${D}}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
+				find "${D}" -name '*.la' -exec rm -f {} + || die "la file removal failed"
 			fi
 			eend
 		fi

@@ -1,12 +1,12 @@
 DEFINED_PHASES=compile install postinst postrm prepare
-DEPEND=x11-libs/libX11 >=dev-python/pygtk-2.12 sys-devel/gettext !media-plugins/banshee-mirage =dev-lang/python-2*
+DEPEND=x11-libs/libX11 >=dev-python/pygtk-2.12 sys-devel/gettext !media-plugins/banshee-mirage || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 DESCRIPTION=A fast and simple image viewer based on python and GTK+
 EAPI=3
 HOMEPAGE=http://mirageiv.berlios.de/
 KEYWORDS=amd64 ppc ppc64 x86 ~x86-fbsd
 LICENSE=GPL-3
-RDEPEND=x11-libs/libX11 >=dev-python/pygtk-2.12 =dev-lang/python-2*
+RDEPEND=x11-libs/libX11 >=dev-python/pygtk-2.12 || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 SLOT=0
 SRC_URI=mirror://berlios/mirageiv/mirage-0.9.5.1.tar.bz2
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3f6d74b5384dbeef63d932c2b6f9b61a	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_eclasses_=distutils	92e738ea29389cb3f34778d7a349ac71	eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	cd022f89fef846d083fc994b9e3d8c04	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=f3fc40179a9a6ea568db0edeffafe8ca

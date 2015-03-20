@@ -1,5 +1,7 @@
---- eric/KdeQt/__init__.py
-+++ eric/KdeQt/__init__.py
+Index: eric4-4.4-snapshot-20091129/eric/KdeQt/__init__.py
+===================================================================
+--- eric4-4.4-snapshot-20091129.orig/eric/KdeQt/__init__.py
++++ eric4-4.4-snapshot-20091129/eric/KdeQt/__init__.py
 @@ -20,19 +20,6 @@ import sys
  import Preferences
  
@@ -85,7 +87,7 @@
 -        return True
 -    except ImportError:
 -        return False
-+    return False
++	return False
  
  def isKDE():
 -    """
@@ -97,7 +99,7 @@
 -        return __kdeIsKDE()
 -    else:
 -        return __qtIsKDE()
-+    return __qtIsKDE()
++	return __qtIsKDE()
      
  def kdeVersionString():
 -    """
@@ -109,7 +111,7 @@
 -        return __kdeKdeVersionString()
 -    else:
 -        return __qtKdeVersionString()
-+    return __qtKdeVersionString()
++	return __qtKdeVersionString()
      
  def pyKdeVersionString():
 -    """
@@ -121,9 +123,11 @@
 -        return __kdePyKdeVersionString()
 -    else:
 -        return __qtPyKdeVersionString()
-+    return __qtPyKdeVersionString()
---- eric/eric4.py
-+++ eric/eric4.py
++	return __qtPyKdeVersionString()
+Index: eric4-4.4-snapshot-20091129/eric/eric4.py
+===================================================================
+--- eric4-4.4-snapshot-20091129.orig/eric/eric4.py
++++ eric4-4.4-snapshot-20091129/eric/eric4.py
 @@ -32,13 +32,12 @@ restartArgsList = ["--nokde", "--nosplas
  restartArgs = [arg for arg in sys.argv[1:] if arg.split("=", 1)[0] in restartArgsList]
  
@@ -136,7 +140,7 @@
  else:
 -    sys.e4nokde = os.getenv("e4nokde") is not None and os.getenv("e4nokde") == "1"
 -
-+    print "PyKDE support has been disabled. Enable 'kde' useflag to bring it back"
++	print "PyKDE support has been disabled. Enable 'kde' useflag to bring it back"
  if "--debug" in sys.argv:
      del sys.argv[sys.argv.index("--debug")]
      logging.basicConfig(level = logging.DEBUG)

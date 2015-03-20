@@ -1,8 +1,8 @@
-https://bugzilla.gnome.org/show_bug.cgi?id=738751
-
---- configure.ac
-+++ configure.ac
-@@ -1481,19 +1481,11 @@
+diff --git a/configure.in b/configure.in
+index 7374564..13c8d4e 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1444,19 +1444,11 @@ XML_LIBTOOLLIBS="libxml2.la"
  AC_SUBST(WITH_ICONV)
  
  WITH_ICU=0

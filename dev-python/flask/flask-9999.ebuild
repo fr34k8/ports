@@ -1,77 +1,45 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/flask/flask-9999.ebuild,v 1.9 2014/10/10 07:03:23 idella4 Exp $
 
-EAPI="5-progress"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="3.1 3.2"
-PYTHON_TESTS_FAILURES_TOLERANT_ABIS="*-jython"
-# Usage of flaskext namespace is deprecated since Flask 0.8.
-PYTHON_NAMESPACES="flaskext"
+EAPI="5"
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 
-inherit distutils git-2 python-namespaces
+inherit distutils-r1 git-2
+
+EGIT_REPO_URI="git://github.com/mitsuhiko/flask.git
+	https://github.com/mitsuhiko/flask.git"
 
 DESCRIPTION="A microframework based on Werkzeug, Jinja2 and good intentions"
-HOMEPAGE="http://flask.pocoo.org/ https://github.com/mitsuhiko/flask https://pypi.python.org/pypi/Flask"
-SRC_URI=""
-EGIT_REPO_URI="https://github.com/mitsuhiko/flask"
+MY_PN="Flask"
+MY_P="${MY_PN}-${PV}"
+SRC_URI="mirror://pypi/${MY_P:0:1}/${MY_PN}/${MY_P}.tar.gz"
+HOMEPAGE="http://pypi.python.org/pypi/Flask"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
-IUSE="doc examples"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+IUSE="examples test"
 
-RDEPEND="$(python_abi_depend dev-python/blinker)
-	$(python_abi_depend ">=dev-python/itsdangerous-0.21")
-	$(python_abi_depend ">=dev-python/jinja-2.4")
-	$(python_abi_depend ">=dev-python/werkzeug-0.7")"
+RDEPEND="dev-python/blinker[${PYTHON_USEDEP}]
+	>=dev-python/itsdangerous-0.21[${PYTHON_USEDEP}]
+	>=dev-python/jinja-2.4[${PYTHON_USEDEP}]
+	dev-python/setuptools[${PYTHON_USEDEP}]
+	>=dev-python/werkzeug-0.7[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}
-	$(python_abi_depend dev-python/setuptools)
-	doc? ( $(python_abi_depend dev-python/sphinx) )"
+	test? ( dev-python/pytest[${PYTHON_USEDEP}] )"
 
-src_compile() {
-	distutils_src_compile
+S="${WORKDIR}/${MY_P}"
+#if LIVE
+SRC_URI=
+KEYWORDS=
+#endif
 
-	if use doc; then
-		einfo "Generation of documentation"
-		pushd docs > /dev/null
-		PYTHONPATH=".." emake html
-		popd > /dev/null
-	fi
+python_test() {
+	py.test tests || die "Testing failed with ${EPYTHON}"
 }
 
-src_test() {
-	testing() {
-		python_execute "$(PYTHON)" run-tests.py
-	}
-	python_execute_function testing
-}
-
-src_install() {
-	distutils_src_install
-	python-namespaces_src_install
-
-	delete_tests() {
-		rm -fr "${ED}$(python_get_sitedir)/flask/testsuite"
-	}
-	python_execute_function -q delete_tests
-
-	if use doc; then
-		dohtml -r docs/_build/html/
-	fi
-
-	if use examples; then
-		insinto /usr/share/doc/${PF}
-		doins -r examples
-	fi
-}
-
-pkg_postinst() {
-	distutils_pkg_postinst
-	python-namespaces_pkg_postinst
-}
-
-pkg_postrm() {
-	distutils_pkg_postrm
-	python-namespaces_pkg_postrm
+python_install_all() {
+	use examples && local EXAMPLES=( examples/. )
+	distutils-r1_python_install_all
 }

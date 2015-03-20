@@ -21,3 +21,6 @@ index 1d93967..67c9dfd 100644
  	xmlParserInitialized = 1;
  #ifdef LIBXML_THREAD_ENABLED
      }
+-- 
+cgit v0.10.1
+

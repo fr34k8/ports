@@ -1,35 +1,25 @@
-# Copyright owners: Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/blessings/blessings-1.6.ebuild,v 1.2 2015/02/19 08:07:55 jlec Exp $
 
-EAPI="5-progress"
-PYTHON_DEPEND="<<[ncurses]>>"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="3.1 *-jython"
-DISTUTILS_SRC_TEST="nosetests"
+EAPI=5
 
-inherit distutils
+PYTHON_COMPAT=( python2_7 python3_{3,4} )
+
+inherit distutils-r1
 
 DESCRIPTION="A thin, practical wrapper around terminal coloring, styling, and positioning"
-HOMEPAGE="https://github.com/erikrose/blessings https://pypi.python.org/pypi/blessings"
+HOMEPAGE="https://github.com/erikrose/blessings https://pypi.python.org/pypi/blessings/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
-LICENSE="MIT"
 SLOT="0"
-KEYWORDS="*"
-IUSE=""
+LICENSE="MIT"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+IUSE="test"
 
-DEPEND="$(python_abi_depend dev-python/setuptools)"
+DEPEND="dev-python/nose[${PYTHON_USEDEP}]"
 RDEPEND=""
 
-src_test() {
-	python_execute_nosetests -e -P 'build-${PYTHON_ABI}/lib' -- -P -w 'build-${PYTHON_ABI}/lib'
-}
-
-src_install() {
-	distutils_src_install
-
-	delete_tests() {
-		rm "${ED}$(python_get_sitedir)/blessings/tests.py"
-	}
-	python_execute_function -q delete_tests
+python_test() {
+	nosetests --verbosity=3 ${PN} || die
 }

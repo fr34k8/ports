@@ -1,13 +1,13 @@
 DEFINED_PHASES=compile install postinst postrm prepare setup
-DEPEND==dev-lang/python-2*
+DEPEND=|| ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 DESCRIPTION=Serve a single file via HTTP
 EAPI=4
 HOMEPAGE=http://seba-geek.de/stuff/servefile/
 IUSE=ssl
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-3
-RDEPEND=( sys-apps/iproute2 sys-apps/net-tools ) ssl? ( dev-python/pyopenssl ) sys-apps/grep sys-apps/sed =dev-lang/python-2*
+RDEPEND=( sys-apps/iproute2 sys-apps/net-tools ) ssl? ( dev-python/pyopenssl ) sys-apps/grep sys-apps/sed || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 SLOT=0
 SRC_URI=http://seba-geek.de/proj/servefile/servefile-0.4.3.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_eclasses_=distutils	92e738ea29389cb3f34778d7a349ac71	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	cd022f89fef846d083fc994b9e3d8c04	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=dd675fd5362296c2ec148b2eec14f5ea

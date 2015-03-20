@@ -1,5 +1,6 @@
-# Copyright owners: Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/check-reqs.eclass,v 1.15 2014/03/29 16:06:44 ulm Exp $
 
 # @ECLASS: check-reqs.eclass
 # @MAINTAINER:
@@ -62,7 +63,7 @@ inherit eutils
 EXPORT_FUNCTIONS pkg_setup
 case "${EAPI:-0}" in
 	0|1|2|3) ;;
-	4|4-python|5|5-progress) EXPORT_FUNCTIONS pkg_pretend ;;
+	4|5) EXPORT_FUNCTIONS pkg_pretend ;;
 	*) die "EAPI=${EAPI} is not supported" ;;
 esac
 

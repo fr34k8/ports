@@ -1,14 +1,13 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-9999.ebuild,v 1.38 2015/02/28 11:28:48 grobian Exp $
 
-EAPI="5-progress"
-PYTHON_DEPEND="<<[xml]>>"
-PYTHON_ABI_TYPE="multiple"
-PYTHON_RESTRICTED_ABIS="*-jython"
-PYTHON_NONVERSIONED_EXECUTABLES=(".*")
+EAPI="5"
 
-inherit distutils git-r3
+PYTHON_COMPAT=(python{2_6,2_7,3_2,3_3,3_4} pypy pypy2_0)
+PYTHON_REQ_USE="xml(+)"
+
+inherit distutils-r1 git-r3
 
 EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/gentoolkit.git"
 EGIT_BRANCH="gentoolkit"
@@ -23,23 +22,23 @@ IUSE=""
 
 KEYWORDS=""
 
-# DEPEND="$(python_abi_depend sys-apps/portage)"
-DEPEND="sys-apps/portage"
+DEPEND="sys-apps/portage[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
 	!<=app-portage/gentoolkit-dev-0.2.7
-	|| ( >=sys-apps/coreutils-8.15 sys-freebsd/freebsd-bin )
+	|| ( >=sys-apps/coreutils-8.15 app-misc/realpath sys-freebsd/freebsd-bin )
 	sys-apps/gawk
-	!prefix? ( sys-apps/gentoo-functions )
-	sys-apps/grep
-	$(python_abi_depend virtual/python-argparse)"
+	sys-apps/gentoo-functions
+	sys-apps/grep"
 
-distutils_src_compile_pre_hook() {
-	python_execute VERSION="9999-${EGIT_VERSION}" "$(PYTHON)" setup.py set_version || die "setup.py set_version failed"
+python_prepare_all() {
+	python_export_best
+	echo VERSION="9999-${EGIT_VERSION}" "${PYTHON}" setup.py set_version
+	VERSION="9999-${EGIT_VERSION}" "${PYTHON}" setup.py set_version
+	distutils-r1_python_prepare_all
 }
 
-src_install() {
-	python_convert_shebangs -r "" build-*/scripts-*
-	distutils_src_install
+python_install_all() {
+	distutils-r1_python_install_all
 
 	# Create cache directory for revdep-rebuild
 	keepdir /var/cache/revdep-rebuild
@@ -58,8 +57,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	distutils_pkg_postinst
-
 	# Only show the elog information on a new install
 	if [[ ! ${REPLACING_VERSIONS} ]]; then
 		elog

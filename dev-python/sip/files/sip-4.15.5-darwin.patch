@@ -1,7 +1,6 @@
-Require not framework builds and produce .bundle files.
-
---- siputils.py
-+++ siputils.py
+diff -ur sip-4.15.5.orig/siputils.py sip-4.15.5/siputils.py
+--- siputils.py	2014-02-21 18:31:35.000000000 +0800
++++ siputils.py	2014-04-01 23:21:41.895036589 +0800
 @@ -945,8 +945,6 @@
          """
          if self.generator in ("MSVC", "MSVC.NET", "MSBUILD", "BMAKE"):

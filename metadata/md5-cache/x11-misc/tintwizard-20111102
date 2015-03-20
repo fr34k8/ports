@@ -7,5 +7,5 @@ KEYWORDS=~*
 LICENSE=GPL-3
 RDEPEND=dev-python/pygtk:2 x11-misc/tint2 =dev-lang/python-2*
 SLOT=0
-_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3f6d74b5384dbeef63d932c2b6f9b61a	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	cd022f89fef846d083fc994b9e3d8c04	subversion	c12bdf4fcc82f86ad89b14c8f76c4026	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=9043d87016bda368bda1187afae3fc98

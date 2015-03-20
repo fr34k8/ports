@@ -1,30 +1,20 @@
-# Copyright owners: Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/snowballstemmer/snowballstemmer-1.2.0.ebuild,v 1.1 2015/03/19 02:30:22 patrick Exp $
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
+EAPI=5
+PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy )
 
-inherit distutils
+inherit distutils-r1
 
-DESCRIPTION="Snowball stemming library collection for Python"
-HOMEPAGE="https://github.com/shibukawa/snowball_py https://pypi.python.org/pypi/snowballstemmer"
+DESCRIPTION="Stemmer algorithms generated from Snowball algorithms"
+HOMEPAGE="https://github.com/shibukawa/snowball_py https://pypi.python.org/pypi/snowballstemmer/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
-LICENSE="BSD-2"
+LICENSE="BSD"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="$(python_abi_depend -e "*-jython" dev-python/pystemmer)"
-RDEPEND="${DEPEND}"
-
-src_compile() {
-	distutils_src_compile
-
-	preparation() {
-		if has "$(python_get_version -l)" 3.1 3.2; then
-			2to3-${PYTHON_ABI} -f unicode -nw --no-diffs build-${PYTHON_ABI}/lib
-		fi
-	}
-	python_execute_function -q preparation
-}
+RDEPEND=""
+DEPEND="${RDEPEND}"

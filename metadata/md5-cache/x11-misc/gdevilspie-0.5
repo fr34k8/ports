@@ -1,12 +1,12 @@
 DEFINED_PHASES=compile install postinst postrm prepare setup
-DEPEND==dev-python/pygtk-2* dev-python/libwnck-python =dev-lang/python-2*
+DEPEND==dev-python/pygtk-2* dev-python/libwnck-python || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 DESCRIPTION=A user friendly interface to the devilspie window matching daemon, to create rules easily
 EAPI=4
 HOMEPAGE=http://code.google.com/p/gdevilspie/
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-3
-RDEPEND==dev-python/pygtk-2* dev-python/libwnck-python x11-misc/devilspie =dev-lang/python-2*
+RDEPEND==dev-python/pygtk-2* dev-python/libwnck-python x11-misc/devilspie || ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
 SLOT=0
 SRC_URI=http://gdevilspie.googlecode.com/files/gdevilspie-0.5.tar.bz2
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	python	3f6d74b5384dbeef63d932c2b6f9b61a
+_eclasses_=distutils	92e738ea29389cb3f34778d7a349ac71	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	cd022f89fef846d083fc994b9e3d8c04	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=976df22c6c55ca047be7f2b0430a527b

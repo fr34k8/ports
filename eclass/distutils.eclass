@@ -1,29 +1,57 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.85 2014/11/20 15:32:09 mgorny Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
-# Arfrever Frehtes Taifersar Arahesis <Arfrever@Apache.Org>
+# Gentoo Python Project <python@gentoo.org>
 # @BLURB: Eclass for packages with build systems using Distutils
 # @DESCRIPTION:
 # The distutils eclass defines phase functions for packages with build systems using Distutils.
+#
+# This eclass is DEPRECATED. Please use distutils-r1 instead.
 
 if [[ -z "${_PYTHON_ECLASS_INHERITED}" ]]; then
 	inherit python
 fi
 
-if has "${EAPI:-0}" 0 1 && _python_abi_type multiple; then
-	die "EAPI=\"${EAPI}\" not supported by distutils.eclass in ebuilds setting PYTHON_ABI_TYPE=\"multiple\" variable"
-elif has "${EAPI:-0}" 0 1 2 && ! _python_abi_type multiple; then
-	die "EAPI=\"${EAPI}\" not supported by distutils.eclass in ebuilds not setting PYTHON_ABI_TYPE=\"multiple\" variable"
-fi
+inherit multilib
 
-EXPORT_FUNCTIONS src_prepare src_compile src_install pkg_postinst pkg_postrm
+case "${EAPI:-0}" in
+	0|1)
+		EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
+		;;
+	*)
+		EXPORT_FUNCTIONS src_prepare src_compile src_install pkg_postinst pkg_postrm
+		;;
+esac
 
 if [[ -z "$(declare -p PYTHON_DEPEND 2> /dev/null)" ]]; then
 	DEPEND="dev-lang/python"
 	RDEPEND="${DEPEND}"
+fi
+
+	if has "${EAPI:-0}" 0 1 && [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		ewarn
+		ewarn "\"${EBUILD}\":"
+		ewarn "Deprecation Warning: Usage of distutils.eclass in packages supporting installation"
+		ewarn "for multiple Python ABIs in EAPI <=1 is deprecated."
+		ewarn "The ebuild should to be fixed. Please report a bug, if it has not been already reported."
+		ewarn
+	elif has "${EAPI:-0}" 0 1 2 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
+		ewarn
+		ewarn "\"${EBUILD}\":"
+		ewarn "Deprecation Warning: Usage of distutils.eclass in packages not supporting installation"
+		ewarn "for multiple Python ABIs in EAPI <=2 is deprecated."
+		ewarn "The ebuild should to be fixed. Please report a bug, if it has not been already reported."
+		ewarn
+	fi
+
+# 'python' variable is deprecated. Use PYTHON() instead.
+if has "${EAPI:-0}" 0 1 2 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
+	python="python"
+else
+	python="die"
 fi
 
 # @ECLASS-VARIABLE: DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES
@@ -65,38 +93,14 @@ fi
 if [[ -z "${DISTUTILS_DISABLE_TEST_DEPENDENCY}" ]]; then
 	if [[ "${DISTUTILS_SRC_TEST}" == "nosetests" ]]; then
 		IUSE="test"
-		if _python_abi_type single || { ! has "${EAPI:-0}" 2 3 4 5 && _python_abi_type multiple; }; then
-			if [[ -n "${PYTHON_TESTS_RESTRICTED_ABIS}" ]]; then
-				DEPEND+="${DEPEND:+ }test? ( $(python_abi_depend -e "${PYTHON_TESTS_RESTRICTED_ABIS}" dev-python/nose) )"
-			else
-				DEPEND+="${DEPEND:+ }test? ( $(python_abi_depend dev-python/nose) )"
-			fi
-		else
-			DEPEND+="${DEPEND:+ }test? ( dev-python/nose )"
-		fi
+		DEPEND+="${DEPEND:+ }test? ( dev-python/nose )"
 	elif [[ "${DISTUTILS_SRC_TEST}" == "py.test" ]]; then
 		IUSE="test"
-		if _python_abi_type single || { ! has "${EAPI:-0}" 2 3 4 5 && _python_abi_type multiple; }; then
-			if [[ -n "${PYTHON_TESTS_RESTRICTED_ABIS}" ]]; then
-				DEPEND+="${DEPEND:+ }test? ( $(python_abi_depend -e "${PYTHON_TESTS_RESTRICTED_ABIS}" dev-python/pytest) )"
-			else
-				DEPEND+="${DEPEND:+ }test? ( $(python_abi_depend dev-python/pytest) )"
-			fi
-		else
-			DEPEND+="${DEPEND:+ }test? ( dev-python/pytest )"
-		fi
+		DEPEND+="${DEPEND:+ }test? ( dev-python/pytest )"
 	# trial requires an argument, which is usually equal to "${PN}".
 	elif [[ "${DISTUTILS_SRC_TEST}" =~ ^trial(\ .*)?$ ]]; then
 		IUSE="test"
-		if _python_abi_type single || { ! has "${EAPI:-0}" 2 3 4 5 && _python_abi_type multiple; }; then
-			if [[ -n "${PYTHON_TESTS_RESTRICTED_ABIS}" ]]; then
-				DEPEND+="${DEPEND:+ }test? ( $(python_abi_depend -e "${PYTHON_TESTS_RESTRICTED_ABIS}" dev-python/twisted-core) )"
-			else
-				DEPEND+="${DEPEND:+ }test? ( $(python_abi_depend dev-python/twisted-core) )"
-			fi
-		else
-			DEPEND+="${DEPEND:+ }test? ( dev-python/twisted-core )"
-		fi
+		DEPEND+="${DEPEND:+ }test? ( dev-python/twisted-core )"
 	fi
 fi
 
@@ -104,20 +108,18 @@ if [[ -n "${DISTUTILS_SRC_TEST}" ]]; then
 	EXPORT_FUNCTIONS src_test
 fi
 
+# Scheduled for deletion on 2011-06-01.
+if [[ -n "${DISTUTILS_DISABLE_VERSIONING_OF_PYTHON_SCRIPTS}" ]]; then
+	eerror "Use PYTHON_NONVERSIONED_EXECUTABLES=(\".*\") instead of DISTUTILS_DISABLE_VERSIONING_OF_PYTHON_SCRIPTS variable."
+	die "DISTUTILS_DISABLE_VERSIONING_OF_PYTHON_SCRIPTS variable is banned"
+fi
+
 # @ECLASS-VARIABLE: DOCS
 # @DESCRIPTION:
-# Documentation files installed by distutils_src_install().
-
-_distutils_execute() {
-	if [[ "$(python_get_implementation)" == "PyPy" ]]; then
-		local -x CFLAGS="${CFLAGS}${CFLAGS:+ }-Werror=implicit-function-declaration"
-	fi
-
-	_python_execute_with_build_environment python_execute "$@"
-}
+# Additional documentation files installed by distutils_src_install().
 
 _distutils_get_build_dir() {
-	if _python_abi_type multiple && [[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
+	if _python_package_supporting_installation_for_multiple_python_abis && [[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
 		echo "build-${PYTHON_ABI}"
 	else
 		echo "build"
@@ -125,10 +127,10 @@ _distutils_get_build_dir() {
 }
 
 _distutils_get_PYTHONPATH() {
-	if _python_abi_type multiple && [[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
-		ls -d "$(pwd)/build-${PYTHON_ABI}/lib"* 2> /dev/null
+	if _python_package_supporting_installation_for_multiple_python_abis && [[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
+		ls -d build-${PYTHON_ABI}/lib* 2> /dev/null
 	else
-		ls -d "$(pwd)/build/lib"* 2> /dev/null
+		ls -d build/lib* 2> /dev/null
 	fi
 }
 
@@ -136,7 +138,6 @@ _distutils_hook() {
 	if [[ "$#" -ne 1 ]]; then
 		die "${FUNCNAME}() requires 1 argument"
 	fi
-
 	if [[ "$(type -t "distutils_src_${EBUILD_PHASE}_$1_hook")" == "function" ]]; then
 		"distutils_src_${EBUILD_PHASE}_$1_hook"
 	fi
@@ -149,13 +150,13 @@ _distutils_prepare_global_options() {
 		die "DISTUTILS_GLOBAL_OPTIONS should be indexed array"
 	fi
 
-	if has "${EAPI:-0}" 2 3; then
+	if has "${EAPI:-0}" 0 1 2 3; then
 		_DISTUTILS_GLOBAL_OPTIONS=("${DISTUTILS_GLOBAL_OPTIONS[@]}")
 	else
 		_DISTUTILS_GLOBAL_OPTIONS=()
 
 		for element in "${DISTUTILS_GLOBAL_OPTIONS[@]}"; do
-			if [[ ! "${element}" =~ ^${_PYTHON_ABI_PATTERN_REGEX}\ . ]]; then
+			if [[ ! "${element}" =~ ^[^[:space:]]+\ . ]]; then
 				die "Element '${element}' of DISTUTILS_GLOBAL_OPTIONS array has invalid syntax"
 			fi
 			pattern="${element%% *}"
@@ -184,48 +185,55 @@ _distutils_restore_current_working_directory() {
 	fi
 }
 
+# @FUNCTION: distutils_src_unpack
+# @DESCRIPTION:
+# The distutils src_unpack function. This function is exported.
+distutils_src_unpack() {
+	if ! has "${EAPI:-0}" 0 1; then
+		die "${FUNCNAME}() cannot be used in this EAPI"
+	fi
+
+	if [[ "${EBUILD_PHASE}" != "unpack" ]]; then
+		die "${FUNCNAME}() can be used only in src_unpack() phase"
+	fi
+
+	unpack ${A}
+	cd "${S}"
+
+	distutils_src_prepare
+}
+
 # @FUNCTION: distutils_src_prepare
 # @DESCRIPTION:
 # The distutils src_prepare function. This function is exported.
 distutils_src_prepare() {
-	if [[ "${EBUILD_PHASE}" != "prepare" ]]; then
+	if ! has "${EAPI:-0}" 0 1 && [[ "${EBUILD_PHASE}" != "prepare" ]]; then
 		die "${FUNCNAME}() can be used only in src_prepare() phase"
 	fi
 
 	_python_check_python_pkg_setup_execution
-	_python_set_color_variables
+
+	local distribute_setup_existence="0" ez_setup_existence="0"
 
 	if [[ "$#" -ne 0 ]]; then
 		die "${FUNCNAME}() does not accept arguments"
 	fi
 
-	local distribute_setup_existence ez_setup_existence setup_file
+	# Delete ez_setup files to prevent packages from installing Setuptools on their own.
+	[[ -d ez_setup || -f ez_setup.py ]] && ez_setup_existence="1"
+	rm -fr ez_setup*
+	if [[ "${ez_setup_existence}" == "1" ]]; then
+		echo "def use_setuptools(*args, **kwargs): pass" > ez_setup.py
+	fi
 
-	echo " ${_GREEN}*${_NORMAL} ${_BLUE}Preparing Distutils build system...${_NORMAL}"
+	# Delete distribute_setup files to prevent packages from installing Distribute on their own.
+	[[ -d distribute_setup || -f distribute_setup.py ]] && distribute_setup_existence="1"
+	rm -fr distribute_setup*
+	if [[ "${distribute_setup_existence}" == "1" ]]; then
+		echo "def use_setuptools(*args, **kwargs): pass" > distribute_setup.py
+	fi
 
-	for setup_file in "${DISTUTILS_SETUP_FILES[@]-setup.py}"; do
-		_distutils_prepare_current_working_directory "${setup_file}"
-
-		distribute_setup_existence="0" ez_setup_existence="0"
-
-		# Delete ez_setup files to prevent packages from installing Setuptools on their own.
-		[[ -d ez_setup || -f ez_setup.py ]] && ez_setup_existence="1"
-		rm -fr ez_setup*
-		if [[ "${ez_setup_existence}" == "1" ]]; then
-			echo "def use_setuptools(*args, **kwargs): pass" > ez_setup.py
-		fi
-
-		# Delete distribute_setup files to prevent packages from installing Distribute on their own.
-		[[ -d distribute_setup || -f distribute_setup.py ]] && distribute_setup_existence="1"
-		rm -fr distribute_setup*
-		if [[ "${distribute_setup_existence}" == "1" ]]; then
-			echo "def use_setuptools(*args, **kwargs): pass" > distribute_setup.py
-		fi
-
-		_distutils_restore_current_working_directory "${setup_file}"
-	done
-
-	if _python_abi_type multiple && [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
+	if [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
 		python_copy_sources
 	fi
 }
@@ -233,8 +241,8 @@ distutils_src_prepare() {
 # @FUNCTION: distutils_src_compile
 # @DESCRIPTION:
 # The distutils src_compile function. This function is exported.
-# In ebuilds setting PYTHON_ABI_TYPE=\"multiple\" variable, this function calls distutils_src_compile_pre_hook()
-# and distutils_src_compile_post_hook(), if they are defined.
+# In ebuilds of packages supporting installation for multiple versions of Python, this function
+# calls distutils_src_compile_pre_hook() and distutils_src_compile_post_hook(), if they are defined.
 distutils_src_compile() {
 	if [[ "${EBUILD_PHASE}" != "compile" ]]; then
 		die "${FUNCNAME}() can be used only in src_compile() phase"
@@ -243,9 +251,9 @@ distutils_src_compile() {
 	_python_check_python_pkg_setup_execution
 	_python_set_color_variables
 
-	local _DISTUTILS_GLOBAL_OPTIONS=() setup_file
+	local setup_file
 
-	if _python_abi_type single || _python_abi_type multiple; then
+	if _python_package_supporting_installation_for_multiple_python_abis; then
 		distutils_building() {
 			_distutils_hook pre
 
@@ -254,18 +262,15 @@ distutils_src_compile() {
 			for setup_file in "${DISTUTILS_SETUP_FILES[@]-setup.py}"; do
 				_distutils_prepare_current_working_directory "${setup_file}"
 
-				if _python_abi_type multiple; then
-					_distutils_execute "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" build -b "$(_distutils_get_build_dir)" "$@" || return "$?"
-				else
-					_distutils_execute "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@" || return "$?"
-				fi
+				echo ${_BOLD}"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" build -b "$(_distutils_get_build_dir)" "$@"${_NORMAL}
+				"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" build -b "$(_distutils_get_build_dir)" "$@" || return "$?"
 
 				_distutils_restore_current_working_directory "${setup_file}"
 			done
 
 			_distutils_hook post
 		}
-		python_execute_function $(_python_abi_type multiple && [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo -s) distutils_building "$@"
+		python_execute_function ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} distutils_building "$@"
 		unset -f distutils_building
 	else
 		_distutils_prepare_global_options
@@ -273,7 +278,8 @@ distutils_src_compile() {
 		for setup_file in "${DISTUTILS_SETUP_FILES[@]-setup.py}"; do
 			_distutils_prepare_current_working_directory "${setup_file}"
 
-			_distutils_execute "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@" || die "Building failed"
+			echo ${_BOLD}"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@"${_NORMAL}
+			"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@" || die "Building failed"
 
 			_distutils_restore_current_working_directory "${setup_file}"
 		done
@@ -282,10 +288,10 @@ distutils_src_compile() {
 
 _distutils_src_test_hook() {
 	if [[ "$#" -ne 1 ]]; then
-		die "${FUNCNAME}() requires 1 argument"
+		die "${FUNCNAME}() requires 1 arguments"
 	fi
 
-	if ! _python_abi_type single && ! _python_abi_type multiple; then
+	if ! _python_package_supporting_installation_for_multiple_python_abis; then
 		return
 	fi
 
@@ -305,8 +311,8 @@ _distutils_src_test_hook() {
 # @FUNCTION: distutils_src_test
 # @DESCRIPTION:
 # The distutils src_test function. This function is exported, when DISTUTILS_SRC_TEST variable is set.
-# In ebuilds setting PYTHON_ABI_TYPE=\"multiple\" variable, this function calls distutils_src_test_pre_hook()
-# and distutils_src_test_post_hook(), if they are defined.
+# In ebuilds of packages supporting installation for multiple versions of Python, this function
+# calls distutils_src_test_pre_hook() and distutils_src_test_post_hook(), if they are defined.
 distutils_src_test() {
 	if [[ "${EBUILD_PHASE}" != "test" ]]; then
 		die "${FUNCNAME}() can be used only in src_test() phase"
@@ -315,10 +321,10 @@ distutils_src_test() {
 	_python_check_python_pkg_setup_execution
 	_python_set_color_variables
 
-	local _DISTUTILS_GLOBAL_OPTIONS=() arguments setup_file
+	local arguments setup_file
 
 	if [[ "${DISTUTILS_SRC_TEST}" == "setup.py" ]]; then
-		if _python_abi_type single || _python_abi_type multiple; then
+		if _python_package_supporting_installation_for_multiple_python_abis; then
 			distutils_testing() {
 				_distutils_hook pre
 
@@ -327,18 +333,15 @@ distutils_src_test() {
 				for setup_file in "${DISTUTILS_SETUP_FILES[@]-setup.py}"; do
 					_distutils_prepare_current_working_directory "${setup_file}"
 
-					if _python_abi_type multiple; then
-						_distutils_execute PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") test "$@" || return "$?"
-					else
-						_distutils_execute PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" test "$@" || return "$?"
-					fi
+					echo ${_BOLD}PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") test "$@"${_NORMAL}
+					PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") test "$@" || return "$?"
 
 					_distutils_restore_current_working_directory "${setup_file}"
 				done
 
 				_distutils_hook post
 			}
-			python_execute_function $(_python_abi_type multiple && [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo -s) distutils_testing "$@"
+			python_execute_function ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} distutils_testing "$@"
 			unset -f distutils_testing
 		else
 			_distutils_prepare_global_options
@@ -346,7 +349,8 @@ distutils_src_test() {
 			for setup_file in "${DISTUTILS_SETUP_FILES[@]-setup.py}"; do
 				_distutils_prepare_current_working_directory "${setup_file}"
 
-				_distutils_execute PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" test "$@" || die "Testing failed"
+				echo ${_BOLD}PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" test "$@"${_NORMAL}
+				PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" test "$@" || die "Testing failed"
 
 				_distutils_restore_current_working_directory "${setup_file}"
 			done
@@ -354,11 +358,11 @@ distutils_src_test() {
 	elif [[ "${DISTUTILS_SRC_TEST}" == "nosetests" ]]; then
 		_distutils_src_test_hook nosetests
 
-		python_execute_nosetests -P '$(_distutils_get_PYTHONPATH)' $(_python_abi_type multiple && [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo -s) -- "$@"
+		python_execute_nosetests -P '$(_distutils_get_PYTHONPATH)' ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} -- "$@"
 	elif [[ "${DISTUTILS_SRC_TEST}" == "py.test" ]]; then
 		_distutils_src_test_hook py.test
 
-		python_execute_py.test -P '$(_distutils_get_PYTHONPATH)' $(_python_abi_type multiple && [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo -s) -- "$@"
+		python_execute_py.test -P '$(_distutils_get_PYTHONPATH)' ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} -- "$@"
 	# trial requires an argument, which is usually equal to "${PN}".
 	elif [[ "${DISTUTILS_SRC_TEST}" =~ ^trial(\ .*)?$ ]]; then
 		if [[ "${DISTUTILS_SRC_TEST}" == "trial "* ]]; then
@@ -369,7 +373,7 @@ distutils_src_test() {
 
 		_distutils_src_test_hook trial
 
-		python_execute_trial -P '$(_distutils_get_PYTHONPATH)' $(_python_abi_type multiple && [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo -s) -- ${arguments} "$@"
+		python_execute_trial -P '$(_distutils_get_PYTHONPATH)' ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} -- ${arguments} "$@"
 	else
 		die "'DISTUTILS_SRC_TEST' variable has unsupported value '${DISTUTILS_SRC_TEST}'"
 	fi
@@ -378,10 +382,10 @@ distutils_src_test() {
 # @FUNCTION: distutils_src_install
 # @DESCRIPTION:
 # The distutils src_install function. This function is exported.
-# In ebuilds setting PYTHON_ABI_TYPE=\"multiple\" variable, this function calls distutils_src_install_pre_hook()
-# and distutils_src_install_post_hook(), if they are defined.
-# This function installs some standard documentation files (AUTHORS, BUGS, Change*, CHANGELOG, CHANGES,
-# CONTRIBUTORS, CREDITS, KNOWN_BUGS, MAINTAINERS, NEWS, README*, THANKS, TODO).
+# In ebuilds of packages supporting installation for multiple versions of Python, this function
+# calls distutils_src_install_pre_hook() and distutils_src_install_post_hook(), if they are defined.
+# It also installs some standard documentation files (AUTHORS, Change*, CHANGELOG, CONTRIBUTORS,
+# KNOWN_BUGS, MAINTAINERS, NEWS, README*, TODO).
 distutils_src_install() {
 	if [[ "${EBUILD_PHASE}" != "install" ]]; then
 		die "${FUNCNAME}() can be used only in src_install() phase"
@@ -391,9 +395,9 @@ distutils_src_install() {
 	_python_initialize_prefix_variables
 	_python_set_color_variables
 
-	local _DISTUTILS_GLOBAL_OPTIONS=() doc line nspkg_pth_file nspkg_pth_files=() setup_file
+	local default_docs doc line nspkg_pth_file nspkg_pth_files=() setup_file
 
-	if _python_abi_type single || _python_abi_type multiple; then
+	if _python_package_supporting_installation_for_multiple_python_abis; then
 		distutils_installation() {
 			_distutils_hook pre
 
@@ -402,37 +406,32 @@ distutils_src_install() {
 			for setup_file in "${DISTUTILS_SETUP_FILES[@]-setup.py}"; do
 				_distutils_prepare_current_working_directory "${setup_file}"
 
-				if _python_abi_type multiple; then
-					_distutils_execute "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") install --no-compile --root="${T}/images/${PYTHON_ABI}" "$@" || return "$?"
-				else
-					_distutils_execute "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@" || return "$?"
-				fi
+				echo ${_BOLD}"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") install --no-compile --root="${T}/images/${PYTHON_ABI}" "$@"${_NORMAL}
+				"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") install --no-compile --root="${T}/images/${PYTHON_ABI}" "$@" || return "$?"
 
 				_distutils_restore_current_working_directory "${setup_file}"
 			done
 
 			_distutils_hook post
 		}
-		python_execute_function $(_python_abi_type multiple && [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo -s) distutils_installation "$@"
+		python_execute_function ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} distutils_installation "$@"
 		unset -f distutils_installation
 
-		if _python_abi_type multiple; then
-			python_merge_intermediate_installation_images "${T}/images"
-		fi
+		python_merge_intermediate_installation_images "${T}/images"
 	else
+		# Mark the package to be rebuilt after a Python upgrade.
+		python_need_rebuild
+
 		_distutils_prepare_global_options
 
 		for setup_file in "${DISTUTILS_SETUP_FILES[@]-setup.py}"; do
 			_distutils_prepare_current_working_directory "${setup_file}"
 
-			_distutils_execute "$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@" || die "Installation failed"
+			echo ${_BOLD}"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@"${_NORMAL}
+			"$(PYTHON)" "${setup_file#*|}" "${_DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@" || die "Installation failed"
 
 			_distutils_restore_current_working_directory "${setup_file}"
 		done
-	fi
-
-	if ! has "${EAPI:-0}" 2 3; then
-		python_generate_cffi_modules
 	fi
 
 	while read -d $'\0' -r nspkg_pth_file; do
@@ -447,9 +446,9 @@ distutils_src_install() {
 			while read -r line; do
 				einfo "        $(echo "${line}" | sed -e "s/.*types\.ModuleType('\([^']\+\)').*/\1/")"
 			done < "${nspkg_pth_file}"
-			if ! has "${EAPI:-0}" 2 3; then
-				rm "${nspkg_pth_file}" || die "Deletion of '${nspkg_pth_file}' failed"
-			fi
+			#if ! has "${EAPI:-0}" 0 1 2 3; then
+			#	rm -f "${nspkg_pth_file}" || die "Deletion of '${nspkg_pth_file}' failed"
+			#fi
 		done
 		einfo
 	fi
@@ -458,16 +457,19 @@ distutils_src_install() {
 		die "Illegal installation into /usr/local"
 	fi
 
+	default_docs="AUTHORS Change* CHANGELOG CONTRIBUTORS KNOWN_BUGS MAINTAINERS NEWS README* TODO"
 
-	if [[ -z "$(declare -p DOCS 2> /dev/null)" ]]; then
-		for doc in AUTHORS BUGS Change* CHANGELOG CHANGES CONTRIBUTORS CREDITS KNOWN_BUGS MAINTAINERS NEWS README* THANKS TODO; do
-			[[ -s "${doc}" ]] && dodoc "${doc}"
-		done
-	elif [[ -n "${DOCS}" ]]; then
-		if has "${EAPI:-0}" 2 3; then
+	for doc in ${default_docs}; do
+		[[ -s "${doc}" ]] && dodoc "${doc}"
+	done
+
+	if has "${EAPI:-0}" 0 1 2 3; then
+		if [[ -n "${DOCS}" ]]; then
 			dodoc ${DOCS} || die "dodoc failed"
-		else
-			dodoc -r ${DOCS}
+		fi
+	else
+		if [[ -n "${DOCS}" ]]; then
+			dodoc -r ${DOCS} || die "dodoc failed"
 		fi
 	fi
 
@@ -477,8 +479,8 @@ distutils_src_install() {
 # @FUNCTION: distutils_pkg_postinst
 # @DESCRIPTION:
 # The distutils pkg_postinst function. This function is exported.
-# When PYTHON_MODULES variable is set, then this function calls python_byte-compile_modules() with modules
-# specified in PYTHON_MODULES variable. Otherwise it calls python_byte-compile_modules() with module, whose
+# When PYTHON_MODNAME variable is set, then this function calls python_mod_optimize() with modules
+# specified in PYTHON_MODNAME variable. Otherwise it calls python_mod_optimize() with module, whose
 # name is equal to name of current package, if this module exists.
 distutils_pkg_postinst() {
 	if [[ "${EBUILD_PHASE}" != "postinst" ]]; then
@@ -492,34 +494,36 @@ distutils_pkg_postinst() {
 		die "${FUNCNAME}() called illegally"
 	fi
 
-	local pylibdir
+	local pylibdir pymod
 
 	if [[ "$#" -ne 0 ]]; then
 		die "${FUNCNAME}() does not accept arguments"
 	fi
 
-	if [[ -z "${PYTHON_MODULES}" && -n "${PYTHON_MODNAME}" ]]; then
-		PYTHON_MODULES="${PYTHON_MODNAME}"
-	fi
-
-	if [[ -z "$(declare -p PYTHON_MODULES 2> /dev/null)" ]]; then
-		for pylibdir in "${EROOT}"usr/${_PYTHON_MULTILIB_LIBDIR}/python* "${EROOT}"usr/share/jython-*/Lib "${EROOT}"usr/${_PYTHON_MULTILIB_LIBDIR}/pypy*; do
+	if [[ -z "$(declare -p PYTHON_MODNAME 2> /dev/null)" ]]; then
+		for pylibdir in "${EROOT}"usr/$(get_libdir)/python* "${EROOT}"usr/share/jython-*/Lib; do
 			if [[ -d "${pylibdir}/site-packages/${PN}" ]]; then
-				PYTHON_MODULES="${PN}"
+				PYTHON_MODNAME="${PN}"
 			fi
 		done
 	fi
 
-	if [[ -n "${PYTHON_MODULES}" ]]; then
-		python_byte-compile_modules ${PYTHON_MODULES}
+	if [[ -n "${PYTHON_MODNAME}" ]]; then
+		if ! has "${EAPI:-0}" 0 1 2 || _python_package_supporting_installation_for_multiple_python_abis; then
+			python_mod_optimize ${PYTHON_MODNAME}
+		else
+			for pymod in ${PYTHON_MODNAME}; do
+				python_mod_optimize "$(python_get_sitedir)/${pymod}"
+			done
+		fi
 	fi
 }
 
 # @FUNCTION: distutils_pkg_postrm
 # @DESCRIPTION:
 # The distutils pkg_postrm function. This function is exported.
-# When PYTHON_MODULES variable is set, then this function calls python_clean_byte-compiled_modules() with modules
-# specified in PYTHON_MODULES variable. Otherwise it calls python_clean_byte-compiled_modules() with module, whose
+# When PYTHON_MODNAME variable is set, then this function calls python_mod_cleanup() with modules
+# specified in PYTHON_MODNAME variable. Otherwise it calls python_mod_cleanup() with module, whose
 # name is equal to name of current package, if this module exists.
 distutils_pkg_postrm() {
 	if [[ "${EBUILD_PHASE}" != "postrm" ]]; then
@@ -533,26 +537,32 @@ distutils_pkg_postrm() {
 		die "${FUNCNAME}() called illegally"
 	fi
 
-	local pylibdir
+	local pylibdir pymod
 
 	if [[ "$#" -ne 0 ]]; then
 		die "${FUNCNAME}() does not accept arguments"
 	fi
 
-	if [[ -z "${PYTHON_MODULES}" && -n "${PYTHON_MODNAME}" ]]; then
-		PYTHON_MODULES="${PYTHON_MODNAME}"
-	fi
-
-	if [[ -z "$(declare -p PYTHON_MODULES 2> /dev/null)" ]]; then
-		for pylibdir in "${EROOT}"usr/${_PYTHON_MULTILIB_LIBDIR}/python* "${EROOT}"usr/share/jython-*/Lib "${EROOT}"usr/${_PYTHON_MULTILIB_LIBDIR}/pypy*; do
+	if [[ -z "$(declare -p PYTHON_MODNAME 2> /dev/null)" ]]; then
+		for pylibdir in "${EROOT}"usr/$(get_libdir)/python* "${EROOT}"usr/share/jython-*/Lib; do
 			if [[ -d "${pylibdir}/site-packages/${PN}" ]]; then
-				PYTHON_MODULES="${PN}"
+				PYTHON_MODNAME="${PN}"
 			fi
 		done
 	fi
 
-	if [[ -n "${PYTHON_MODULES}" ]]; then
-		python_clean_byte-compiled_modules ${PYTHON_MODULES}
+	if [[ -n "${PYTHON_MODNAME}" ]]; then
+		if ! has "${EAPI:-0}" 0 1 2 || _python_package_supporting_installation_for_multiple_python_abis; then
+			python_mod_cleanup ${PYTHON_MODNAME}
+		else
+			for pymod in ${PYTHON_MODNAME}; do
+				for pylibdir in "${EROOT}"usr/$(get_libdir)/python*; do
+					if [[ -d "${pylibdir}/site-packages/${pymod}" ]]; then
+						python_mod_cleanup "${pylibdir#${EROOT%/}}/site-packages/${pymod}"
+					fi
+				done
+			done
+		fi
 	fi
 }
 
@@ -566,13 +576,13 @@ distutils_get_intermediate_installation_image() {
 		die "${FUNCNAME}() can be used only in src_install() phase"
 	fi
 
-	if ! _python_abi_type multiple; then
-		die "${FUNCNAME}() can not be used in ebuilds not setting PYTHON_ABI_TYPE=\"multiple\" variable"
+	if ! _python_package_supporting_installation_for_multiple_python_abis; then
+		die "${FUNCNAME}() cannot be used in ebuilds of packages not supporting installation for multiple Python ABIs"
 	fi
 
 	_python_check_python_pkg_setup_execution
 
-	if [[ ! " ${FUNCNAME[@]:1} " =~ " "(distutils_src_install_pre_hook|distutils_src_install_post_hook)" " ]]; then
+	if [[ ! "${FUNCNAME[1]}" =~ ^distutils_src_install_(pre|post)_hook$ ]]; then
 		die "${FUNCNAME}() can be used only in distutils_src_install_pre_hook() and distutils_src_install_post_hook()"
 	fi
 

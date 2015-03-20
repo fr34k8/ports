@@ -45,3 +45,6 @@ index 331e0bc..7eee5c8 100644
    (in-module "gio")
    (c-name "GSocketMsgFlags")
    (gtype-id "G_TYPE_SOCKET_MSG_FLAGS")
+-- 
+1.7.8.5
+

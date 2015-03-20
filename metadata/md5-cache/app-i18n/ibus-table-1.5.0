@@ -1,13 +1,13 @@
 DEFINED_PHASES=configure install postinst postrm prepare setup
-DEPEND=>=app-i18n/ibus-1.4.99 nls? ( virtual/libintl ) nls? ( >=sys-devel/gettext-0.16.1 ) virtual/pkgconfig =dev-lang/python-2* =dev-lang/python-2*[sqlite]
+DEPEND=>=app-i18n/ibus-1.4.99 nls? ( virtual/libintl ) nls? ( >=sys-devel/gettext-0.16.1 ) virtual/pkgconfig || ( =dev-lang/python-2.7* =dev-lang/python-2.6* =dev-lang/python-2.5* ) || ( =dev-lang/python-2.7*[sqlite] =dev-lang/python-2.6*[sqlite] =dev-lang/python-2.5*[sqlite] )
 DESCRIPTION=The Table Engine for IBus Framework
 EAPI=3
 HOMEPAGE=http://code.google.com/p/ibus/
 IUSE=nls
 KEYWORDS=~amd64 ~x86
 LICENSE=GPL-2 LGPL-2.1
-RDEPEND=>=app-i18n/ibus-1.4.99 nls? ( virtual/libintl ) =dev-lang/python-2* =dev-lang/python-2*[sqlite]
+RDEPEND=>=app-i18n/ibus-1.4.99 nls? ( virtual/libintl ) || ( =dev-lang/python-2.7* =dev-lang/python-2.6* =dev-lang/python-2.5* ) || ( =dev-lang/python-2.7*[sqlite] =dev-lang/python-2.6*[sqlite] =dev-lang/python-2.5*[sqlite] )
 SLOT=0
 SRC_URI=http://ibus.googlecode.com/files/ibus-table-1.5.0.tar.gz
-_eclasses_=python	3f6d74b5384dbeef63d932c2b6f9b61a
+_eclasses_=multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	cd022f89fef846d083fc994b9e3d8c04	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=0bba086c994c9fffa1108fac9efa3750

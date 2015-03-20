@@ -1,91 +1,107 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-9999.ebuild,v 1.24 2015/02/28 18:08:42 jlec Exp $
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
-PYTHON_BDEPEND="test? ( <<[{*-cpython *-pypy}sqlite]>> )"
-PYTHON_DEPEND="<<[{*-cpython *-pypy}sqlite?]>>"
-PYTHON_RESTRICTED_ABIS="2.6 3.1"
-PYTHON_TESTS_RESTRICTED_ABIS="*-jython"
+EAPI=5
+
+PYTHON_COMPAT=( python2_7 python3_{3,4} pypy )
+PYTHON_REQ_USE='sqlite?'
 WEBAPP_NO_AUTO_INSTALL="yes"
 
-inherit bash-completion-r1 distutils git-2 webapp
+inherit bash-completion-r1 distutils-r1 eutils git-r3 versionator webapp
 
 DESCRIPTION="High-level Python web framework"
-HOMEPAGE="https://www.djangoproject.com/ https://github.com/django/django https://pypi.python.org/pypi/Django"
+HOMEPAGE="http://www.djangoproject.com/ http://pypi.python.org/pypi/Django"
 SRC_URI=""
-EGIT_REPO_URI="https://github.com/django/django"
+EGIT_REPO_URI="
+	git://github.com/django/django.git
+	https://github.com/django/django.git
+	"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
 IUSE="doc sqlite test"
 
-RDEPEND="$(python_abi_depend -e "*-jython" dev-python/imaging)
-	$(python_abi_depend dev-python/setuptools)"
+RDEPEND=""
 DEPEND="${RDEPEND}
-	doc? ( $(python_abi_depend dev-python/sphinx) )"
+	dev-python/setuptools[${PYTHON_USEDEP}]
+	doc? ( >=dev-python/sphinx-1.0.7[${PYTHON_USEDEP}] )
+	test? (
+		${PYTHON_DEPS//sqlite?/sqlite}
+		dev-python/bcrypt[${PYTHON_USEDEP}]
+		dev-python/docutils[${PYTHON_USEDEP}]
+		dev-python/jinja[${PYTHON_USEDEP}]
+		dev-python/numpy[$(python_gen_usedep 'python*')]
+		dev-python/pillow[${PYTHON_USEDEP}]
+		dev-python/python-sqlparse[${PYTHON_USEDEP}]
+		dev-python/pytz[${PYTHON_USEDEP}]
+		dev-python/pyyaml[${PYTHON_USEDEP}]
+		dev-python/selenium[${PYTHON_USEDEP}]
+		sci-libs/gdal[geos,${PYTHON_USEDEP}]
+		)"
+
+S="${WORKDIR}/${MY_P}"
 
 WEBAPP_MANUAL_SLOT="yes"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.7.5-bashcomp.patch
+)
+
 pkg_setup() {
-	python_pkg_setup
 	webapp_pkg_setup
 }
 
-src_prepare() {
-	distutils_src_prepare
+python_prepare_all() {
+	# Prevent d'loading in the doc build
+	sed -e '/^    "sphinx.ext.intersphinx",/d' -i docs/conf.py || die
 
-	# Disable invalid warning.
-	sed -e "s/overlay_warning = True/overlay_warning = False/" -i setup.py
-
-	# Fix bash completion file.
-	sed \
-		-e "/^complete -F _django_completion /s/ manage.py / /" \
-		-e "/^_python_django_completion()$/,/^complete -F _python_django_completion /d" \
-		-i extras/django_bash_completion
+	distutils-r1_python_prepare_all
 }
 
-src_compile() {
-	distutils_src_compile
-
-	if use doc; then
-		einfo "Generation of documentation"
-		pushd docs > /dev/null
-		emake html
-		popd > /dev/null
-	fi
+python_compile_all() {
+	use doc && emake -C docs html
 }
 
-src_test() {
-	testing() {
-		# Tests have non-standard assumptions about PYTHONPATH and work not with usual "build-${PYTHON_ABI}/lib".
-		python_execute PYTHONPATH="." "$(PYTHON)" tests/runtests.py --settings=test_sqlite -v1
-	}
-	python_execute_function testing
+python_test() {
+	# Tests have non-standard assumptions about PYTHONPATH,
+	# and don't work with ${BUILD_DIR}/lib.
+	PYTHONPATH=. "${PYTHON}" tests/runtests.py --settings=test_sqlite -v2 \
+		|| die "Tests fail with ${EPYTHON}"
 }
 
 src_install() {
-	distutils_src_install
+	distutils-r1_src_install
+	webapp_src_install
 
-	newbashcomp extras/django_bash_completion django-admin
-	bashcomp_alias django-admin django-admin.py
+	elog "Additional Backend support can be enabled via"
+	optfeature "MySQL backend support in python 2.7 only" dev-python/mysql-python
+	optfeature "MySQL backend support in python 2.7 - 3.4" dev-python/mysqlcient
+	optfeature "PostgreSQL backend support" dev-python/psycopg:2
+	optfeature "GEO Django" sci-libs/gdal[geos]
+	optfeature "Memcached support" dev-python/python-memcached
+	optfeature "ImageField Support" virtual/python-imaging
+	echo ""
+}
+
+python_install_all() {
+	newbashcomp extras/django_bash_completion ${PN}-admin
+	bashcomp_alias ${PN}-admin django-admin.py
 
 	if use doc; then
-		dohtml -r docs/_build/html/
+		rm -fr docs/_build/html/_sources || die
+		local HTML_DOCS=( docs/_build/html/. )
 	fi
 
 	insinto "${MY_HTDOCSDIR#${EPREFIX}}"
-	doins -r django/contrib/admin/static/admin/*
-
-	webapp_src_install
+	doins -r django/contrib/admin/static/admin/.
+	distutils-r1_python_install_all
 }
 
 pkg_postinst() {
-	distutils_pkg_postinst
-
-	elog "A copy of the admin media is available to webapp-config for installation in a webroot,"
-	elog "as well as the traditional location in Python's site-packages directory for easy development."
+	elog "A copy of the admin media is available to webapp-config for installation in a"
+	elog "webroot, as well as the traditional location in python's site-packages dir"
+	elog "for easy development."
 	webapp_pkg_postinst
 }

@@ -1,4 +1,6 @@
 #!/sbin/runscript
+# Copyright 1999-2012 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
 
 depend() {
 	need net
@@ -26,15 +28,14 @@ checkconfig() {
 start() {
 	checkconfig || return 1
 	ebegin "Starting buildslave in ${BASEDIR}"
-	# HOME is being set here to make something valid show up in environment of child
+	# We set HOME here to make something valid show up in the env of child
 	# processes spawned by the buildslave.
-	start-stop-daemon --start \
-		-u "${USERNAME}" \
+	start-stop-daemon --start -u "${USERNAME}" \
+		--pidfile "${BASEDIR}/buildslave.pid" \
 		--env HOME="${BASEDIR}" \
-		--pidfile="${BASEDIR}/buildslave.pid" \
-		--exec /usr/bin/twistd -- \
-		--logfile="${BASEDIR}/twistd.log" \
+		--exec /usr/bin/python -- /usr/bin/twistd \
 		--no_save \
+		--logfile="${BASEDIR}/twistd.log" \
 		--pidfile="${BASEDIR}/buildslave.pid" \
 		--python="${BASEDIR}/buildbot.tac"
 	eend $?
@@ -42,7 +43,6 @@ start() {
 
 stop() {
 	ebegin "Stopping buildslave in ${BASEDIR}"
-	start-stop-daemon --stop \
-		--pidfile="${BASEDIR}/buildslave.pid"
+	start-stop-daemon --stop --pidfile "${BASEDIR}/buildslave.pid"
 	eend $?
 }

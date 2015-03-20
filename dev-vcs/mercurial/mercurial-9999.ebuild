@@ -1,109 +1,89 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/mercurial/mercurial-9999.ebuild,v 1.21 2013/09/05 18:42:25 mgorny Exp $
 
-EAPI="5-progress"
-PYTHON_ABI_TYPE="multiple"
-PYTHON_DEPEND="<<[threads]>>"
-PYTHON_RESTRICTED_ABIS="3.* *-jython *-pypy"
-# Random time-outs in some tests.
-PYTHON_TESTS_FAILURES_TOLERANT_ABIS="*"
+EAPI=5
 
-inherit bash-completion-r1 distutils elisp-common eutils mercurial
+PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_REQ_USE="threads"
+
+inherit bash-completion-r1 elisp-common eutils distutils-r1 mercurial flag-o-matic
 
 DESCRIPTION="Scalable distributed SCM"
-HOMEPAGE="http://mercurial.selenic.com/ https://pypi.python.org/pypi/Mercurial"
+HOMEPAGE="http://mercurial.selenic.com/"
 EHG_REPO_URI="http://selenic.com/repo/hg"
 EHG_REVISION="@"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="bugzilla emacs gpg test tk"
+IUSE="bugzilla emacs gpg test tk zsh-completion"
 
-RDEPEND="app-misc/ca-certificates
-	bugzilla? ( $(python_abi_depend dev-python/mysql-python) )
+RDEPEND="bugzilla? ( dev-python/mysql-python[${PYTHON_USEDEP}] )
 	gpg? ( app-crypt/gnupg )
-	tk? ( dev-lang/tk )"
+	tk? ( dev-lang/tk )
+	zsh-completion? ( app-shells/zsh )
+	app-misc/ca-certificates"
 DEPEND="emacs? ( virtual/emacs )
-	$([[ ${PV} == 9999 ]] && python_abi_depend dev-python/docutils)
-	test? (
-		app-arch/unzip
-		$(python_abi_depend dev-python/pygments)
-	)"
+	test? ( app-arch/unzip
+		dev-python/pygments[${PYTHON_USEDEP}] )
+	dev-python/docutils[${PYTHON_USEDEP}]"
 
-PYTHON_CFLAGS=(
-	"2.* + -fno-strict-aliasing"
-	"* - -ftracer -ftree-vectorize"
-)
-
-PYTHON_MODULES="${PN} hgext"
 SITEFILE="70${PN}-gentoo.el"
 
-src_prepare() {
-	distutils_src_prepare
-	sed -e "s|^if sys.platform == 'darwin' and os.path.exists('/usr/bin/xcodebuild'):$|if False:|" -i setup.py
+python_prepare_all() {
+	# fix up logic that won't work in Gentoo Prefix (also won't outside in
+	# certain cases), bug #362891
+	sed -i -e 's:xcodebuild:nocodebuild:' setup.py || die
 
-	# https://bz.selenic.com/show_bug.cgi?id=4083
-	rm tests/test-subrepo-svn.t
-	# https://bz.selenic.com/show_bug.cgi?id=4084
-	rm tests/test-clone-cgi.t
-	rm tests/test-hgweb-commands.t
-	rm tests/test-push-cgi.t
-	# Disable test failing due to DeprecationWarning in internal code in dev-vcs/bzr 2.6.0.
-	rm tests/test-convert-bzr-directories.t
+	distutils-r1_python_prepare_all
 }
 
-src_compile() {
-	distutils_src_compile
+python_configure_all() {
+	strip-flags -ftracer -ftree-vectorize
+	# Note: make it impl-conditional if py3 is supported
+	append-flags -fno-strict-aliasing
 
-	if [[ ${PV} == 9999 ]]; then
-		emake doc
-	fi
+	"${PYTHON}" setup.py build_mo || die
+}
 
+python_compile_all() {
+	rm -r contrib/{win32,macosx} || die
+	emake doc
 	if use emacs; then
-		pushd contrib > /dev/null || die
-		elisp-compile mercurial.el
-		popd > /dev/null || die
+		cd contrib || die
+		elisp-compile mercurial.el || die "elisp-compile failed!"
 	fi
-
-	rm -r contrib/{macosx,win32} || die
 }
 
-src_test() {
-	testing() {
-		local testdir="${T}/tests-${PYTHON_ABI}"
-		python_execute "$(PYTHON)" setup.py build -b build-${PYTHON_ABI} install --root="${testdir}"
-		cd tests || die
-		rm -fr "${testdir}/tests"
-		python_execute PYTHONPATH="${testdir}$(python_get_sitedir)" "$(PYTHON)" run-tests.py \
-			--tmpdir="${testdir}/temp" \
-			--verbose \
-			--with-hg="${testdir}/usr/bin/hg"
-	}
-	python_execute_function testing
-}
-
-src_install() {
-	distutils_src_install
+python_install_all() {
+	distutils-r1_python_install_all
 
 	newbashcomp contrib/bash_completion hg
-	insinto /usr/share/zsh/site-functions
-	newins contrib/zsh_completion _hg
 
-	if use emacs; then
-		elisp-install ${PN} contrib/mercurial.el*
-		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
+	if use zsh-completion ; then
+		insinto /usr/share/zsh/site-functions
+		newins contrib/zsh_completion _hg
 	fi
 
-	dodoc CONTRIBUTORS
+	rm -f doc/*.?.txt || die
+	dodoc CONTRIBUTORS doc/*.txt
 	cp hgweb*.cgi "${ED}"/usr/share/doc/${PF}/ || die
 
 	dobin hgeditor
 	dobin contrib/hgk
-	python_install_executables contrib/hg-ssh
+	python_foreach_impl python_doscript contrib/hg-ssh
 
-	rm -r contrib/{*.el,bash_completion,buildrpm,hg-ssh,hgk,mercurial.spec,plan9,wix,zsh_completion} || die
+	if use emacs; then
+		elisp-install ${PN} contrib/mercurial.el* || die "elisp-install failed!"
+		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
+	fi
+
+	local RM_CONTRIB=(hgk hg-ssh bash_completion zsh_completion wix buildrpm plan9
+	                  *.el mercurial.spec)
+	for f in ${RM_CONTRIB[@]}; do
+		rm -rf contrib/$f || die
+	done
 
 	dodoc -r contrib
 	docompress -x /usr/share/doc/${PF}/contrib
@@ -118,8 +98,47 @@ EOF
 	doins "${FILESDIR}/cacerts.rc"
 }
 
+src_test() {
+	cd tests || die
+	rm -rf *svn* || die					# Subversion tests fail with 1.5
+	rm -f test-archive* || die			# Fails due to verbose tar output changes
+	rm -f test-convert-baz* || die		# GNU Arch baz
+	rm -f test-convert-cvs* || die		# CVS
+	rm -f test-convert-darcs* || die	# Darcs
+	rm -f test-convert-git* || die		# git
+	rm -f test-convert-mtn* || die		# monotone
+	rm -f test-convert-tla* || die		# GNU Arch tla
+	rm -f test-doctest* || die			# doctest always fails with python 2.5.x
+	rm -f test-largefiles* || die		# tends to time out
+	if [[ ${EUID} -eq 0 ]]; then
+		einfo "Removing tests which require user privileges to succeed"
+		rm -f test-command-template* || die	# Test is broken when run as root
+		rm -f test-convert* || die			# Test is broken when run as root
+		rm -f test-lock-badness* || die		# Test is broken when run as root
+		rm -f test-permissions* || die		# Test is broken when run as root
+		rm -f test-pull-permission* || die	# Test is broken when run as root
+		rm -f test-clone-failure* || die
+		rm -f test-journal-exists* || die
+		rm -f test-repair-strip* || die
+	fi
+
+	cd .. || die
+	distutils-r1_src_test
+}
+
+python_test() {
+	local TEST_DIR
+
+	rm -rf "${TMPDIR}"/test
+	distutils_install_for_testing
+	cd tests || die
+	"${PYTHON}" run-tests.py --verbose \
+		--tmpdir="${TMPDIR}"/test \
+		--with-hg="${TEST_DIR}"/scripts/hg \
+		|| die "Tests fail with ${EPYTHON}"
+}
+
 pkg_postinst() {
-	distutils_pkg_postinst
 	use emacs && elisp-site-regen
 
 	elog "If you want to convert repositories from other tools using convert"
@@ -132,6 +151,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	distutils_pkg_postrm
 	use emacs && elisp-site-regen
 }

@@ -23,3 +23,6 @@ index a6a3ce5..6540be3 100644
          self.assertEqual(sub.__gtype__.name, 'SubDialog')
  
      def testDialogLeak(self):
+-- 
+1.8.3.2
+

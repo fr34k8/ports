@@ -1,31 +1,26 @@
-# Copyright owners: Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/extras/extras-0.0.3.ebuild,v 1.26 2015/03/03 07:01:25 dlan Exp $
 
-EAPI="5-progress"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="2.5"
-DISTUTILS_SRC_TEST="setup.py"
+EAPI=5
+PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4} pypy pypy2_0 )
 
-inherit distutils
+inherit distutils-r1
 
-DESCRIPTION="Useful extra bits for Python"
-HOMEPAGE="https://github.com/testing-cabal/extras http://pypi.python.org/pypi/extras"
+DESCRIPTION="Useful extra bits for Python that should be in the standard library"
+HOMEPAGE="https://github.com/testing-cabal/extras/ http://pypi.python.org/pypi/extras/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 sparc x86 ~amd64-fbsd ~x86-fbsd"
 IUSE="test"
 
-DEPEND="$(python_abi_depend dev-python/setuptools)
-	test? ( $(python_abi_depend dev-python/testtools) )"
+DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
+	test? ( dev-python/testtools[${PYTHON_USEDEP}] )"
 RDEPEND=""
 
-src_install() {
-	distutils_src_install
-
-	delete_tests() {
-		rm -fr "${ED}$(python_get_sitedir)/extras/tests"
-	}
-	python_execute_function -q delete_tests
+python_test() {
+	"${PYTHON}" ${PN}/tests/test_extras.py || die
+	einfo "test_extras passed under ${EPYTHON}"
 }

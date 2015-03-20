@@ -1,13 +1,11 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/setools/setools-3.3.8-r5.ebuild,v 1.3 2015/03/16 21:34:05 vapier Exp $
 
-EAPI="5-progress"
-PYTHON_DEPEND="python? ( <<>> )"
-PYTHON_MULTIPLE_ABIS="1"
-PYTHON_RESTRICTED_ABIS="3.* *-jython *-pypy-*"
+EAPI="5"
+PYTHON_COMPAT=( python2_7 )
 
-inherit autotools eutils java-pkg-opt-2 python
+inherit autotools java-pkg-opt-2 python-r1 eutils toolchain-funcs
 
 DESCRIPTION="SELinux policy tools"
 HOMEPAGE="http://www.tresys.com/selinux/selinux_policy_tools.shtml"
@@ -17,7 +15,7 @@ SRC_URI="http://oss.tresys.com/projects/setools/chrome/site/dists/${P}/${P}.tar.
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="*"
+KEYWORDS="amd64 x86"
 IUSE="X debug java python"
 
 DEPEND=">=sys-libs/libsepol-2.1.4
@@ -31,7 +29,10 @@ DEPEND=">=sys-libs/libsepol-2.1.4
 		dev-lang/swig:1
 		>=virtual/jdk-1.4
 	)
-	python? ( dev-lang/swig:1 )
+	python? (
+		${PYTHON_DEPS}
+		dev-lang/swig:1
+	)
 	X? (
 		>=dev-lang/tk-8.4.9
 		>=gnome-base/libglade-2.0
@@ -51,15 +52,12 @@ RDEPEND=">=sys-libs/libsepol-2.1.4
 	)"
 
 RESTRICT="test"
+# setools dirs that contain python code to build
+PYTHON_DIRS="libapol/swig/python libpoldiff/swig/python libqpol/swig/python libseaudit/swig/python libsefs/swig/python python"
 
 pkg_setup() {
 	if use java; then
 		java-pkg-opt-2_pkg_setup
-	fi
-
-	if use python; then
-		python_pkg_setup
-		PYTHON_DIRS="libapol/swig/python libpoldiff/swig/python libqpol/swig/python libseaudit/swig/python libsefs/swig/python python"
 	fi
 }
 
@@ -78,19 +76,10 @@ src_prepare() {
 
 	# Disable broken check for SWIG version.
 	sed -e "s/AC_PROG_SWIG(2.0.0)/AC_PROG_SWIG/" -i configure.ac || die "sed failed"
-	# Use SWIG 1.3.
-	sed -e 's/AC_PATH_PROG(\[SWIG\],\[swig\])/AC_PATH_PROG([SWIG],[swig1.3])/' -i m4/ac_pkg_swig.m4 || die "sed failed"
-	# Fix build failure due to double __init__.py installation.
-	sed -e "s/^wrappedpy_DATA = qpol.py \$(pkgpython_PYTHON)/wrappedpy_DATA = qpol.py/" -i libqpol/swig/python/Makefile.am || die "sed failed"
-
-	# Support Python 2.6.
-	sed -e "/AM_PATH_PYTHON(2.7)/s/2.7/2.6/" -i configure.ac
-	# Fix calculation of PYTHON_LDFLAGS and PYTHON_EXTRA_LIBS.
-	sed \
-		-e "/print('-L' + get_python_lib(1,1), \\\\/s/, / + ' ' + /" \
-		-e "/if test \"\$py_version\" == \"2.7\"; then/,/fi/d" \
-		-e "/print(conf('LOCALMODLIBS'), conf('LIBS'))/s/, / + ' ' + /" \
-		-i m4/ac_python_devel.m4
+	# Use swig1.3
+	sed -e 's/AC_PATH_PROG(\[SWIG\],\[swig\])/AC_PATH_PROG([SWIG],[swig1.3])/' -i m4/ac_pkg_swig.m4 || die "failed to set swig1.3"
+	# Fix build failure due to double __init__.py installation
+	sed -e "s/^wrappedpy_DATA = qpol.py \$(pkgpython_PYTHON)/wrappedpy_DATA = qpol.py/" -i libqpol/swig/python/Makefile.am || die
 
 	local dir
 	for dir in ${PYTHON_DIRS}; do
@@ -100,16 +89,20 @@ src_prepare() {
 		sed -e "/^AM_LDFLAGS =/s/@PYTHON_LDFLAGS@/\$(PYTHON_LDFLAGS)/" -i ${dir}/Makefile.am || die "sed failed"
 	done
 
-	sed -e "s/mkdir_p/MKDIR_P/" -i **/Makefile.am || die "sed failed"
+	# temporary work around bug #424581 until automake-1.12 is stable (then
+	# depend on it). Need to use MKDIR_P in the mean time for 1.12+.
+	has_version ">=sys-devel/automake-1.12.1" && { find . -name 'Makefile.*' -exec sed -i -e 's:mkdir_p:MKDIR_P:g' {} +  || die; }
 
 	eautoreconf
 
-	python_clean_py-compile_files
+	# Disable byte-compilation of Python modules.
+	echo '#!/bin/sh' > py-compile
 
 	epatch_user
 }
 
 src_configure() {
+	tc-ld-disable-gold #467136
 	econf \
 		--with-java-prefix=${JAVA_HOME} \
 		--disable-selinux-check \
@@ -119,28 +112,30 @@ src_configure() {
 		$(use_enable X swig-tcl) \
 		$(use_enable X gui) \
 		$(use_enable debug)
+
+	# work around swig c99 issues.  it does not require
+	# c99 anyway.
+	sed -i -e 's/-std=gnu99//' "${S}/libseaudit/swig/python/Makefile"
 }
 
 src_compile() {
-	emake LD="$(tc-getLD).bfd"
+	emake
 
 	if use python; then
+		building() {
+			python_export PYTHON_INCLUDEDIR
+			python_export PYTHON_SITEDIR
+			python_export PYTHON_LIBS
+			emake \
+				SWIG_PYTHON_CPPFLAGS="-I${PYTHON_INCLUDEDIR}" \
+				PYTHON_LDFLAGS="${PYTHON_LIBS}" \
+				pyexecdir="${PYTHON_SITEDIR}" \
+				pythondir="${PYTHON_SITEDIR}" \
+				-C "$1"
+		}
 		local dir
 		for dir in ${PYTHON_DIRS}; do
-			python_copy_sources ${dir}
-			building() {
-				emake \
-					LD="$(tc-getLD).bfd" \
-					SWIG_PYTHON_CPPFLAGS="-I$(python_get_includedir)" \
-					PYTHON_LDFLAGS="$(python_get_library -l)" \
-					pyexecdir="$(python_get_sitedir)" \
-					pythondir="$(python_get_sitedir)"
-			}
-			python_execute_function \
-				--action-message "Building of Python bindings from ${dir} directory with \$(python_get_implementation_and_version)" \
-				--failure-message "Building of Python bindings from ${dir} directory with \$(python_get_implementation_and_version) failed" \
-				-s --source-dir ${dir} \
-				building
+			python_foreach_impl building ${dir}
 		done
 	fi
 }
@@ -149,32 +144,17 @@ src_install() {
 	emake DESTDIR="${D}" install
 
 	if use python; then
+		installation() {
+			python_export PYTHON_SITEDIR
+			emake DESTDIR="${D}" \
+				pyexecdir="${PYTHON_SITEDIR}" \
+				pythondir="${PYTHON_SITEDIR}" \
+				-C "$1" install
+		}
+
 		local dir
 		for dir in ${PYTHON_DIRS}; do
-			installation() {
-				emake \
-					DESTDIR="${D}" \
-					pyexecdir="$(python_get_sitedir)" \
-					pythondir="$(python_get_sitedir)" \
-					install
-			}
-			python_execute_function \
-				--action-message "Installation of Python bindings from ${dir} directory with \$(python_get_implementation_and_version)" \
-				--failure-message "Installation of Python bindings from ${dir} directory with \$(python_get_implementation_and_version) failed" \
-				-s --source-dir ${dir} \
-				installation
+			python_foreach_impl installation "${dir}"
 		done
-	fi
-}
-
-pkg_postinst() {
-	if use python; then
-		python_mod_optimize setools
-	fi
-}
-
-pkg_postrm() {
-	if use python; then
-		python_mod_cleanup setools
 	fi
 }

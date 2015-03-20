@@ -21,3 +21,6 @@ index 3179a83..01a0454 100755
  					/no version information available/ && $0 !~ ldmask {
  						gsub(/[()]/, "", $NF)
  						if (seen[$NF]++)  next
+-- 
+2.1.3
+

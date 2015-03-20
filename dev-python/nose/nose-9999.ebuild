@@ -1,88 +1,96 @@
-# Copyright owners: Gentoo Foundation
-#                   Arfrever Frehtes Taifersar Arahesis
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-9999.ebuild,v 1.10 2014/11/19 15:14:59 idella4 Exp $
 
-EAPI="5-progress"
-PYTHON_MULTIPLE_ABIS="1"
-# 2.6: https://github.com/nose-devs/nose/issues/781
-PYTHON_TESTS_FAILURES_TOLERANT_ABIS="2.6 *-jython"
+EAPI=5
 
-inherit distutils git-2
+#if LIVE
+EGIT_REPO_URI="git://github.com/nose-devs/${PN}.git
+	https://github.com/nose-devs/${PN}.git"
+inherit git-2
+#endif
 
-DESCRIPTION="nose extends unittest to make testing easier"
-HOMEPAGE="https://nose.readthedocs.org/ https://github.com/nose-devs/nose https://pypi.python.org/pypi/nose"
-SRC_URI=""
-EGIT_REPO_URI="https://github.com/nose-devs/nose"
+PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy pypy3 )
+inherit distutils-r1 eutils
+
+DESCRIPTION="A unittest extension offering automatic test suite discovery and easy test authoring"
+HOMEPAGE="http://pypi.python.org/pypi/nose http://readthedocs.org/docs/nose/ https://github.com/nose-devs/nose"
+SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="doc examples test"
 
-RDEPEND="$(python_abi_depend dev-python/coverage)
-	$(python_abi_depend dev-python/setuptools)"
+RDEPEND="dev-python/coverage[${PYTHON_USEDEP}]
+	dev-python/setuptools[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}
-	doc? ( $(python_abi_depend dev-python/sphinx) )
-	test? ( $(python_abi_depend -e "3.* *-jython" dev-python/twisted-core) )"
+	doc? ( >=dev-python/sphinx-0.6 )
+	test? ( dev-python/twisted-core )"
 
-DOCS="AUTHORS"
+#if LIVE
+SRC_URI=
+KEYWORDS=
+#endif
 
-src_prepare() {
-	distutils_src_prepare
+DOCS=( AUTHORS )
 
-	sed \
-		-e "/^sys.path.insert(.*)$/d" \
-		-e "/^sys.path.insert(/,/)$/d" \
-		-i doc/conf.py
+python_prepare_all() {
+	# Tests need to be converted, and they don't respect BUILD_DIR.
+	use test && DISTUTILS_IN_SOURCE_BUILD=1
 
-	# Disable versioning of nosetests script to avoid collision with versioning performed by python_merge_intermediate_installation_images().
-	sed -e "/'nosetests%s = nose:run_exit' % py_vers_tag,/d" -i setup.py || die "sed failed"
-
+	# Disable sphinx.ext.intersphinx, requires network
+	epatch "${FILESDIR}/${PN}-0.11.0-disable_intersphinx.patch"
 	# Disable tests requiring network connection.
 	sed \
 		-e "s/test_resolve/_&/g" \
 		-e "s/test_raises_bad_return/_&/g" \
 		-e "s/test_raises_twisted_error/_&/g" \
 		-i unit_tests/test_twisted.py || die "sed failed"
+	# Disable versioning of nosetests script to avoid collision with
+	# versioning performed by the eclass.
+	sed -e "/'nosetests%s = nose:run_exit' % py_vers_tag,/d" \
+		-i setup.py || die "sed2 failed"
+
+	distutils-r1_python_prepare_all
 }
 
-src_compile() {
-	distutils_src_compile
+python_compile() {
+	local add_targets=()
 
-	if use doc; then
-		einfo "Generation of documentation"
-		pushd doc > /dev/null
-		PYTHONPATH="../build-$(PYTHON -f --ABI)/lib" emake html
-		popd > /dev/null
+	if use test; then
+		add_targets+=( egg_info )
+		[[ ${EPYTHON} == python3* ]] && add_targets+=( build_tests )
 	fi
+
+	distutils-r1_python_compile ${add_targets[@]}
+}
+
+python_compile_all() {
+	use doc && emake -C doc html
 }
 
 src_test() {
-	# Some test failures result in leaving of some files causing test failures with other Python ABIs.
-	python_copy_sources
+	# nosetests use heavy multiprocessing during the tests.
+	# this shall make them less likely to kill your system or timeout.
+	local DISTUTILS_NO_PARALLEL_BUILD=1
 
-	testing() {
-		if [[ "$(python_get_version -l --major)" == "3" ]]; then
-			python_execute "$(PYTHON)" setup.py build_tests || return
-		fi
-
-		python_execute "$(PYTHON)" setup.py egg_info || return
-		python_execute PATH="$(pwd)/bin:${PATH}" PYTHONPATH="build-${PYTHON_ABI}/lib" "$(PYTHON)" selftest.py -v
-	}
-	python_execute_function -s testing
+	distutils-r1_src_test
 }
 
-src_install() {
-	distutils_src_install --install-data "${EPREFIX}/usr/share"
+python_test() {
+	"${PYTHON}" selftest.py || die "Tests fail with ${EPYTHON}"
+}
 
-	python_generate_wrapper_scripts -E -f -q "${ED}usr/bin/nosetests"
+python_install() {
+	distutils-r1_python_install --install-data "${EPREFIX}/usr/share"
+}
+
+python_install_all() {
+	local EXAMPLES=( examples/. )
+	distutils-r1_python_install_all
 
 	if use doc; then
-		dohtml -r doc/.build/html/
-	fi
-
-	if use examples; then
-		insinto /usr/share/doc/${PF}/examples
-		doins -r examples/*
+		dohtml -r -A txt doc/.build/html/.
 	fi
 }

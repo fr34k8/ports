@@ -1,5 +1,6 @@
---- Source/setup_configure.py
-+++ Source/setup_configure.py
+diff -ur pysvn-1.7.9.orig/Source/setup_configure.py pysvn-1.7.9/Source/setup_configure.py
+--- Source/setup_configure.py	2014-02-02 22:19:59.000000000 +0800
++++ Source/setup_configure.py	2014-08-15 08:15:44.676746371 +0800
 @@ -848,8 +848,8 @@
      def __init__( self, setup ):
          Compiler.__init__( self, setup )
@@ -42,7 +43,7 @@
  
          py_cflags_list = [
 -                    '-g',
-+                    '$(CXXFLAGS)',
++                    '$(CXXFLAGS) ',
                      '-no-long-double',
                      '-Wall -fPIC -fexceptions -frtti',
                      '-I. -I%(APR_INC)s -I%(APU_INC)s -I%(SVN_INC)s',

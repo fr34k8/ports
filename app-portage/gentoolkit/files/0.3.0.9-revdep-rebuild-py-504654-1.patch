@@ -21,3 +21,6 @@ index cc3da7b..7a8373d 100644
  
  
  def scan(params, files, max_args, logger):
+-- 
+1.9.1
+

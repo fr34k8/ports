@@ -1,8 +1,8 @@
-https://bugs.gentoo.org/show_bug.cgi?id=322351
+See Gentoo bug #322351.
 
---- CMakeLists.txt
-+++ CMakeLists.txt
-@@ -99,6 +99,9 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -99,6 +99,9 @@ include_directories(
      ${KDEPIMLIBS_INCLUDE_DIRS}
  )
  
@@ -12,7 +12,7 @@ https://bugs.gentoo.org/show_bug.cgi?id=322351
  set(SIP_INCLUDES ${CMAKE_BINARY_DIR} ${PYQT4_SIP_DIR} sip)
  set(SIP_CONCAT_PARTS 8)
  if (WIN32)
-@@ -106,7 +109,7 @@
+@@ -106,7 +109,7 @@ if (WIN32)
  else ()
      set(SIP_TAGS ALL WS_X11 ${PYQT4_VERSION_TAG})
  endif ()
