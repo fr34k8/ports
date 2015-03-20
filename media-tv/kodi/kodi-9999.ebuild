@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-tv/kodi/kodi-14.1.ebuild,v 1.4 2015/03/19 12:48:23 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-tv/kodi/kodi-9999.ebuild,v 1.9 2015/03/19 12:48:23 tupone Exp $
 
 EAPI="5"
 
@@ -15,7 +15,7 @@ CODENAME="Helix"
 case ${PV} in
 9999)
 	EGIT_REPO_URI="git://github.com/xbmc/xbmc.git"
-	inherit git-2
+	inherit git-r3
 	;;
 *|*_p*)
 	MY_PV=${PV/_p/_r}
@@ -33,9 +33,8 @@ HOMEPAGE="http://kodi.tv/ http://kodi.wiki/"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="airplay avahi bluetooth bluray caps cec css debug +fishbmc gles goom java joystick midi mysql nfs +opengl profile +projectm pulseaudio pvr +rsxs rtmp +samba sftp test udisks upnp upower +usb vaapi vdpau webserver +X +xrandr"
+IUSE="airplay alsa avahi bluetooth bluray caps cec css debug +fishbmc gles goom java joystick midi mysql nfs +opengl profile +projectm pulseaudio +rsxs raspberry-pi rtmp +samba sftp test udisks upnp upower +usb vaapi vdpau webserver +X +xrandr"
 REQUIRED_USE="
-	pvr? ( mysql )
 	rsxs? ( X )
 	xrandr? ( X )
 "
@@ -47,21 +46,23 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	app-i18n/enca
 	airplay? ( app-pda/libplist )
 	dev-libs/boost
+	dev-libs/expat
 	dev-libs/fribidi
 	dev-libs/libcdio[-minimal]
 	cec? ( >=dev-libs/libcec-2.2 )
 	dev-libs/libpcre[cxx]
+	dev-libs/libxml2
+	dev-libs/libxslt
 	>=dev-libs/lzo-2.04
 	dev-libs/tinyxml[stl]
 	dev-libs/yajl
 	dev-python/simplejson[${PYTHON_USEDEP}]
 	media-fonts/corefonts
 	media-fonts/roboto
-	media-libs/alsa-lib
+	alsa? ( media-libs/alsa-lib )
 	media-libs/flac
 	media-libs/fontconfig
 	media-libs/freetype
-	>=media-libs/glew-1.5.6
 	media-libs/jasper
 	media-libs/jbigkit
 	>=media-libs/libass-0.9.7
@@ -80,7 +81,7 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	media-libs/tiff
 	pulseaudio? ( media-sound/pulseaudio )
 	media-sound/wavpack
-	>=media-video/ffmpeg-2.4:=[encode]
+	>=media-video/ffmpeg-2.6:=[encode]
 	rtmp? ( media-video/rtmpdump )
 	avahi? ( net-dns/avahi )
 	nfs? ( net-fs/libnfs )
@@ -98,9 +99,9 @@ COMMON_DEPEND="${PYTHON_DEPS}
 	opengl? (
 		virtual/glu
 		virtual/opengl
+		>=media-libs/glew-1.5.6
 	)
 	gles? (
-		virtual/opengl
 		media-libs/mesa[gles2]
 	)
 	vaapi? ( x11-libs/libva[opengl] )
@@ -137,15 +138,12 @@ pkg_setup() {
 }
 
 src_unpack() {
-	[[ ${PV} == "9999" ]] && git-2_src_unpack || default
+	[[ ${PV} == "9999" ]] && git-r3_src_unpack || default
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-9999-nomythtv.patch
 	epatch "${FILESDIR}"/${P}-no-arm-flags.patch #400617
-	epatch "${FILESDIR}"/${PN}-14.0-dvddemux-ffmpeg.patch #526992#36
-	# The mythtv patch touches configure.ac, so force a regen
-	rm -f configure
+	epatch "${FILESDIR}"/${P}-texturepacker.patch
 
 	# some dirs ship generated autotools, some dont
 	multijob_init
@@ -191,11 +189,19 @@ src_configure() {
 	# Requiring java is asine #434662
 	[[ ${PV} != "9999" ]] && export ac_cv_path_JAVA_EXE=$(which $(usex java java true))
 
+	local myconf=""
+	if use raspberry-pi; then
+		myconf="--with-platform=raspberry-pi"
+		myconf="$myconf --enable-player=omxplayer"
+	fi
+
 	econf \
+		$myconf \
 		--docdir=/usr/share/doc/${PF} \
 		--disable-ccache \
 		--disable-optimizations \
 		--with-ffmpeg=shared \
+		$(use_enable alsa) \
 		$(use_enable airplay) \
 		$(use_enable avahi) \
 		$(use_enable bluray libbluray) \
@@ -214,7 +220,6 @@ src_configure() {
 		$(use_enable profile profiling) \
 		$(use_enable projectm) \
 		$(use_enable pulseaudio pulse) \
-		$(use_enable pvr mythtv) \
 		$(use_enable rsxs) \
 		$(use_enable rtmp) \
 		$(use_enable samba) \
@@ -227,6 +232,10 @@ src_configure() {
 		$(use_enable webserver) \
 		$(use_enable X x11) \
 		$(use_enable xrandr)
+}
+
+src_compile() {
+	emake V=1
 }
 
 src_install() {

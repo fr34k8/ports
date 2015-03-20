@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/vlc-2.2.0.ebuild,v 1.4 2015/03/03 11:48:44 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/vlc/vlc-2.2.0.ebuild,v 1.5 2015/03/05 21:17:53 lu_zero Exp $
 
 EAPI="5"
 
@@ -35,7 +35,7 @@ LICENSE="LGPL-2.1 GPL-2"
 SLOT="0/5-7" # vlc - vlccore
 
 if [ "${PV%9999}" = "${PV}" ] ; then
-	KEYWORDS="~*"
+	KEYWORDS="~amd64 ~arm -sparc ~x86 ~x86-fbsd"
 else
 	KEYWORDS=""
 fi
@@ -48,7 +48,7 @@ IUSE="a52 aalib alsa altivec atmo +audioqueue avahi +avcodec
 	libsamplerate libtiger linsys libtar lirc live lua
 	macosx-dialog-provider macosx-eyetv macosx-quartztext macosx-qtkit
 	matroska media-library cpu_flags_x86_mmx modplug mp3 mpeg
-	mtp musepack ncurses neon ogg omxil opencv opengl optimisememory opus oss
+	mtp musepack ncurses neon ogg omxil opencv opengl optimisememory opus
 	png postproc projectm pulseaudio +qt4 qt5 rdp rtsp run-as-root samba
 	schroedinger sdl sdl-image sftp shout sid skins speex cpu_flags_x86_sse svg +swscale
 	taglib theora tremor truetype twolame udev upnp vaapi v4l vcdx vdpau
@@ -117,7 +117,6 @@ RDEPEND="
 		opencv? ( >media-libs/opencv-2:0 )
 		opengl? ( virtual/opengl:0 >=x11-libs/libX11-1.3.99.901:0 )
 		opus? ( >=media-libs/opus-1.0.3:0 )
-		oss? ( media-sound/oss:0 )
 		png? ( media-libs/libpng:0= sys-libs/zlib:0 )
 		postproc? (
 			!libav? ( >=media-video/ffmpeg-1.2:0= )
@@ -310,7 +309,6 @@ src_configure() {
 		--enable-vlc \
 		--docdir=/usr/share/doc/${PF} \
 		--disable-dependency-tracking \
-		--disable-freerdp
 		--disable-optimizations \
 		--disable-update-check \
 		--enable-fast-install \
@@ -385,12 +383,12 @@ src_configure() {
 		$(use_enable opengl glx) $(use_enable opengl glspectrum) \
 		$(use_enable opus) \
 		$(use_enable optimisememory optimize-memory) \
-		$(use_enable oss)
 		$(use_enable png) \
 		$(use_enable postproc) \
 		$(use_enable projectm) \
 		$(use_enable pulseaudio pulse) \
 		${qt_flag} \
+		$(use_enable rdp freerdp) \
 		$(use_enable rtsp realrtsp) \
 		$(use_enable run-as-root) \
 		$(use_enable samba smbclient) \
@@ -445,6 +443,7 @@ src_configure() {
 		--disable-mmal-codec \
 		--disable-mmal-vout \
 		--disable-opensles \
+		--disable-oss \
 		--disable-quicktime \
 		--disable-rpi-omxil \
 		--disable-shine \
