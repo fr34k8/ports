@@ -7,5 +7,5 @@ IUSE=doc xml
 LICENSE=MIT GPL-3
 RDEPEND=!xml? ( dev-libs/expat ) xml? ( dev-libs/libxml2 ) dev-libs/openssl
 SLOT=0
-_eclasses_=autotools	8fc2dd333ef9346c906ffd9a523d8211	git-2	e28f0d8a9b321431b1e699782851b827	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_eclasses_=autotools	999c8f6cf5d91495cb0779588f20716c	git-2	e28f0d8a9b321431b1e699782851b827	libtool	52d0e17251d04645ffaa61bfdd858944	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=e136ad67cd1b44aba5302e318d0a0e27
