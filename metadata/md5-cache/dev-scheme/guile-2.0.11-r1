@@ -10,5 +10,5 @@ RDEPEND=!dev-scheme/guile:12 dev-libs/boehm-gc[threads?] dev-libs/gmp dev-libs/l
 RESTRICT=mirror
 SLOT=0/2.0.11
 SRC_URI=mirror://gnu/guile/guile-2.0.11.tar.gz
-_eclasses_=eutils	998e5931fb95b10a6a11ec796ada2759	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_eclasses_=eutils	9fb270e417e0e83d64ca52586c4a79de	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=34ca7dcf53ec42841e559d574511cc08

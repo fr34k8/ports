@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=dev-python/pygtk dev-python/dbus-python || ( sys-power/upower sys-power/upower-pm-utils ) x11-themes/gnome-icon-theme libnotify? ( x11-libs/libnotify ) =dev-lang/python-2*
 SLOT=0
 SRC_URI=http://batti-gtk.googlecode.com/files/batti-0.3.8.tar.gz
-_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	998e5931fb95b10a6a11ec796ada2759	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3ee5574a6b0dc8388fa703b53642a22b	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
+_eclasses_=distutils	2d484830b6e5aa7a840ba17d755dd55b	eutils	9fb270e417e0e83d64ca52586c4a79de	gnome2-utils	4a0252e64a2520ff31387a5cfe92c849	multilib	3bf24e6abb9b76d9f6c20600f0b716bf	python	3ee5574a6b0dc8388fa703b53642a22b	toolchain-funcs	b99aa37f734b5d426efd83b2f271cece
 _md5_=280a3b3a129d49827089565987e72b8d
